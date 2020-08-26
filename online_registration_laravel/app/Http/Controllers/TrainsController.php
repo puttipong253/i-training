@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Exports\UsersExport;
-use Maatwebsite\Excel\Facades\Excel;
-
-class UsersController extends Controller
+use App\Models\Train;
+class TrainsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return Train::all();
     }
 
     /**
@@ -37,19 +34,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'Prefix' => 'required',
-            'F_Name' => 'required',
-            'L_Name' => 'required',
-            'Gender' => 'required',
-            'Rank' => 'required',
-            'Email' => 'required',
-            'Phone' => 'required',
-            'Province' => 'required',
-            'Food_Group' => 'required',
-        ]);
-        $user = User::create($request->all());
-        return $user;
+        $train = Train::create($request->all());
+        return $train;
     }
 
     /**
@@ -60,14 +46,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        //
     }
 
-    public function export()
-    {
-        return Excel::download(new UsersExport, 'users.xlsx');
-        "Export succesfuly";
-    }
     /**
      * Show the form for editing the specified resource.
      *
