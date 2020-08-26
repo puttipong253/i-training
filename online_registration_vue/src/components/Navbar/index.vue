@@ -15,7 +15,7 @@
             <v-list-item-title>กลับหน้าหลัก</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/personal">
+          <v-list-item to="/page">
             <v-list-item-icon>
               <v-icon>mdi-pencil</v-icon>
             </v-list-item-icon>

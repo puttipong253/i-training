@@ -1,13 +1,13 @@
 <template>
   <v-form ref="form" v-model="valid" lazy-validation>
     <Wrapper>
-      <Header>ข้อมูลส่วนตัว</Header>
-      <ContentWrapper>
+      <!-- <Header>ข้อมูลส่วนตัว</Header> -->
+
         <v-row>
           <v-col cols="12" sm="4" md="2">
             <v-select
               class="text-custom"
-              v-model="users.Prefix"
+              v-model="getUsers.Prefix"
               :rules="prefixRules"
               :items="prefixItems"
               label="คำนำหน้า"
@@ -17,7 +17,7 @@
           <v-col cols="6" sm="4" md="5">
             <v-text-field
               class="text-custom"
-              v-model="users.F_Name"
+              v-model="getUsers.F_Name"
               :rules="fnameRules"
               label="ชื่อจริง"
               required
@@ -27,24 +27,24 @@
           <v-col cols="6" sm="4" md="5">
             <v-text-field
               class="text-custom"
-              v-model="users.L_Name"
+              v-model="getUsers.L_Name"
               :rules="lnameRules"
               label="นามสกุล"
               required
             ></v-text-field>
           </v-col>
 
-          <v-col cols="6" sm="5" md="3">
-            <v-radio-group v-model="users.Gender" :rules="genderRules" required row>
+          <v-col cols="6" sm="4" md="3">
+            <v-radio-group v-model="getUsers.Gender" :rules="genderRules" required row>
               <v-radio label="ชาย" value="ชาย"></v-radio>
               <v-radio label="หญิง" value="หญิง"></v-radio>
             </v-radio-group>
           </v-col>
 
-          <v-col cols="6" sm="7" md="5">
+          <v-col cols="6" sm="8" md="5">
             <v-text-field
               class="text-custom"
-              v-model="users.Rank"
+              v-model="getUsers.Rank"
               :rules="rankRules"
               label="ตำแหน่ง"
               required
@@ -54,7 +54,7 @@
           <v-col cols="6" sm="6" md="4">
             <v-text-field
               class="text-custom"
-              v-model="users.Phone"
+              v-model="getUsers.Phone"
               :rules="phoneRules"
               :counter="10"
               label="เบอร์โทรศัพท์"
@@ -66,7 +66,7 @@
           <v-col cols="6" sm="6" md="6">
             <v-text-field
               class="text-custom"
-              v-model="users.Email"
+              v-model="getUsers.Email"
               :rules="emailRules"
               label="อีเมล"
               required
@@ -76,18 +76,18 @@
           <v-col cols="6" sm="6" md="6">
             <v-select
               class="text-custom"
-              v-model="users.Province"
+              v-model="getUsers.Province"
               :rules="provinceRules"
               :items="provinces"
               item-text="name_th"
-              label="สำนักงานอุตสาหกรรมจังหวัด"
+              label="จังหวัด"
             ></v-select>
           </v-col>
 
           <v-col cols="6" sm="6" md="6">
             <v-select
               class="text-custom"
-              v-model="users.Food_Group"
+              v-model="getUsers.Food_Group"
               :rules="foodGroupRules"
               :items="foodGroupItems"
               label="หมวดหมู่อาหาร"
@@ -97,20 +97,20 @@
           <v-col cols="12" sm="12" md="6">
             <v-text-field
               class="text-custom"
-              v-model="users.Food_Allergy"
+              v-model="getUsers.Food_Allergy"
               label="อาหารที่แพ้"
             ></v-text-field>
           </v-col>
 
         </v-row>
-      </ContentWrapper>
-      <v-btn class="purple" dark @click="submit">บันทึกข้อมูล</v-btn>
+
+      <!-- <v-btn class="purple" dark @click="setUsers">บันทึกข้อมูล</v-btn> -->
     </Wrapper>
   </v-form>
 </template>
 
 <script>
-import { Wrapper, Header, ContentWrapper } from "./index.style";
+import { Wrapper } from "./index.style";
 export default {
   data: () => ({
     valid: false,
@@ -134,25 +134,24 @@ export default {
   }),
   components: {
     Wrapper,
-    Header,
-    ContentWrapper,
+    // Header,
   },
   mounted() {
-    this.$store.dispatch('provinces')
+    this.$store.dispatch('setProvinces')
   },
   computed: {
     provinces () {
       return this.$store.getters.getProvinces
     },
-    users () {
+    getUsers () {
       return this.$store.getters.getUsers
     },
   },
   methods: {
-    async submit() {
+    async setUsers() {
       // if (this.users.F_Name != '') {
       //     this.$refs.form.resetValidation()
-          await this.$store.dispatch('submit')
+          await this.$store.dispatch('setUsers')
           await this.$refs.form.reset()
       // }else{
       //     this.$refs.form.resetValidation()

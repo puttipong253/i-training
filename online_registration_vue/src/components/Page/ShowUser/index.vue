@@ -59,7 +59,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("showUsers");
+    this.$store.dispatch("setShowUsers");
   },
   methods:{
     download(){

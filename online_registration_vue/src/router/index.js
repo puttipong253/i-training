@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home'
-import Personal from '../views/Personal'
 import Admin from '../views/Admin'
+import Page from '../components/Page'
 
 Vue.use(VueRouter)
 
@@ -14,14 +14,14 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/personal',
-    name: 'Personal',
-    component: Personal
-  },
-  {
     path: '/admin',
     name: 'Admin',
     component: Admin
+  },
+  {
+    path: '/page',
+    name: 'Page',
+    component: Page
   }
 ]
 

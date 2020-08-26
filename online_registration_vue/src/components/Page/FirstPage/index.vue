@@ -7,7 +7,7 @@
       <Content>ระหว่างวันที่ ๔ - ๖ สิงหาคม ๒๕๖๓</Content>
       <SubContent>ณ ห้องประชุมอยุธยา ชั้น ๕ โรงแรมท๊อปแลนด์ จ.พิษณุโลก</SubContent>
     </WrapperText>
-    <v-btn class="purple" dark to="/personal">ลงทะเบียน</v-btn>
+    <v-btn class="purple" dark to="/page">ลงทะเบียน</v-btn>
   </Wrapper>
 </template>
 

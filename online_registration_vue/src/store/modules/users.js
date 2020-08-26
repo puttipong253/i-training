@@ -62,11 +62,10 @@ const users = {
       },
     },
     actions: {
-        async submit({ commit }){
+        async setUsers({ commit }){
              await API.post(`/users`, this.getters.getUsers)
               .then(res => (
                 console.log(res.data),
-                commit('SET_USERS', res.data),
                 commit('SET_ALERT', this.getAlert = true),
                 commit('SET_ALERT_COLOR', this.getAlertColor = "success"),
                 commit('SET_ALERT_TEXT', this.getAlertText = "บันทึกข้อมูลเรียบร้อย"),
@@ -81,7 +80,7 @@ const users = {
                 commit('SET_ALERT_TEXT', this.getAlertText = "กรุณากรอกข้อมูลให้ถูกต้อง")
               ))
         },
-        showUsers({ commit }){
+        setShowUsers({ commit }){
           API.get(`/users`)
             .then(res => (
               commit('SET_SHOWUSERS', res.data)
@@ -90,7 +89,7 @@ const users = {
               console.log(error)
             ))
         },
-        provinces({ commit }){
+        setProvinces({ commit }){
           API.get(`/province`)
             .then(res => (
               commit('SET_PROVINCES', res.data)
