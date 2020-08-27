@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import Admin from '../views/Admin'
 import Page from '../components/Page'
+import Hotel from '../components/Page/FormHotel'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ Vue.use(VueRouter)
     path: '/page',
     name: 'Page',
     component: Page
+  },
+  {
+    path: '/hotel',
+    name: 'Hotel',
+    component: Hotel
   }
 ]
 

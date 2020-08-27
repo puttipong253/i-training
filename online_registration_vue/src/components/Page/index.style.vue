@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  .custom-stepper .v-stepper__step__step {
+    background-color: purple !important;
+    border-color: purple !important;
+}
 `;
 
 export default {};

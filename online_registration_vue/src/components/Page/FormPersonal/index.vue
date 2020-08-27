@@ -1,8 +1,6 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <Wrapper>
-      <!-- <Header>ข้อมูลส่วนตัว</Header> -->
 
+    <Wrapper>
         <v-row>
           <v-col cols="12" sm="4" md="2">
             <v-select
@@ -78,7 +76,7 @@
               class="text-custom"
               v-model="getUsers.Province"
               :rules="provinceRules"
-              :items="provinces"
+              :items="getProvinces"
               item-text="name_th"
               label="จังหวัด"
             ></v-select>
@@ -103,17 +101,15 @@
           </v-col>
 
         </v-row>
-
-      <!-- <v-btn class="purple" dark @click="setUsers">บันทึกข้อมูล</v-btn> -->
     </Wrapper>
-  </v-form>
+
 </template>
 
 <script>
 import { Wrapper } from "./index.style";
 export default {
   data: () => ({
-    valid: false,
+
     prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
     fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
     lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
@@ -134,13 +130,12 @@ export default {
   }),
   components: {
     Wrapper,
-    // Header,
   },
   mounted() {
     this.$store.dispatch('setProvinces')
   },
   computed: {
-    provinces () {
+    getProvinces () {
       return this.$store.getters.getProvinces
     },
     getUsers () {

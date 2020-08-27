@@ -11,23 +11,19 @@ export const Wrapper = styled.div`
       border-color: purple !important; 
       color: #ECB8F2 !important;
       font-size: 30px !important;
-    
   }
   .text-custom label {
       font-size: 14px !important;
   }
   .v-text-field {
-    margin: 0px !important;
+      margin: 0px !important;
   }
   }
 `;
 export const Header = styled.div`
   color: white;
-  font-size: 17px;
-  margin-bottom: 20px;
+  font-size: 16px;
   background-color: purple;
-  padding-top: 6px;
-  height: 38px;
 `;
 
 export default {};

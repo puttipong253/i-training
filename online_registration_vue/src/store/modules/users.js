@@ -1,5 +1,4 @@
 import { API } from "../../API";
-import router from '../../router'
 
 const users = {
     state: {
@@ -62,17 +61,14 @@ const users = {
       },
     },
     actions: {
-        async setUsers({ commit }){
-             await API.post(`/users`, this.getters.getUsers)
+        setUsers({ commit }){
+             API.post(`/users`, this.getters.getUsers)
               .then(res => (
                 console.log(res.data),
                 commit('SET_ALERT', this.getAlert = true),
                 commit('SET_ALERT_COLOR', this.getAlertColor = "success"),
-                commit('SET_ALERT_TEXT', this.getAlertText = "บันทึกข้อมูลเรียบร้อย"),
-                setTimeout(() => (
-                  router.push('/')
-                ), 1500))
-              )
+                commit('SET_ALERT_TEXT', this.getAlertText = "บันทึกข้อมูลเรียบร้อย")
+              ))
               .catch(error => (
                 console.log("error", error),
                 commit('SET_ALERT', this.getAlert = true),
@@ -101,6 +97,11 @@ const users = {
         closeAlert({ commit }){
           commit('SET_ALERT', this.getAlert = false )
         },
+        alertError({ commit }){
+          commit('SET_ALERT', this.getAlert = true )
+          commit('SET_ALERT_COLOR', this.getAlertColor = "error"),
+          commit('SET_ALERT_TEXT', this.getAlertText = "กรุณากรอกข้อมูลให้ครบถ้วน")
+        }
     }
 }
 export default users;

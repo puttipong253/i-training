@@ -14,9 +14,7 @@ const trains = {
         },
     },
     mutations: {
-        SET_TRAINING(state, data){
-            state.training = data
-        },
+
     },
     actions: {
         setTraining(){
