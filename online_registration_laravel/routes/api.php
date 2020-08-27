@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request){
 });
 Route::resource('users','UsersController');
 Route::resource('train','TrainsController');
+Route::resource('hotel','HotelController');
 Route::get('export', 'UsersController@export');
 Route::get('province', 'ProvincesController@index');
