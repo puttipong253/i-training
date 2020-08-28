@@ -22,6 +22,8 @@ Route::resource('users','UsersController');
 Route::resource('training','TrainingController');
 Route::resource('hotel','HotelController');
 
+Route::get('export-users', 'UsersController@export');
+Route::get('export-training', 'TrainingController@export');
 Route::get('export', 'UsersController@export');
 
 Route::get('province', 'ProvincesController@index');

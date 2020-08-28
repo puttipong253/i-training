@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Exports\UsersExport;
+use App\Exports\HotelExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 /*
@@ -18,6 +18,6 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/export', function () {
-    return Excel::download(new UsersExport, 'users.xlsx');
+Route::get('/export-hotel', function () {
+    return Excel::download(new HotelExport, 'hotel.xlsx');
 });
