@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Train;
-class TrainsController extends Controller
+use App\Models\Training;
+class TrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class TrainsController extends Controller
      */
     public function index()
     {
-        return Train::all();
+        return Training::all();
     }
 
     /**
@@ -34,8 +34,8 @@ class TrainsController extends Controller
      */
     public function store(Request $request)
     {
-        $train = Train::create($request->all());
-        return $train;
+        $training = Training::create($request->all());
+        return $training;
     }
 
     /**

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Train extends Model
+class Training extends Model
 {
-    protected $table = 'trains';
+    protected $table = 'training';
     protected $fillable = ['User_ID','TISI','I_Factory','E_Payment'];
 
     protected $primaryKey = 'User_ID';

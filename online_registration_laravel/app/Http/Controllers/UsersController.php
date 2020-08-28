@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
 
 class UsersController extends Controller
 {
@@ -17,6 +18,22 @@ class UsersController extends Controller
     public function index()
     {
         return User::all();
+    }
+
+    public function usersTraining()
+    {
+        return DB::table('users')
+                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','training.TISI','training.I_Factory','training.E_Payment')
+                    ->join('training','training.User_ID','=','users.User_ID')
+                    ->get();
+    }
+
+    public function usersHotel()
+    {
+        return DB::table('users')
+                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','hotels.Check_In','hotels.Check_Out','hotels.Partner_Name','hotels.Partner_Province','hotels.Room_Number','Note')
+                    ->join('hotels','hotels.User_ID','=','users.User_ID')
+                    ->get();
     }
 
     /**

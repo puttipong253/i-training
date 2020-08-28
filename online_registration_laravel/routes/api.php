@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request){
     return $request->user();
 });
+
 Route::resource('users','UsersController');
-Route::resource('train','TrainsController');
+Route::resource('training','TrainingController');
 Route::resource('hotel','HotelController');
+
 Route::get('export', 'UsersController@export');
+
 Route::get('province', 'ProvincesController@index');
+Route::get('users-training', 'UsersController@usersTraining');
+Route::get('users-hotel', 'UsersController@usersHotel');
