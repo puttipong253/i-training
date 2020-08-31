@@ -1,8 +1,8 @@
 <template>
-  <v-container>
+  <Wrapper>
     <v-card-title>
-      รายชื่อผู้ลงทะเบียน
-      <v-btn class="ml-5 info" @click="download">ดาวน์โหลด</v-btn>
+      รายชื่อผู้เข้าอบรม
+      <v-btn class="ml-5 info" @click="downloadTraining">ดาวน์โหลด</v-btn>
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -14,7 +14,7 @@
       ></v-text-field>
     </v-card-title>
 
-    <div v-if="users == ''">
+    <div v-if="usersTraining == ''">
       <v-data-table
         item-key="name"
         class="elevation-1"
@@ -27,44 +27,44 @@
     <div v-else>
       <v-data-table
         :headers="headers"
-        :items="users"
+        :items="usersTraining"
         :search="search"
       ></v-data-table>
     </div>
-  </v-container>
+  </Wrapper>
 </template>
 
 <script>
+import { Wrapper } from './index.style'
 export default {
   data() {
     return {
       search: "",
       headers: [
-        { text: "คำนำหน้า", value: "Prefix" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
-        { text: "เพศ", value: "Gender" },
-        { text: "ตำแหน่ง", value: "Rank" },
-        { text: "อีเมล", value: "Email" },
-        { text: "เบอร์โทรศัพท์", value: "Phone" },
         { text: "จังหวัด", value: "Province" },
-        { text: "หมวดหมู่อาหาร", value: "Food_Group" },
-        { text: "อาหารที่แพ้", value: "Food_Allergy" },
+        { text: "มผช", value: "TISI" },
+        { text: "รง.4", value: "I_Factory" },
+        { text: "e-payment", value: "E_Payment" },
       ],
     };
   },
+  components:{
+    Wrapper
+  },
   computed: {
-    users() {
-      return this.$store.getters.getShowUsers;
+    usersTraining() {
+      return this.$store.getters.getUsersTraining;
     },
   },
   mounted() {
-    this.$store.dispatch("setShowUsers");
+    this.$store.dispatch("setUsersTraining");
   },
   methods:{
-    download(){
-      this.$store.dispatch("download");
-    }
+    downloadTraining(){
+      this.$store.dispatch("downloadTraining");
+    },
   }
 };
 </script>

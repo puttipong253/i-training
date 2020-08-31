@@ -1,14 +1,14 @@
 <template>
   <div>
-      <Table/>
+      <Page/>
   </div>
 </template>
 
 <script>
-import Table from '../../components/Page/Table'
+import Page from '../../components/Page'
 export default {
     components:{
-        Table
+        Page
     }
 }
 </script>

@@ -114,7 +114,7 @@ export default {
     fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
     lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
     genderRules: [(v) => !!v || "กรุณาเลือกเพศ"],
-    rankRules: [(v) => !!v || "กรุณาเลือกตำแหน่ง"],
+    rankRules: [(v) => !!v || "กรุณากรอกตำแหน่ง"],
     emailRules: [
       v => !!v || "กรุณากรอกอีเมล",
       v => /.+@.+\..+/.test(v) || "อีเมลไม่ถูกต้อง",
@@ -140,19 +140,6 @@ export default {
     },
     getUsers () {
       return this.$store.getters.getUsers
-    },
-  },
-  methods: {
-    async setUsers() {
-      // if (this.users.F_Name != '') {
-      //     this.$refs.form.resetValidation()
-          await this.$store.dispatch('setUsers')
-          await this.$refs.form.reset()
-      // }else{
-      //     this.$refs.form.resetValidation()
-      //     await this.$store.dispatch('submit')
-      //     await this.$refs.form.validate()
-      // }
     },
   },
 };

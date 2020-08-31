@@ -1,9 +1,9 @@
 <template>
   <Wrapper>
     <v-col cols="12" class="mb-5">
-      <v-checkbox v-model="getTraining.TISI" label="รง.4" value="Yes" color="green" hide-details></v-checkbox>
-      <v-checkbox v-model="getTraining.I_Factory" label="มผช." value="Yes" color="green" hide-details></v-checkbox>
-      <v-checkbox v-model="getTraining.E_Payment" label="e-payment" value="Yes" color="green" hide-details></v-checkbox>
+      <v-switch v-model="getTraining.TISI"  hide-details color="success" label="รง.4"></v-switch>
+      <v-switch v-model="getTraining.I_Factory"  hide-details color="success" label="มผช."></v-switch>
+      <v-switch v-model="getTraining.E_Payment"  hide-details color="success" label="e-payment"></v-switch>
     </v-col>
   </Wrapper>
 </template>
@@ -12,7 +12,6 @@ import { Wrapper } from './index.style'
 export default {
   data() {
     return {
-
     };
   },
   computed:{

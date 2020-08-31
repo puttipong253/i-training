@@ -18,7 +18,8 @@ const users = {
         Provinceitems: [],
         snackbar: false,
         alertColor: "",
-        alertText: ""
+        alertText: "",
+        userStatus: ""
     },
     getters: {
       getProvinces(state){
@@ -39,6 +40,9 @@ const users = {
       getShowUsers(state){
         return state.showUsers 
       },
+      getUserStatus(state){
+        return state.userStatus
+      }
     },
     mutations: {
       SET_PROVINCES(state, data){
@@ -59,21 +63,20 @@ const users = {
       SET_ALERT_TEXT(state, data){
         state.alertText = data
       },
+      SET_USER_STATUS(state, data){
+        state.userStatus = data
+      }
     },
     actions: {
         setUsers({ commit }){
              API.post(`/users`, this.getters.getUsers)
               .then(res => (
-                console.log(res.data),
-                commit('SET_ALERT', this.getAlert = true),
-                commit('SET_ALERT_COLOR', this.getAlertColor = "success"),
-                commit('SET_ALERT_TEXT', this.getAlertText = "บันทึกข้อมูลเรียบร้อย")
+                console.log('user',res.data)
               ))
               .catch(error => (
                 console.log("error", error),
                 commit('SET_ALERT', this.getAlert = true),
-                commit('SET_ALERT_COLOR', this.getAlertColor = "error"),
-                commit('SET_ALERT_TEXT', this.getAlertText = "กรุณากรอกข้อมูลให้ถูกต้อง")
+                commit('SET_ALERT_COLOR', this.getAlertColor = "error")
               ))
         },
         setShowUsers({ commit }){
@@ -101,6 +104,14 @@ const users = {
           commit('SET_ALERT', this.getAlert = true )
           commit('SET_ALERT_COLOR', this.getAlertColor = "error"),
           commit('SET_ALERT_TEXT', this.getAlertText = "กรุณากรอกข้อมูลให้ครบถ้วน")
+        },
+        alertSuccess({ commit }){
+          commit('SET_ALERT', this.getAlert = true )
+          commit('SET_ALERT_COLOR', this.getAlertColor = "success"),
+          commit('SET_ALERT_TEXT', this.getAlertText = "บันทึกข้อมูลเรียบร้อย")
+        },
+        setStatus(){
+          alert(this.getUserStatus)
         }
     }
 }
