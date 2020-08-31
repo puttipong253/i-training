@@ -15,9 +15,9 @@ class CreateTrainingTable extends Migration
     {
         Schema::create('training', function (Blueprint $table) {
             $table->increments('User_ID');
-            $table->string('TISI',10)->nullable();
-            $table->string('I_Factory',10)->nullable();
-            $table->string('E_Payment',10)->nullable();
+            $table->string('TISI', 10);
+            $table->string('I_Factory', 10);
+            $table->string('E_Payment', 10);
             $table->timestamps();
         });
     }

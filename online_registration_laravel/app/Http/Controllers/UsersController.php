@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
+use App\Exports\TrainingExport;
+use App\Exports\HotelExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
@@ -80,9 +82,19 @@ class UsersController extends Controller
         return User::find($id);
     }
 
-    public function export()
+    public function exportUser()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+        "Export succesfuly";
+    }
+    public function exportTraining()
+    {
+        return Excel::download(new TrainingExport, 'training.xlsx');
+        "Export succesfuly";
+    }
+    public function exportHotel()
+    {
+        return Excel::download(new HotelExport, 'hotel.xlsx');
         "Export succesfuly";
     }
     /**

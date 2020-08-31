@@ -27,6 +27,8 @@ class HotelExport implements FromCollection,WithHeadings
             'Province',
             'Check_In',
             'Check_Out',
+            'Partner_Name',
+            'Partner_Province',
             'Room_Number',
             'Note'
         ];
