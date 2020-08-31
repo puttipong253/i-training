@@ -25,7 +25,7 @@ class UsersExport implements FromCollection,WithHeadings
             'Rank',
             'Email',
             'Phone',
-            'Province',
+            'Province_ID',
             'Food_Group',
             'Food_Allergy'
         ];

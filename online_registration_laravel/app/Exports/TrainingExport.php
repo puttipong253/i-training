@@ -15,7 +15,7 @@ class TrainingExport implements FromCollection,WithHeadings
     public function collection()
     {
         return DB::table('users')
-                ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','training.TISI','training.I_Factory','training.E_Payment')
+                ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','training.TISI','training.I_Factory','training.E_Payment')
                 ->join('training','training.User_ID','=','users.User_ID')
                 ->get();
     }
@@ -24,7 +24,7 @@ class TrainingExport implements FromCollection,WithHeadings
             'User_id',
             'F_Name',
             'L_Name',
-            'Province',
+            'Province_ID',
             'TISI',
             'I_Factory',
             'E_Payment'

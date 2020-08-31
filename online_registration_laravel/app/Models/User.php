@@ -15,7 +15,7 @@ class User extends Model
                             'Rank',
                             'Email',
                             'Phone',
-                            'Province',
+                            'Province_ID',
                             'Food_Group',
                             'Food_Allergy'
                         ];

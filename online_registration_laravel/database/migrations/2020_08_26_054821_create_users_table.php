@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('Rank', 50);
             $table->string('Email', 50);
             $table->string('Phone', 10);
-            $table->string('Province', 50);
+            $table->integer('Province_ID');
             $table->string('Food_Group', 50);
             $table->string('Food_Allergy', 100)->nullable();
             $table->timestamps();

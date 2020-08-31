@@ -15,7 +15,7 @@ class HotelExport implements FromCollection,WithHeadings
     public function collection()
     {
         return DB::table('users')
-                ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','hotels.Check_In','hotels.Check_Out','hotels.Partner_Name','hotels.Partner_Province','hotels.Room_Number','Note')
+                ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','hotels.Check_In','hotels.Check_Out','hotels.Partner_ID','hotels.Partner_Province_ID','hotels.Room_Number','Note')
                 ->join('hotels','hotels.User_ID','=','users.User_ID')
                 ->get();
     }
@@ -27,8 +27,8 @@ class HotelExport implements FromCollection,WithHeadings
             'Province',
             'Check_In',
             'Check_Out',
-            'Partner_Name',
-            'Partner_Province',
+            'Partner_ID',
+            'Partner_Province_ID',
             'Room_Number',
             'Note'
         ];

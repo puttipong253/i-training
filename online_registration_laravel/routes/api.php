@@ -30,3 +30,4 @@ Route::get('province', 'ProvincesController@index');
 
 Route::get('users-training', 'UsersController@usersTraining');
 Route::get('users-hotel', 'UsersController@usersHotel');
+Route::post('partner','HotelController@partnerProvince');

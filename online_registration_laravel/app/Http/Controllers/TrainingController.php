@@ -46,7 +46,7 @@ class TrainingController extends Controller
      */
     public function show($id)
     {
-        //
+        return Training::find($id);
     }
 
     /**

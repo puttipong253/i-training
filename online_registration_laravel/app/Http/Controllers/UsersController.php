@@ -25,7 +25,7 @@ class UsersController extends Controller
     public function usersTraining()
     {
         return DB::table('users')
-                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','training.TISI','training.I_Factory','training.E_Payment')
+                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','training.TISI','training.I_Factory','training.E_Payment')
                     ->join('training','training.User_ID','=','users.User_ID')
                     ->get();
     }
@@ -33,8 +33,9 @@ class UsersController extends Controller
     public function usersHotel()
     {
         return DB::table('users')
-                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province','hotels.Check_In','hotels.Check_Out','hotels.Partner_Name','hotels.Partner_Province','hotels.Room_Number','Note')
+                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','hotels.Check_In','hotels.Check_Out','hotels.Partner_ID','hotels.Partner_Province_ID','hotels.Room_Number','Note','provinces.name_th')
                     ->join('hotels','hotels.User_ID','=','users.User_ID')
+                    ->join('provinces','hotels.Partner_Province_ID','=','provinces.id')
                     ->get();
     }
 
@@ -64,7 +65,7 @@ class UsersController extends Controller
             'Rank' => 'required',
             'Email' => 'required',
             'Phone' => 'required',
-            'Province' => 'required',
+            'Province_ID' => 'required',
             'Food_Group' => 'required',
         ]);
         $user = User::create($request->all());

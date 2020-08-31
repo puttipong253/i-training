@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\User;
+use DB;
 class HotelController extends Controller
 {
     /**
@@ -41,7 +43,11 @@ class HotelController extends Controller
         $hotel = Hotel::create($request->all());
         return $hotel;
     }
-
+    public function partnerProvince(Request $request){
+        return User::select('User_ID','F_Name','L_Name')
+                ->where('Province_ID',$request->Partner_Province_ID)
+                ->get();
+    }
     /**
      * Display the specified resource.
      *
@@ -50,7 +56,7 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        //
+        return Hotel::find($id);
     }
 
     /**
