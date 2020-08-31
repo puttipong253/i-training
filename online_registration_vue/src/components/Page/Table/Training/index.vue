@@ -41,9 +41,10 @@ export default {
     return {
       search: "",
       headers: [
+        { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
-        { text: "จังหวัด", value: "Province" },
+        { text: "จังหวัด", value: "Province_ID" },
         { text: "มผช", value: "TISI" },
         { text: "รง.4", value: "I_Factory" },
         { text: "e-payment", value: "E_Payment" },

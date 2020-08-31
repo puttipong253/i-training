@@ -41,13 +41,14 @@ export default {
     return {
       search: "",
       headers: [
+        { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
-        { text: "จังหวัด", value: "Province" },
+        { text: "จังหวัด", value: "name_th" },
         { text: "วันที่เช็คอิน", value: "Check_In" },
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
-        { text: "ชื่อผู้ร่วมพัก", value: "Partner_Name" },
-        { text: "จังหวัดของผู้ร่วมพัก", value: "Partner_Province" },
+        { text: "ชื่อผู้ร่วมพัก", value: "Partner_ID" },
+        { text: "จังหวัดของผู้ร่วมพัก", value: "Partner_Province_ID" },
         { text: "หมายเลขห้อง", value: "Room_Number" },
         { text: "หมายเหตุ", value: "Note" },
       ],

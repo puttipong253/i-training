@@ -21,7 +21,7 @@
         ></v-select>
       </v-col>
 
-      <v-col cols="12" sm="12" md="12"><Header>คุณจะพักกับใคร</Header></v-col>
+      <v-col cols="12" sm="12" md="12"><Header>คู่พัก</Header></v-col>
 
       <v-col cols="6" sm="6" md="4">
         <v-radio-group v-model="status" required row >
@@ -30,24 +30,29 @@
         </v-radio-group>
       </v-col>
 
-      <v-col cols="6" sm="6" md="4">
-        <v-text-field
-          class="text-custom"
-          v-model="getHotel.Partner_Name"
-          :disabled="status"
-          label="ชื่อของผู้ร่วมพัก"
-          required
-        ></v-text-field>
-      </v-col>
-
       <v-col cols="12" sm="6" md="4">
         <v-select
           class="text-custom"
-          v-model="getHotel.Partner_Province"
-          :items="getProvinces"
+          v-model="getHotel.Partner_Province_ID"
+          :items="getPartnerProvinces"
           :disabled="status"
+          @change="setPartnerName"
           item-text="name_th"
+          item-value="id"
           label="จังหวัดของผู้ร่วมพัก"
+        ></v-select>
+      </v-col>
+
+      <v-col cols="6" sm="6" md="4">
+        <v-select
+          class="text-custom"
+          v-model="getHotel.Partner_ID"
+          :items="getPartnerName"
+          :disabled="status"
+          item-text="F_Name"
+          item-value="User_ID"
+          label="ชื่อของผู้ร่วมพัก"
+          required
         ></v-select>
       </v-col>
 
@@ -79,18 +84,24 @@ export default {
     Wrapper,
     Header
   },
+  mounted(){
+    this.$store.dispatch("setPartnerProvinces")
+  },
   computed: {
     getHotel() {
       return this.$store.getters.getHotel;
     },
-    getProvinces() {
-      return this.$store.getters.getProvinces;
+    getPartnerProvinces() {
+      return this.$store.getters.getPartnerProvinces;
     },
+    getPartnerName(){
+      return this.$store.getters.getPartnerName
+    }
   },
   methods: {
-    setHotel() {
-      this.$store.dispatch("setHotel");
-    },
+    setPartnerName(){
+      this.$store.dispatch('setPartnerName')
+    }
   },
 };
 </script>

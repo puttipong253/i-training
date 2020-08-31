@@ -55,6 +55,8 @@
               v-model="getUsers.Phone"
               :rules="phoneRules"
               :counter="10"
+              maxlength="10"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
               label="เบอร์โทรศัพท์"
               type="number"
               required
@@ -74,10 +76,11 @@
           <v-col cols="6" sm="6" md="6">
             <v-select
               class="text-custom"
-              v-model="getUsers.Province"
+              v-model="getUsers.Province_ID"
               :rules="provinceRules"
               :items="getProvinces"
               item-text="name_th"
+              item-value="id"
               label="จังหวัด"
             ></v-select>
           </v-col>

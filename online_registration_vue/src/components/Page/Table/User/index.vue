@@ -41,6 +41,7 @@ export default {
     return {
       search: "",
       headers: [
+        { text: "ID", value: "User_ID" },
         { text: "คำนำหน้า", value: "Prefix" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
@@ -48,7 +49,7 @@ export default {
         { text: "ตำแหน่ง", value: "Rank" },
         { text: "อีเมล", value: "Email" },
         { text: "เบอร์โทรศัพท์", value: "Phone" },
-        { text: "จังหวัด", value: "Province" },
+        { text: "จังหวัด", value: "Province_ID" },
         { text: "หมวดหมู่อาหาร", value: "Food_Group" },
         { text: "อาหารที่แพ้", value: "Food_Allergy" },
       ],

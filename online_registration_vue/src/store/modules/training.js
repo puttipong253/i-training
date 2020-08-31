@@ -25,10 +25,10 @@ const trainings = {
     },
     actions: {
         setTraining(){
-        API.post(`/training`,this.getters.getTraining)
-            .then(res => (
-                console.log('training', res.data)
-            ))
+            API.post(`/training`,this.getters.getTraining)
+                .then(res => (
+                    console.log('training', res.data)
+                ))
         },
         setUsersTraining({ commit }){
             API.get(`/users-training`)

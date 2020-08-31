@@ -13,9 +13,11 @@
       <v-stepper-step :complete="steps > 2" step="2">หัวข้อการอบรม</v-stepper-step>
 
       <v-stepper-content step="2">
-        <FormTraining />
-        <v-btn class="mr-5" color="info" @click="steps = 1">ย้อนกลับ</v-btn>
-        <v-btn color="purple" @click="OnTrain" dark>ถัดไป</v-btn>
+        <v-form ref="form3" v-model="valid" lazy-validation>
+          <FormTraining />
+          <v-btn class="mr-5" color="info" @click="steps = 1">ย้อนกลับ</v-btn>
+          <v-btn color="purple" @click="OnTrain" dark>ถัดไป</v-btn>
+        </v-form>
       </v-stepper-content>
 
       <v-stepper-step :complete="steps > 3" step="3">การเข้าพักโรงแรม</v-stepper-step>
@@ -73,6 +75,7 @@ export default {
             setTimeout(() => (
               this.$refs.form.reset(),
               this.$refs.form2.reset(),
+              this.$refs.form3.reset(),
               router.push("/")
             ), 1500)
           ))
@@ -90,11 +93,13 @@ export default {
       } else {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
+        this.steps = 2 //test
       }
     },
     OnTrain() {
       if (!this.getTraining.TISI && !this.getTraining.I_Factory && !this.getTraining.E_Payment) {
           this.$store.dispatch('alertError')
+          this.steps = 3 //test
       } else {
           API.get(`/training`).then(res => (
             console.log('API training => pass',res.data), //check API
