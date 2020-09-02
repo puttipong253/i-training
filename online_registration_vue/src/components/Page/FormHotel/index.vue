@@ -24,9 +24,9 @@
       <v-col cols="12" sm="12" md="12"><Header>คู่พัก</Header></v-col>
 
       <v-col cols="6" sm="6" md="4">
-        <v-radio-group v-model="status" required row >
-          <v-radio class="mr-5" color="green" label="ผู้จัดเลือกให้" :value="true"></v-radio>
-          <v-radio color="green" label="เลือกเอง" :value="false" class="mr-5"></v-radio>
+        <v-radio-group v-model="getUsers.Status" required row >
+          <v-radio class="mr-5" color="green" label="รอจับคู่" :value="true"></v-radio>
+          <v-radio color="green" label="เลือกคู่พักเอง" :value="false" class="mr-5"></v-radio>
         </v-radio-group>
       </v-col>
 
@@ -35,7 +35,7 @@
           class="text-custom"
           v-model="getHotel.Partner_Province_ID"
           :items="getPartnerProvinces"
-          :disabled="status"
+          :disabled="getUsers.Status"
           @change="setPartnerName"
           item-text="name_th"
           item-value="id"
@@ -48,8 +48,8 @@
           class="text-custom"
           v-model="getHotel.Partner_ID"
           :items="getPartnerName"
-          :disabled="status"
-          item-text="F_Name"
+          :disabled="getUsers.Status"
+          :item-text="text"
           item-value="User_ID"
           label="ชื่อของผู้ร่วมพัก"
           required
@@ -73,7 +73,6 @@
 import { Wrapper, Header } from "./index.style";
 export default {
   data: () => ({
-    status: true,
     valid: false,
     checkInRules: [(v) => !!v || "กรุณาเลือกวันที่เช็คอิน"],
     checkOutRules: [(v) => !!v || "กรุณาเลือกวันที่เช็คเอาท์"],
@@ -85,7 +84,7 @@ export default {
     Header
   },
   mounted(){
-    this.$store.dispatch("setPartnerProvinces")
+    this.$store.dispatch("setPartnerProvinces") 
   },
   computed: {
     getHotel() {
@@ -96,12 +95,16 @@ export default {
     },
     getPartnerName(){
       return this.$store.getters.getPartnerName
-    }
+    },
+    getUsers () {
+      return this.$store.getters.getUsers
+    },
   },
   methods: {
     setPartnerName(){
-      this.$store.dispatch('setPartnerName')
-    }
+      this.$store.dispatch('setPartnerName') //เมื่อจังหวัดมีการเปลี่ยนแปลงจะทำการ get user ที่มี id จังหวัด ที่ตรงกับจังหวัดที่เลือก
+    },
+    text: item => item.F_Name + ' ' + item.L_Name
   },
 };
 </script>

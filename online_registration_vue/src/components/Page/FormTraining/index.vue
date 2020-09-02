@@ -19,11 +19,6 @@ export default {
       return this.$store.getters.getTraining
     },
   },
-  methods:{
-    setTraing(){
-      this.$store.dispatch('setTrain')
-    }
-  },
   components:{
       Wrapper
   }

@@ -59,26 +59,32 @@ export default {
       return this.$store.getters.getUsers;
     },
     getTraining() {
-      return this.$store.getters.getTraining;
+      return this.$store.getters.getTraining; //this.getters.getUserID
     },  
   },
   methods: {
-    submit() {
-      if (this.$refs.form2.validate() == true) {
-          API.get(`/hotel`).then(res => (
-            console.log('API hotel => pass',res.data), //check API
-            this.$store.dispatch("setUsers"),
-            this.$store.dispatch("setTraining"),
-            this.$store.dispatch("setHotel"),
- 
-            this.$store.dispatch('alertSuccess'),
-            setTimeout(() => (
+    async submit() {
+      if (this.$refs.form2.validate() == true) { //ทำการเช็ค validate
+            await this.$store.dispatch("setUsers")
+            this.time = await setInterval(() => {
+              if (!this.$store.getters.getUserID) {
+                console.log('loading')
+              } else {
+                clearInterval(this.time)
+                this.$store.dispatch("setTraining")
+                this.$store.dispatch("setHotel")
+                this.$store.dispatch("setUserStatus")
+                this.$store.dispatch('alertSuccess')
+              }
+            }, 1000);
+            
+            await setTimeout(() => (
               this.$refs.form.reset(),
               this.$refs.form2.reset(),
               this.$refs.form3.reset(),
               router.push("/")
             ), 1500)
-          ))
+              
       } else {
         this.$refs.form2.validate();
         this.$store.dispatch('alertError')
