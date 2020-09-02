@@ -15,7 +15,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return Hotel::all();
+        $hotel = Hotel::select('Hotel_ID')->get();
+        return $hotel;
     }
 
     /**
@@ -44,8 +45,9 @@ class HotelController extends Controller
         return $hotel;
     }
     public function partnerProvince(Request $request){
-        return User::select('User_ID','F_Name','L_Name')
+        return User::select('User_ID','F_Name','L_Name','Province_ID','Status')
                 ->where('Province_ID',$request->Partner_Province_ID)
+                ->where('Status',1)
                 ->get();
     }
     /**
@@ -80,8 +82,7 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'Check_In' => 'required',
-            'Check_Out' => 'required'
+            'Partner_ID' => 'required',
         ]);
         $hotel = Hotel::find($id);
         $hotel->update($request->all());

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
 use App\Exports\TrainingExport;
@@ -32,10 +33,10 @@ class UsersController extends Controller
 
     public function usersHotel()
     {
-        return DB::table('users')
-                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','hotels.Check_In','hotels.Check_Out','hotels.Partner_ID','hotels.Partner_Province_ID','hotels.Room_Number','Note','provinces.name_th')
-                    ->join('hotels','hotels.User_ID','=','users.User_ID')
-                    ->join('provinces','hotels.Partner_Province_ID','=','provinces.id')
+        return DB::table('hotels')
+                    ->leftjoin('users as u1','hotels.User_ID','=','u1.User_ID')
+                    ->leftjoin('users as u2','hotels.Partner_ID','=','u2.User_ID')
+                    ->select('u1.User_ID','u1.F_Name as F_1','u1.L_Name as L_1','u1.Province_ID','u2.F_Name as F_2','u2.L_Name as L_2','hotels.Check_In','hotels.Check_Out','hotels.Partner_ID','hotels.Room_Number','Note')
                     ->get();
     }
 
@@ -67,6 +68,7 @@ class UsersController extends Controller
             'Phone' => 'required',
             'Province_ID' => 'required',
             'Food_Group' => 'required',
+            'Status' => 'required',
         ]);
         $user = User::create($request->all());
         return $user;
@@ -118,7 +120,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Status' => 'required',
+        ]);
+        $user = User::find($id);
+        $user->update($request->all());
+        return $user;
     }
 
     /**

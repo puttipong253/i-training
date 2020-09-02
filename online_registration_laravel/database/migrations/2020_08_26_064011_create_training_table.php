@@ -14,7 +14,8 @@ class CreateTrainingTable extends Migration
     public function up()
     {
         Schema::create('training', function (Blueprint $table) {
-            $table->increments('User_ID');
+            $table->increments('T_ID');
+            $table->integer('User_ID')->nullable();
             $table->string('TISI', 10);
             $table->string('I_Factory', 10);
             $table->string('E_Payment', 10);

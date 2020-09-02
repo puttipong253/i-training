@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('Province_ID');
             $table->string('Food_Group', 50);
             $table->string('Food_Allergy', 100)->nullable();
+            $table->integer('Status',);
             $table->timestamps();
         });
     }

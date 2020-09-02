@@ -8,6 +8,7 @@ class User extends Model
 {
     protected $table = 'users';
     protected $fillable = [
+                            'User_ID',
                             'Prefix',
                             'F_Name',
                             'L_Name',
@@ -17,7 +18,8 @@ class User extends Model
                             'Phone',
                             'Province_ID',
                             'Food_Group',
-                            'Food_Allergy'
+                            'Food_Allergy',
+                            'Status'
                         ];
     protected $primaryKey = 'User_ID';
 }
