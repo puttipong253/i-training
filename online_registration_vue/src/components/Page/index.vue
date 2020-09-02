@@ -66,6 +66,7 @@ export default {
     async submit() {
       if (this.$refs.form2.validate() == true) { //ทำการเช็ค validate
             await this.$store.dispatch("setUsers")
+            
             this.time = await setInterval(() => {
               if (!this.$store.getters.getUserID) {
                 console.log('loading')
@@ -75,6 +76,7 @@ export default {
                 this.$store.dispatch("setHotel")
                 this.$store.dispatch("setUserStatus")
                 this.$store.dispatch('alertSuccess')
+                this.$store.dispatch('setRoom')
               }
             }, 1000);
             
@@ -92,8 +94,8 @@ export default {
     },
     OnPersonal() {
       if (this.$refs.form.validate() == true) {
-          API.get(`/users`).then(res => (
-            console.log('API user => pass',res.data), //check API
+          API.get(`/users`).then(() => (
+            console.log('API user => pass'), //check API
             this.steps = 2
         ))
       } else {
@@ -107,8 +109,8 @@ export default {
           this.$store.dispatch('alertError')
           this.steps = 3 //test
       } else {
-          API.get(`/training`).then(res => (
-            console.log('API training => pass',res.data), //check API
+          API.get(`/training`).then(() => (
+            console.log('API training => pass'), //check API
             this.steps = 3
         ))
       }

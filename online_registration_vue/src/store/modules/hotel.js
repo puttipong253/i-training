@@ -67,15 +67,10 @@ const hotel = {
                     commit('SET_ALERT_COLOR',  "error"),
                     commit('SET_ALERT_TEXT',  "กรุณากรอกข้อมูลให้ครบถ้วน")
                 ))
-            if (!this.getters.getPartnerIdItems) {
-                console.log('getPartnerId is Null')
-            }else{
+            if (this.getters.getPartnerIdItems) {
                 await API.put(`/hotel/`+this.getters.getPartnerIdItems,{
                     Partner_ID:this.getters.getUserID
                 }) //หลังจากเลือกคู่พักเสร็จแล้วจะทำการ update Partner_ID ให้ตรงกับ User_ID ของ partner ที่เลือกเรา
-                .then(res => (
-                    console.log('update partnerID', res.data)
-                ))
                 .catch(error => (
                     console.log(error)
                 ))
