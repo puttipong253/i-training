@@ -9,5 +9,5 @@ class Room extends Model
     protected $table = 'rooms';
     protected $fillable = ['User_1_ID','User_2_ID','Room_Number'];
 
-    protected $primaryKey = 'User_1_ID';
+    protected $primaryKey = 'Room_ID';
 }

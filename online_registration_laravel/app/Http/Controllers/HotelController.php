@@ -81,12 +81,24 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'Partner_ID' => 'required',
-        ]);
         $hotel = Hotel::find($id);
         $hotel->update($request->all());
         return $hotel;
+    }
+
+    public function RoomUpdate1(Request $request)
+    {
+        return DB::table('hotels')
+                    ->join('rooms as r1','r1.User_1_ID','=','hotels.User_ID')
+                    ->select('hotels.User_ID','r1.User_1_ID')
+                    ->update(['hotels.Room_ID' => DB::raw('r1.Room_ID')]);
+    }
+    public function RoomUpdate2(Request $request)
+    {
+        return DB::table('hotels')
+                    ->join('rooms as r2','r2.User_2_ID','=','hotels.User_ID')
+                    ->select('hotels.User_ID','r2.User_2_ID')
+                    ->update(['hotels.Room_ID' => DB::raw('r2.Room_ID')]);
     }
 
     /**

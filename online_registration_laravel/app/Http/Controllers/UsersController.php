@@ -20,23 +20,36 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return DB::table('users')
+                ->join('provinces as p','p.id','=','users.Province_ID')
+                ->select('User_ID','Prefix','F_Name','L_Name','Gender','Rank','Email','Phone','p.name_th as p_name','Food_Group','Food_Allergy')
+                ->get();
     }
 
     public function usersTraining()
     {
         return DB::table('users')
-                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','training.TISI','training.I_Factory','training.E_Payment')
+                    ->select('users.User_ID','users.F_Name','users.L_Name','users.Province_ID','training.TISI','training.I_Factory','training.E_Payment','p.name_th as p_name',)
                     ->join('training','training.User_ID','=','users.User_ID')
+                    ->join('provinces as p','p.id','=','users.Province_ID')
                     ->get();
     }
 
     public function usersHotel()
     {
-        return DB::table('hotels')
-                    ->leftjoin('users as u1','hotels.User_ID','=','u1.User_ID')
-                    ->leftjoin('users as u2','hotels.Partner_ID','=','u2.User_ID')
-                    ->select('u1.User_ID','u1.F_Name as F_1','u1.L_Name as L_1','u1.Province_ID','u2.F_Name as F_2','u2.L_Name as L_2','hotels.Check_In','hotels.Check_Out','hotels.Partner_ID','hotels.Room_Number','Note')
+        return DB::table('users')
+                    ->leftjoin('hotels as h','users.User_ID','=','h.User_ID')
+                    ->join('provinces as p','p.id','=','users.Province_ID')
+                    ->select('users.User_ID','users.F_Name as F_1','users.L_Name as L_1','users.Province_ID','h.Check_In','h.Check_Out','h.Room_ID','Note','p.name_th as p_name')
+                    ->get();
+    }
+    public function usersRoom()
+    {
+        return DB::table('rooms')
+                    ->leftjoin('users as u1','rooms.User_1_ID','=','u1.User_ID')
+                    ->leftjoin('users as u2','rooms.User_2_ID','=','u2.User_ID')
+                    ->leftjoin('hotels as h','rooms.Room_ID','=','h.Room_ID')
+                    ->select('rooms.Room_ID','u1.F_Name as F_1','u1.L_Name as L_1','u2.F_Name as F_2','u2.L_Name as L_2','rooms.Room_Number')
                     ->get();
     }
 

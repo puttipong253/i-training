@@ -18,8 +18,7 @@ class CreateHotelsTable extends Migration
             $table->integer('User_ID')->nullable();
             $table->string('Check_In', 50);
             $table->string('Check_Out', 50);
-            $table->integer('Partner_ID')->nullable();
-            $table->string('Room_Number', 10)->nullable();
+            $table->string('Room_ID', 10)->nullable();
             $table->string('Note')->nullable();
             $table->timestamps();
         });
