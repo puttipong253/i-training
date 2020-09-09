@@ -105,13 +105,22 @@ const users = {
             ))
         },
         setUserStatus(){
-          if (this.getters.getPartnerID != '') { //เช็คว่าค่าของ Partner_ID เป็นค่าว่างหรือไม่
-            API.put(`/users/`+this.getters.getPartnerID,{   //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
-                Status:this.getters.getUsersStatus,         //ทำการ update Status ของ user จาก 1 เป็น 0
-            })
-              .then(res => (
-                  console.log('SET_USERS_STATUS', res.data)
-              ))
+          if (this.getters.getUser2ID != '' && this.getters.getUser2ID != undefined) {
+            API.put(`/users/`+this.getters.getUser2ID,{   //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
+              Status:this.getters.getUsersStatus,         //ทำการ update Status ของ user จาก 1 เป็น 0
+          })
+            .then(res => (
+                console.log('SET_USERS_STATUS', res.data),
+                API.put(`/room-update-1`).then(res => ( //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+                  console.log('room-update-1',res.data)
+                )),
+                API.put(`/room-update-2`).then(res => ( //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+                  console.log('room-update-2',res.data)
+                ))
+            ))
+            .catch(error => (
+              console.log(error)
+            ))
           }
         },
         closeAlert({ commit }){

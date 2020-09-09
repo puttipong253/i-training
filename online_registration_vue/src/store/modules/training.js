@@ -27,11 +27,14 @@ const trainings = {
         },
     },
     actions: {
-        async setTraining({commit}){
-            await commit('SET_USER_HID', this.getters.getUserID)
-            await API.post(`/training`,this.getters.getTraining)
+        setTraining({commit}){
+            commit('SET_USER_HID', this.getters.getUserID)
+            API.post(`/training`,this.getters.getTraining)
                 .then(res => (
-                    console.log('training', res.data)
+                    console.log('training', res.data),
+                    this.getters.getTraining.TISI = false,
+                    this.getters.getTraining.I_Factory = false,
+                    this.getters.getTraining.E_Payment = false
                 ))
         },
         setUsersTraining({ commit }){

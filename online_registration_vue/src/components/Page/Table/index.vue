@@ -11,7 +11,10 @@
       หัวข้อการอบรม
     </v-tab>
     <v-tab>
-      การเข้าพักโรงแรม
+      เช็คอิน
+    </v-tab>
+    <v-tab>
+      ห้องพัก
     </v-tab>
     
     <v-tab-item>
@@ -23,6 +26,9 @@
     <v-tab-item>
          <Hotel/> 
     </v-tab-item>  
+    <v-tab-item>
+         <Room/> 
+    </v-tab-item>  
 
   </v-tabs>
 </template>
@@ -30,11 +36,13 @@
 import User from './User'
 import Training from './Training'
 import Hotel from './Hotel'
+import Room from './Room'
 export default {
     components:{
         User,
         Training,
-        Hotel
+        Hotel,
+        Room
     }
 }
 </script>

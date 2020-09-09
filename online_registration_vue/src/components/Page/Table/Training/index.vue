@@ -2,7 +2,7 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้เข้าอบรม
-      <v-btn class="ml-5 info" @click="downloadTraining">ดาวน์โหลด</v-btn>
+      <!-- <v-btn class="ml-5 info" @click="downloadTraining">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -44,10 +44,10 @@ export default {
         { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
-        { text: "จังหวัด", value: "Province_ID" },
+        { text: "จังหวัด", value: "p_name" },
         { text: "มผช", value: "TISI" },
         { text: "รง.4", value: "I_Factory" },
-        { text: "e-payment", value: "E_Payment" },
+        { text: "e-payment", value: "E_Payment" }
       ],
     };
   },

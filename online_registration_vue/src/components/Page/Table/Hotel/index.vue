@@ -2,7 +2,7 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้เข้าพักโรงแรม
-      <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn>
+      <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -29,6 +29,7 @@
         :headers="headers"
         :items="usersHotel"
         :search="search"
+        
       ></v-data-table>
     </div>
   </Wrapper>
@@ -44,11 +45,10 @@ export default {
         { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_1" },
         { text: "นามสกุล", value: "L_1" },
-        { text: "จังหวัด", value: "Province_ID" },
+        { text: "จังหวัด", value: "p_name" },
         { text: "วันที่เช็คอิน", value: "Check_In" },
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
-        { text: "ชื่อคู่พัก", value: "F_2" },
-        { text: "หมายเลขห้อง", value: "Room_Number" },
+        { text: "Room_ID", value: "Room_ID" },
         { text: "หมายเหตุ", value: "Note" },
       ],
     };

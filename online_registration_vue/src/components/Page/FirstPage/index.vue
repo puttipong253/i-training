@@ -7,11 +7,12 @@
       <Content>ระหว่างวันที่ ๔ - ๖ สิงหาคม ๒๕๖๓</Content>
       <SubContent>ณ ห้องประชุมอยุธยา ชั้น ๕ โรงแรมท๊อปแลนด์ จ.พิษณุโลก</SubContent>
     </WrapperText>
-    <v-btn class="purple" dark to="/page">ลงทะเบียน</v-btn>
+    <v-btn class="purple" dark @click="check">ลงทะเบียน</v-btn>
   </Wrapper>
 </template>
 
 <script>
+import router from '../../../router';
 import { Wrapper, WrapperText, Title, SubTitle, Content, SubContent } from "./index.style";
 
 export default {
@@ -23,5 +24,11 @@ export default {
     Content,
     SubContent
   },
+  methods:{
+    check(){
+      console.log('check',this.$store.getters.getUser2ID) 
+      router.push('/page')
+    }
+  }
 };
 </script>

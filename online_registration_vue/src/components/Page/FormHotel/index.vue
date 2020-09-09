@@ -46,7 +46,7 @@
       <v-col cols="6" sm="6" md="4">
         <v-select
           class="text-custom"
-          v-model="getHotel.Partner_ID"
+          v-model="getRoom.User_2_ID"
           :items="getPartnerName"
           :disabled="getUsers.Status"
           :item-text="text"
@@ -98,6 +98,9 @@ export default {
     },
     getUsers () {
       return this.$store.getters.getUsers
+    },
+    getRoom() {
+      return this.$store.getters.getRoom;
     },
   },
   methods: {

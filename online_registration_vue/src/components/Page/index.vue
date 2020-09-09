@@ -74,19 +74,21 @@ export default {
                 clearInterval(this.time)
                 this.$store.dispatch("setTraining")
                 this.$store.dispatch("setHotel")
+                this.$store.dispatch("setRoom")
                 this.$store.dispatch("setUserStatus")
-                this.$store.dispatch('alertSuccess')
-                this.$store.dispatch('setRoom')
+                this.$store.dispatch("alertSuccess")
               }
             }, 1000);
             
             await setTimeout(() => (
               this.$refs.form.reset(),
               this.$refs.form2.reset(),
-              this.$refs.form3.reset(),
+              this.$nextTick(() => {
+                  this.getUsers.Status = true
+              }),
               router.push("/")
-            ), 1500)
-              
+            ), 1500)            
+
       } else {
         this.$refs.form2.validate();
         this.$store.dispatch('alertError')
@@ -101,13 +103,11 @@ export default {
       } else {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
-        this.steps = 2 //test
       }
     },
     OnTrain() {
       if (!this.getTraining.TISI && !this.getTraining.I_Factory && !this.getTraining.E_Payment) {
           this.$store.dispatch('alertError')
-          this.steps = 3 //test
       } else {
           API.get(`/training`).then(() => (
             console.log('API training => pass'), //check API

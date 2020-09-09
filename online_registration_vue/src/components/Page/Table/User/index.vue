@@ -2,7 +2,7 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้ลงทะเบียนทั้งหมด
-      <v-btn class="ml-5 info" @click="downloadUser">ดาวน์โหลด</v-btn>
+      <!-- <v-btn class="ml-5 info" @click="downloadUser">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -49,7 +49,7 @@ export default {
         { text: "ตำแหน่ง", value: "Rank" },
         { text: "อีเมล", value: "Email" },
         { text: "เบอร์โทรศัพท์", value: "Phone" },
-        { text: "จังหวัด", value: "Province_ID" },
+        { text: "จังหวัด", value: "p_name" },
         { text: "หมวดหมู่อาหาร", value: "Food_Group" },
         { text: "อาหารที่แพ้", value: "Food_Allergy" },
       ],

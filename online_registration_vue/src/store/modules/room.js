@@ -5,26 +5,37 @@ const rooms = {
         room:{
             User_1_ID: "",
             User_2_ID: "",
-            Room_Number: "000"
+            Room_Number: ""
         },
+        userRoom: [],
+        roomItems: []
     },
     getters: {
         getRoom(state){
             return state.room
         },
-        getUser1_ID(state){
-            return state.room.User_1_ID
+        getUser2ID(state){
+            return state.room.User_2_ID
+        },
+        getUserRoom(state){
+            return state.userRoom
+        },
+        getRoomItems(state){
+            return state.roomItems
         }
     },
     mutations: {
-        SET_ROOM(state, data){
-            state.room = data
+        SET_USER_ROOM(state, data){
+            state.userRoom = data
+        },
+        SET_USER2_ID(state, data){
+            state.UserID2 = data
         },
     },
     actions: {
-        async setRoom(){
+        setRoom(){
             if (this.getters.getUsersStatus == 0) {
-                await API.post(`/room`,{User_1_ID:this.getters.getUserID})
+                API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID, Room_Number:this.getters.getRoom.Room_Number})
                 .then(res => (
                     console.log('room', res.data)
                 ))
@@ -32,16 +43,18 @@ const rooms = {
                     console.log(error)
                 ))
             }
-            await setTimeout(() => {
-                if (this.getters.getPartnerIdItems) {
-                    API.put(`/room/`+this.getters.getUserID,{
-                        User_2_ID: this.getters.getPartnerIdItems
-                    }) //หลังจากเลือกคู่พักเสร็จแล้วจะทำการ update Partner_ID ให้ตรงกับ User_ID ของ partner ที่เลือกเรา
-                    .catch(error => (
-                        console.log(error)
-                    ))
-                }
-            }, 1000);
+        },
+        setUserRoom({ commit }){
+            API.get(`/users-room`) // data table room
+                .then(res => (
+                    console.log('SET_USER_ROOM',res.data),
+                    commit('SET_USER_ROOM', res.data)
+                ))
+        },
+        updateRoom(){
+            API.put(`/room/`+this.state.roomItems.Room_ID,{Room_Number:this.getters.getRoom.Room_Number}).then(res => (
+                console.log(res.data)
+            ))
         }
     }
 }

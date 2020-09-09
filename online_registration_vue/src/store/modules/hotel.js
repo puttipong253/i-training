@@ -6,12 +6,10 @@ const hotel = {
             User_ID: "",
             Check_In: "",
             Check_Out: "",
-            Partner_ID: "",
             Partner_Province_ID: "",
-            Room_Number: "000",
+            Room_ID: "",
             Note: ""
         },
-        partnerIdItems: "",
         usersHotel: [],
         partnerProvinceItems: [],
         partnerNameItems: []
@@ -29,13 +27,7 @@ const hotel = {
         getPartnerName(state){
             return state.partnerNameItems
         },
-        getPartnerID(state){
-            return state.hotels.Partner_ID
-        },
-        getPartnerIdItems(state){
-            return state.partnerIdItems
-        },
-    },
+   },
     mutations: {
         SET_USERS_HOTEL(state, data){
             state.usersHotel = data
@@ -54,12 +46,12 @@ const hotel = {
         },
     },
     actions: {
-        async setHotel({commit}){
-            await commit('SET_USER_HID', this.getters.getUserID) //เก็บค่า user_ID ไว้ในตัวแปร 
-            await API.post(`/hotel`,this.getters.getHotel) //ส่งค่าใน state hotels ทั้งหมดไปให้ backend
+        setHotel({commit}){
+            commit('SET_USER_HID', this.getters.getUserID) //เก็บค่า user_ID ไว้ในตัวแปร 
+            API.post(`/hotel`,this.getters.getHotel) //ส่งค่าใน state hotels ทั้งหมดไปให้ backend
                 .then(res => (
-                    console.log('hotel', res.data),
-                    commit('SET_PARTNER_ID', res.data.Partner_ID) //เก็บค่า Partner_ID ไว้ในตัวแปร 
+                    console.log('hotel', res.data)
+
                 ))
                 .catch(error => (
                     console.log(error),
@@ -67,14 +59,6 @@ const hotel = {
                     commit('SET_ALERT_COLOR',  "error"),
                     commit('SET_ALERT_TEXT',  "กรุณากรอกข้อมูลให้ครบถ้วน")
                 ))
-            if (this.getters.getPartnerIdItems) {
-                await API.put(`/hotel/`+this.getters.getPartnerIdItems,{
-                    Partner_ID:this.getters.getUserID
-                }) //หลังจากเลือกคู่พักเสร็จแล้วจะทำการ update Partner_ID ให้ตรงกับ User_ID ของ partner ที่เลือกเรา
-                .catch(error => (
-                    console.log(error)
-                ))
-            }
         },
         setUsersHotel({ commit }){
             API.get(`/users-hotel`) //data table
