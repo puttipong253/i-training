@@ -34,13 +34,11 @@ const trainings = {
             this.getters.getTraining.TISI = false,
             this.getters.getTraining.I_Factory = false,
             this.getters.getTraining.E_Payment = false
-            return r.data
         },
         async setUsersTraining({ commit }){
             let r = await API.get(`/users-training`)
             console.log('SET_USERS_TRAINING', r.data)
             commit('SET_USERS_TRAINING', r.data)
-            return r.data
         }
     }
 }

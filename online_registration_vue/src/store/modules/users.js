@@ -51,6 +51,9 @@ const users = {
       },
       getMatching(state){
         return state.matching 
+      },
+      getMatchingStatus(state){
+        return state.matching.Status
       }
     },
     mutations: {
@@ -85,7 +88,6 @@ const users = {
             let r = await API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
             console.log('user',r.data)
             commit('SET_USER_ID', r.data.User_ID)
-            return r.data
           } catch (error) {
             console.log(error)
           }
@@ -121,17 +123,22 @@ const users = {
               return data                                                                                       
             }       
         },
-
         async matching({ commit }){
           try {
             let r = await API.get(`/matching`)
             console.log('SET_MATCHING',r.data),
             commit('SET_MATCHING', r.data)
-            return r.data
           } catch (error) {
             console.log(error)
           }
         },
+        // async statusUserMatch(){
+        //   try {
+        //     let r = await API.put(`/users`)
+        //   } catch (error) {
+            
+        //   }
+        // },
         closeAlert({ commit }){
           commit('SET_ALERT', this.getAlert = false )
         },

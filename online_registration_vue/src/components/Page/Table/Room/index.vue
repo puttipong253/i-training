@@ -1,7 +1,7 @@
 <template>
   <Wrapper>
     <v-card-title>
-      รายชื่อผู้เข้าพักโรงแรม
+      รายชื่อห้องพัก
       <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       <v-text-field
@@ -129,10 +129,8 @@ import { Wrapper } from './index.style'
       },
       async save () {
         await this.$store.dispatch('updateRoom')
-        await setTimeout(() => {
-          this.$store.dispatch("setUserRoom");
-           this.close()
-        }, 500);
+        await this.$store.dispatch("setUserRoom")        
+        await this.close()
       },
     },
   }

@@ -116,12 +116,11 @@
         </div>
       </Table1>
     </Content>
-      <v-btn class="success" @click="saveMatch">บันทึก</v-btn>
+      <v-btn class="purple" dark @click="saveMatch">บันทึก</v-btn>
   </Wrapper>
 </template>
 
 <script>
-import router from '../../../../router'
 import { Wrapper,Table1,Content } from './index.style'
 export default {
     data() {
@@ -166,6 +165,9 @@ export default {
         },
         userMatch(){
             return this.$store.getters.getRoom
+        },
+        getMatchingStatus(){
+            return this.$store.getters.getMatchingStatus
         }
     },
     methods:{
@@ -186,10 +188,10 @@ export default {
           if (confirm('ผู้เข้าพัก'+' '+this.name1.F_Name+' '+this.name1.L_Name+' และ '+'ผู้เข้าพัก'+' '+this.name2.F_Name+' '+this.name2.L_Name+' '+'ยืนยันหรือไม่')) {
             await this.$store.dispatch("setRoomMatch")
             await this.$store.dispatch("alertSuccess")
-            await router.go()
+            await this.$store.dispatch('matching')
           } 
         }
-      }
+      },
     }
 }
 </script>

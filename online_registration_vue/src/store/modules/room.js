@@ -38,7 +38,6 @@ const rooms = {
                 try {
                     let r = await API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID})
                     console.log('room', r.data)
-                    return r.data
                 } catch (error) {
                     console.log(error)
                 }
@@ -48,10 +47,20 @@ const rooms = {
             if (this.getters.getRoom.User_1_ID != '' && this.getters.getRoom.User_2_ID != ''){
                 try {
                     let r = await API.post(`/room`,{User_1_ID:this.getters.getRoom.User_1_ID, User_2_ID:this.getters.getRoom.User_2_ID})
-                    console.log(r.data)
-                    return r.data
+                    .then(res => (
+                        console.log('roomMatch',res.data),
+                        API.put(`/users/`+this.getters.getRoom.User_1_ID,{Status:false}).then(res => (
+                            console.log('User_1_ID',res.data),
+                            this.getters.getRoom.User_1_ID = ''
+                        )),
+                        API.put(`/users/`+this.getters.getRoom.User_2_ID,{Status:false}).then(res => (
+                            console.log('User_2_ID',res.data),
+                            this.getters.getRoom.User_2_ID = ''
+                        ))
+                    ))
+                    return r
                 } catch (error) {
-                    console.log(error)
+                    console.log('er',error)
                 }
             }
         },
@@ -60,7 +69,6 @@ const rooms = {
                 let r = await API.get(`/users-room`) // data table room
                 console.log('SET_USER_ROOM',r.data),
                 commit('SET_USER_ROOM', r.data)
-                return r.data
             } catch (error) {
                 console.log(error)
             }
@@ -68,8 +76,7 @@ const rooms = {
         async updateRoom(){
             try {
                 let r = await API.put(`/room/`+this.state.roomItems.Room_ID,{Room_Number:this.getters.getRoom.Room_Number})
-                console.log('updata',r.data)
-                return r.data
+                console.log('update',r.data)
             } catch (error) {
                 console.log(error)
             }

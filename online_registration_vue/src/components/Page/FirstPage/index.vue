@@ -7,7 +7,8 @@
       <Content>ระหว่างวันที่ ๑๙ - ๒๑ ตุลาคม ๒๕๖๓</Content><SubContent>ณ มหาวิทยาลัยเกษตรศาสตร์ บางเขน</SubContent>
       
     </WrapperText>
-    <v-btn class="purple" dark @click="check">ลงทะเบียน</v-btn>
+      <v-btn class="purple" dark @click="check">ลงทะเบียน</v-btn>
+      <v-btn class="orange ml-1" dark @click="check">ตรวจสอบ</v-btn>
   </Wrapper>
 </template>
 
