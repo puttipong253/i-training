@@ -16,6 +16,9 @@
     <v-tab>
       ห้องพัก
     </v-tab>
+    <v-tab>
+      จับคู่
+    </v-tab>
     
     <v-tab-item>
          <User/>
@@ -29,6 +32,9 @@
     <v-tab-item>
          <Room/> 
     </v-tab-item>  
+    <v-tab-item>
+         <Matching/> 
+    </v-tab-item>  
 
   </v-tabs>
 </template>
@@ -37,12 +43,14 @@ import User from './User'
 import Training from './Training'
 import Hotel from './Hotel'
 import Room from './Room'
+import Matching from './Matching'
 export default {
     components:{
         User,
         Training,
         Hotel,
-        Room
+        Room,
+        Matching
     }
 }
 </script>

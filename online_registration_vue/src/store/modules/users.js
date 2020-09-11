@@ -22,6 +22,7 @@ const users = {
         snackbar: false,
         alertColor: "",
         alertText: "",
+        matching: []
     },
     getters: {
       getProvinces(state){
@@ -48,6 +49,9 @@ const users = {
       getShowUsers(state){
         return state.showUsers 
       },
+      getMatching(state){
+        return state.matching 
+      }
     },
     mutations: {
       SET_PROVINCES(state, data){
@@ -71,56 +75,61 @@ const users = {
       SET_USER_ID(state, data){
         state.userID = data
       },
+      SET_MATCHING(state, data){
+        state.matching = data
+      },
     },
     actions: {
-        setUsers({ commit }){
-             API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
-              .then(res => (
-                console.log('user',res.data),
-                commit('SET_USER_ID', res.data.User_ID)
-              ))
-              .catch(error => (
-                console.log("error", error),
-                commit('SET_ALERT',  true ),
-                commit('SET_ALERT_COLOR',  "error"),
-                commit('SET_ALERT_TEXT',  "กรุณากรอกข้อมูลให้ครบถ้วน")
-              ))
+        async setUsers({ commit }){
+          try {
+            let r = await API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
+            console.log('user',r.data)
+            commit('SET_USER_ID', r.data.User_ID)
+            return r.data
+          } catch (error) {
+            console.log(error)
+          }
         },
-        setShowUsers({ commit }){
-          API.get(`/users`)
-            .then(res => (
-              commit('SET_SHOWUSERS', res.data)
-            ))
-            .catch(error => (
-              console.log(error)
-            ))
+        async setShowUsers({ commit }){
+          try {
+            let r = await API.get(`/users`)
+            commit('SET_SHOWUSERS', r.data)
+          } catch (error) {
+            console.log(error)
+          }
         },
-        setProvinces({ commit }){
-          API.get(`/province`)
-            .then(res => (
-              commit('SET_PROVINCES', res.data)
-            ))
-            .catch(error => (
-              console.log(error)
-            ))
+        async setProvinces({ commit }){
+          try {
+            let r = await API.get(`/province`)
+            commit('SET_PROVINCES', r.data)
+          } catch (error) {
+            console.log(error)
+          }
         },
-        setUserStatus(){
+        async setUserStatus(){
           if (this.getters.getUser2ID != '' && this.getters.getUser2ID != undefined) {
-            API.put(`/users/`+this.getters.getUser2ID,{   //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
-              Status:this.getters.getUsersStatus,         //ทำการ update Status ของ user จาก 1 เป็น 0
-          })
-            .then(res => (
-                console.log('SET_USERS_STATUS', res.data),
-                API.put(`/room-update-1`).then(res => ( //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+              let data = await API.put(`/users/`+this.getters.getUser2ID,{Status:this.getters.getUsersStatus}  //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
+              ).then((res) => {
+                console.log('SET_USERS_STATUS', res.data)
+                API.put(`/room-update-1`).then((res) => (
                   console.log('room-update-1',res.data)
-                )),
-                API.put(`/room-update-2`).then(res => ( //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+                )) //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+                API.put(`/room-update-2`).then((res) => (
                   console.log('room-update-2',res.data)
-                ))
-            ))
-            .catch(error => (
-              console.log(error)
-            ))
+                )) //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
+              })  
+              return data                                                                                       
+            }       
+        },
+
+        async matching({ commit }){
+          try {
+            let r = await API.get(`/matching`)
+            console.log('SET_MATCHING',r.data),
+            commit('SET_MATCHING', r.data)
+            return r.data
+          } catch (error) {
+            console.log(error)
           }
         },
         closeAlert({ commit }){

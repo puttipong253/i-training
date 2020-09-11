@@ -92,7 +92,7 @@ import { Wrapper } from './index.style'
             { text: 'ชื่อคนที่ 1', value: 'full_name1' },
             { text: 'ชื่อคนที่ 2', value: 'full_name2' },
             { text: 'หมายเลขห้อง', value: 'Room_Number' },
-            { text: 'Actions', value: 'actions', sortable: false }
+            { text: 'แก้ไขเลขห้อง', value: 'actions', sortable: false }
           ]
       }
     },
@@ -133,8 +133,6 @@ import { Wrapper } from './index.style'
           this.$store.dispatch("setUserRoom");
            this.close()
         }, 500);
-        
-        
       },
     },
   }

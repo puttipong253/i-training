@@ -1,0 +1,195 @@
+<template>
+  <Wrapper>
+    <Content>
+      <Table1>
+        <v-card-title>
+          รายชื่อผู้เข้าพักโรงแรม
+          <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
+          <v-spacer></v-spacer>
+
+          <v-text-field
+            v-model="search1"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+
+        <div v-if="getMatching == ''">
+          <v-data-table
+            item-key="name"
+            class="elevation-1"
+            loading
+            loading-text="Loading... Please wait"
+            :headers="headers1"
+            :search="search1"
+          ></v-data-table>
+        </div>
+
+        <div v-else>
+          <v-data-table
+            :headers="headers1"
+            :items="getMatching"
+            :search="search1"
+          >
+            <template v-if="userMatch.User_1_ID == '' " v-slot:[`item.actions`]="{ item }">
+              <v-icon
+                small
+                class="mr-2"
+                color="green"
+                @click="selectUser1(item)"
+                
+              >
+                mdi-plus
+              </v-icon>
+            </template>
+            <template v-else v-slot:[`item.actions`]="{ item }">
+              <v-icon
+                small
+                class="mr-2"
+                @click="selectUser1(item)"
+                disabled
+              >
+                mdi-plus
+              </v-icon>
+            </template>
+          </v-data-table>
+        </div>
+      </Table1>
+
+      <Table1>
+        <v-card-title>
+          รายชื่อผู้เข้าพักโรงแรม
+          <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
+          <v-spacer></v-spacer>
+
+          <v-text-field
+            v-model="search2"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+
+        <div v-if="getMatching == ''">
+          <v-data-table
+            item-key="name"
+            class="elevation-1"
+            loading
+            loading-text="Loading... Please wait"
+            :headers="headers2"
+            :search="search2"
+          ></v-data-table>
+        </div>
+
+        <div v-else>
+          <v-data-table
+            :headers="headers2"
+            :items="getMatching"
+            :search="search2"
+
+          >
+          <template v-if="userMatch.User_2_ID == ''" v-slot:[`item.actions`]="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              color="blue"
+              @click="selectUser2(item)"
+              :disabled="item.User_ID == userMatch.User_1_ID"
+            >
+              mdi-plus
+            </v-icon>
+          </template>
+          <template v-else v-slot:[`item.actions`]="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="selectUser2(item)"
+              disabled
+            >
+              mdi-plus
+            </v-icon>
+          </template>
+          </v-data-table>
+        </div>
+      </Table1>
+    </Content>
+      <v-btn class="success" @click="saveMatch">บันทึก</v-btn>
+  </Wrapper>
+</template>
+
+<script>
+import router from '../../../../router'
+import { Wrapper,Table1,Content } from './index.style'
+export default {
+    data() {
+        return {
+            search1: "",
+            name1:"",
+            name2:"",
+            headers1:[
+                { text: "ID", value: "User_ID" },
+                { text: "คำนำหน้า", value: "Prefix" },
+                { text: "ชื่อ", value: "F_Name" },
+                { text: "นามสกุล", value: "L_Name" },
+                { text: "เพศ", value: "Gender" },
+                { text: "เบอร์โทรศัพท์", value: "Phone" },
+                { text: "จังหวัด", value: "p_name" },
+                { text: "select", value: 'actions', sortable: false },
+            ],
+            search2: "",
+            headers2:[
+                { text: "ID", value: "User_ID" },
+                { text: "คำนำหน้า", value: "Prefix" },
+                { text: "ชื่อ", value: "F_Name" },
+                { text: "นามสกุล", value: "L_Name" },
+                { text: "เพศ", value: "Gender" },
+                { text: "เบอร์โทรศัพท์", value: "Phone" },
+                { text: "จังหวัด", value: "p_name" },
+                { text: "select", value: 'actions', sortable: false },
+            ]
+        }
+    },
+    components:{
+        Wrapper,
+        Table1,
+        Content
+    },
+    mounted(){
+        this.$store.dispatch('matching')
+    },
+    computed:{
+        getMatching(){
+            return this.$store.getters.getMatching
+        },
+        userMatch(){
+            return this.$store.getters.getRoom
+        }
+    },
+    methods:{
+      selectUser1(item){
+        if (confirm('เลือกคุณ'+' '+item.F_Name+' '+'ใช่หรือไม่')) {
+          this.userMatch.User_1_ID = item.User_ID
+          this.name1 = item
+        }
+      },
+      selectUser2(item){
+        if (confirm('เลือกคุณ'+' '+item.F_Name+' '+'ใช่หรือไม่')) {
+          this.userMatch.User_2_ID = item.User_ID
+          this.name2 = item
+        }
+      },
+      async saveMatch(){
+        if (this.userMatch.User_1_ID !='' && this.userMatch.User_2_ID !='') {
+          if (confirm('ผู้เข้าพัก'+' '+this.name1.F_Name+' '+this.name1.L_Name+' และ '+'ผู้เข้าพัก'+' '+this.name2.F_Name+' '+this.name2.L_Name+' '+'ยืนยันหรือไม่')) {
+            await this.$store.dispatch("setRoomMatch")
+            await this.$store.dispatch("alertSuccess")
+            await router.go()
+          } 
+        }
+      }
+    }
+}
+</script>

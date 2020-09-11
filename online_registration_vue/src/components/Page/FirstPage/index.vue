@@ -4,8 +4,8 @@
     <WrapperText>
       <Title>การจัดอบรมสัมมนาเชิงปฏิบัติการ</Title>
       <SubTitle>เรื่อง การเพิ่มประสิทธิภาพการปฏิบัติงานของเจ้าหน้าที่สำนักงานอุตสาหกรรมจังหวัด</SubTitle>
-      <Content>ระหว่างวันที่ ๔ - ๖ สิงหาคม ๒๕๖๓</Content>
-      <SubContent>ณ ห้องประชุมอยุธยา ชั้น ๕ โรงแรมท๊อปแลนด์ จ.พิษณุโลก</SubContent>
+      <Content>ระหว่างวันที่ ๑๙ - ๒๑ ตุลาคม ๒๕๖๓</Content><SubContent>ณ มหาวิทยาลัยเกษตรศาสตร์ บางเขน</SubContent>
+      
     </WrapperText>
     <v-btn class="purple" dark @click="check">ลงทะเบียน</v-btn>
   </Wrapper>
@@ -24,11 +24,16 @@ export default {
     Content,
     SubContent
   },
+  data() {
+    return {
+      load:[]
+    }
+  },
   methods:{
     check(){
       console.log('check',this.$store.getters.getUser2ID) 
       router.push('/page')
-    }
-  }
-};
+    },
+  },
+}
 </script>

@@ -33,28 +33,46 @@ const rooms = {
         },
     },
     actions: {
-        setRoom(){
+        async setRoom(){
             if (this.getters.getUsersStatus == 0) {
-                API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID, Room_Number:this.getters.getRoom.Room_Number})
-                .then(res => (
-                    console.log('room', res.data)
-                ))
-                .catch(error => (
+                try {
+                    let r = await API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID})
+                    console.log('room', r.data)
+                    return r.data
+                } catch (error) {
                     console.log(error)
-                ))
+                }
             }
         },
-        setUserRoom({ commit }){
-            API.get(`/users-room`) // data table room
-                .then(res => (
-                    console.log('SET_USER_ROOM',res.data),
-                    commit('SET_USER_ROOM', res.data)
-                ))
+        async setRoomMatch(){
+            if (this.getters.getRoom.User_1_ID != '' && this.getters.getRoom.User_2_ID != ''){
+                try {
+                    let r = await API.post(`/room`,{User_1_ID:this.getters.getRoom.User_1_ID, User_2_ID:this.getters.getRoom.User_2_ID})
+                    console.log(r.data)
+                    return r.data
+                } catch (error) {
+                    console.log(error)
+                }
+            }
         },
-        updateRoom(){
-            API.put(`/room/`+this.state.roomItems.Room_ID,{Room_Number:this.getters.getRoom.Room_Number}).then(res => (
-                console.log(res.data)
-            ))
+        async setUserRoom({ commit }){
+            try { 
+                let r = await API.get(`/users-room`) // data table room
+                console.log('SET_USER_ROOM',r.data),
+                commit('SET_USER_ROOM', r.data)
+                return r.data
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async updateRoom(){
+            try {
+                let r = await API.put(`/room/`+this.state.roomItems.Room_ID,{Room_Number:this.getters.getRoom.Room_Number})
+                console.log('updata',r.data)
+                return r.data
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 }

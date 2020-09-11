@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import router from "../../router";
 import { Wrapper } from "./index.style";
 import FormPersonal from "./FormPersonal";
 import FormTraining from "./FormTraining";
 import FormHotel from "./FormHotel";
 import { API } from '../../API'
+import router from '../../router';
 export default {
   data() {
     return {
@@ -72,21 +72,21 @@ export default {
                 console.log('loading')
               } else {
                 clearInterval(this.time)
-                this.$store.dispatch("setTraining")
-                this.$store.dispatch("setHotel")
-                this.$store.dispatch("setRoom")
-                this.$store.dispatch("setUserStatus")
-                this.$store.dispatch("alertSuccess")
+                  this.$store.dispatch("setTraining")
+                  this.$store.dispatch("setHotel")
+                  this.$store.dispatch("setRoom")
+                  this.$store.dispatch("setUserStatus")
+                  this.$store.dispatch("alertSuccess")
               }
             }, 1000);
             
             await setTimeout(() => (
-              this.$refs.form.reset(),
-              this.$refs.form2.reset(),
-              this.$nextTick(() => {
-                  this.getUsers.Status = true
-              }),
-              router.push("/")
+                this.$refs.form.reset(),
+                this.$refs.form2.reset(),
+                this.$nextTick(() => {
+                   this.getUsers.Status = true                      
+                }),
+                router.push('/')
             ), 1500)            
 
       } else {
