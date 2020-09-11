@@ -35,3 +35,4 @@ Route::get('users-training', 'UsersController@usersTraining');
 Route::get('users-hotel', 'UsersController@usersHotel');
 Route::get('users-room', 'UsersController@usersRoom');
 Route::post('partner','HotelController@partnerProvince');
+Route::get('matching','UsersController@matching');

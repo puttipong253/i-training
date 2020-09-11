@@ -22,10 +22,17 @@ class UsersController extends Controller
     {
         return DB::table('users')
                 ->join('provinces as p','p.id','=','users.Province_ID')
-                ->select('User_ID','Prefix','F_Name','L_Name','Gender','Rank','Email','Phone','p.name_th as p_name','Food_Group','Food_Allergy')
+                ->select('User_ID','Prefix','F_Name','L_Name','Gender','Rank','Email','Phone','p.name_th as p_name','Province_ID','Food_Group','Food_Allergy','Status')
                 ->get();
     }
-
+    public function matching()
+    {
+        return DB::table('users')
+                ->join('provinces as p','p.id','=','users.Province_ID')
+                ->where('Status','=',1)
+                ->select('User_ID','Prefix','F_Name','L_Name','Gender','Rank','Email','Phone','p.name_th as p_name','Province_ID','Food_Group','Food_Allergy','Status')
+                ->get();
+    }
     public function usersTraining()
     {
         return DB::table('users')

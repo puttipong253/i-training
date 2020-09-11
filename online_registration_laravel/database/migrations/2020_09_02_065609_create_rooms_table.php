@@ -17,7 +17,7 @@ class CreateRoomsTable extends Migration
             $table->increments('Room_ID');
             $table->integer('User_1_ID')->nullable();
             $table->integer('User_2_ID')->nullable();
-            $table->string('Room_Number', 10)->nullable();
+            $table->string('Room_Number', 10)->default('000');
             $table->timestamps();
         });
     }
