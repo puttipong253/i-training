@@ -80,9 +80,6 @@ export default {
     },
     submitTrack(){
       this.$store.dispatch('userTracking')
-    },
-        ssdsdsd(){
-      this.$store.dispatch('userTracking')
     }
   },
 }
