@@ -1,6 +1,6 @@
 <template>
   <Wrapper>
-    <Content>
+    <v-row>
       <Table1>
         <v-card-title>
           รายชื่อผู้เข้าพักโรงแรม
@@ -115,13 +115,13 @@
           </v-data-table>
         </div>
       </Table1>
-    </Content>
+    </v-row>
       <v-btn class="purple" dark @click="saveMatch">บันทึก</v-btn>
   </Wrapper>
 </template>
 
 <script>
-import { Wrapper,Table1,Content } from './index.style'
+import { Wrapper,Table1 } from './index.style'
 export default {
     data() {
         return {
@@ -154,7 +154,7 @@ export default {
     components:{
         Wrapper,
         Table1,
-        Content
+
     },
     mounted(){
         this.$store.dispatch('matching')

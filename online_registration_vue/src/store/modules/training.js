@@ -37,8 +37,8 @@ const trainings = {
         },
         async setUsersTraining({ commit }){
             let r = await API.get(`/users-training`)
-            console.log('SET_USERS_TRAINING', r.data)
             commit('SET_USERS_TRAINING', r.data)
+            console.log('SET_USERS_TRAINING', r.data)
         }
     }
 }

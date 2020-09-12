@@ -112,7 +112,6 @@
 import { Wrapper } from "./index.style";
 export default {
   data: () => ({
-
     prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
     fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
     lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],

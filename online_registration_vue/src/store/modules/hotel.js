@@ -58,8 +58,8 @@ const hotel = {
         async setUsersHotel({ commit }){
             try {
                 let r = await API.get(`/users-hotel`) //data table
-                console.log('SET_USERS_HOTEL', r.data),
                 commit('SET_USERS_HOTEL', r.data)
+                console.log('SET_USERS_HOTEL', r.data)
             } catch (error) {
                 console.log(error)
             }
@@ -76,8 +76,8 @@ const hotel = {
         async setPartnerName({ commit }){
             try {
                 let r = await API.post(`/partner`,this.getters.getHotel) //post หา $request ของ id จังหวัด แล้วไปเช็ค id ของจังหวัดนั้นๆ                      //ว่าตรงกับ ptovince_id ของ ของ user คนไหนบ้าง และให้แสดงชื่อของuser ที่มี status = 1
-                console.log('SET_PARTNER_NAME', r.data),
-                commit('SET_PARTNER_NAME', r.data) //เก็บค่า data ที่ได้จากการ post มาไว้ในตัวแปร
+                commit('SET_PARTNER_NAME', r.data) //เก็บค่า data ที่ได้จากการ post มาไว้ในตัวแปร                
+                console.log('SET_PARTNER_NAME', r.data)                
             } catch (error) {
                 console.log(error)
             }

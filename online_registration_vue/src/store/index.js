@@ -6,6 +6,7 @@ import download from './modules/download'
 import training from './modules/training'
 import hotel from './modules/hotel'
 import room from './modules/room'
+import track from './modules/track'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     download,
     training,
     hotel,
-    room
+    room,
+    track
   }
 })

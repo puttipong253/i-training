@@ -11,7 +11,7 @@ const users = {
           Rank: "",
           Email: "",
           Phone: "",
-          Province_ID: "",
+          Province_ID: 0,
           Food_Group: "",
           Food_Allergy: "",
           Status: true,
@@ -51,9 +51,6 @@ const users = {
       },
       getMatching(state){
         return state.matching 
-      },
-      getMatchingStatus(state){
-        return state.matching.Status
       }
     },
     mutations: {
@@ -126,19 +123,12 @@ const users = {
         async matching({ commit }){
           try {
             let r = await API.get(`/matching`)
-            console.log('SET_MATCHING',r.data),
             commit('SET_MATCHING', r.data)
+            console.log('SET_MATCHING',r.data)
           } catch (error) {
             console.log(error)
           }
         },
-        // async statusUserMatch(){
-        //   try {
-        //     let r = await API.put(`/users`)
-        //   } catch (error) {
-            
-        //   }
-        // },
         closeAlert({ commit }){
           commit('SET_ALERT', this.getAlert = false )
         },

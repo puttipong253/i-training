@@ -53,8 +53,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save">บันทึก</v-btn>
+              <v-btn color="blue darken-1" text @click="close">ยกเลิก</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -67,12 +67,6 @@
         >
           mdi-pencil
         </v-icon>
-        <!-- <v-icon
-          small
-          @click="deleteItem(item)"
-        >
-          mdi-delete
-        </v-icon> -->
       </template>
       </v-data-table>
     </div>
@@ -86,7 +80,6 @@ import { Wrapper } from './index.style'
       return{
           dialog: false,
           search: "",
-          items: [],
           headers: [
             { text: 'ID', value: 'Room_ID' },
             { text: 'ชื่อคนที่ 1', value: 'full_name1' },

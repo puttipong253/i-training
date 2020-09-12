@@ -67,8 +67,8 @@ const rooms = {
         async setUserRoom({ commit }){
             try { 
                 let r = await API.get(`/users-room`) // data table room
-                console.log('SET_USER_ROOM',r.data),
                 commit('SET_USER_ROOM', r.data)
+                console.log('SET_USER_ROOM', r.data)
             } catch (error) {
                 console.log(error)
             }
