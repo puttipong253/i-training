@@ -53,7 +53,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="6" sm="4" md="5">
+          <v-col cols="12" sm="4" md="5">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Rank"
@@ -62,7 +62,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="6" sm="6" md="6">
+          <v-col cols="12" sm="6" md="6">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Email"
@@ -71,8 +71,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="6" sm="6" md="6" >
-       
+          <v-col cols="7" sm="6" md="6" >       
             <v-select
               class="text-custom"
               v-model="getUsers.Province"
@@ -83,7 +82,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>     
           </v-col>
 
-          <v-col cols="6" sm="6" md="6">
+          <v-col cols="5" sm="6" md="6">
             <v-select
               class="text-custom"
               v-model="getUsers.Food_Group"
@@ -98,7 +97,7 @@
               class="text-custom"
               v-model="getUsers.Food_Allergy"
               label="อาหารที่แพ้"              
-            ></v-text-field>
+            ><v-icon slot="prepend" color="red"></v-icon></v-text-field>
           </v-col>
         </v-row>
     </Wrapper>
