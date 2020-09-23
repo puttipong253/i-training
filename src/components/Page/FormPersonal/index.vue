@@ -1,6 +1,5 @@
 <template>
     <Wrapper>
-      <div v-if="getUsers.User_ID == ''">
         <v-row>
           <v-col cols="12" sm="12" md="12"><Header>ข้อมูลส่วนตัว</Header></v-col>
 
@@ -10,8 +9,7 @@
               v-model="getUsers.Prefix"
               :rules="prefixRules"
               :items="prefixItems"
-              label="คำนำหน้า"
-              
+              label="คำนำหน้า"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
             
           </v-col>
@@ -21,8 +19,7 @@
               class="text-custom"
               v-model="getUsers.F_Name"
               :rules="fnameRules"
-              label="ชื่อจริง"
-              
+              label="ชื่อจริง"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
@@ -31,8 +28,7 @@
               class="text-custom"
               v-model="getUsers.L_Name"
               :rules="lnameRules"
-              label="นามสกุล"
-              
+              label="นามสกุล"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
@@ -44,17 +40,7 @@
             </v-radio-group>
           </v-col>
 
-          <v-col cols="5" sm="8" md="5">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Rank"
-              :rules="rankRules"
-              label="ตำแหน่ง"
-              
-            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
-          </v-col>
-
-          <v-col cols="6" sm="6" md="4">
+          <v-col cols="5" sm="4" md="4">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Phone"
@@ -63,8 +49,16 @@
               maxlength="10"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
               label="เบอร์โทรศัพท์"
-              type="number"
-              
+              type="number"              
+            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
+          </v-col>
+
+          <v-col cols="6" sm="4" md="5">
+            <v-text-field
+              class="text-custom"
+              v-model="getUsers.Rank"
+              :rules="rankRules"
+              label="ตำแหน่ง"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
@@ -73,8 +67,7 @@
               class="text-custom"
               v-model="getUsers.Email"
               :rules="emailRules"
-              label="อีเมล"
-              
+              label="อีเมล"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
@@ -87,8 +80,7 @@
               :items="getMyProvince"
               item-text="th"
               label="จังหวัด"
-            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
-     
+            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>     
           </v-col>
 
           <v-col cols="6" sm="6" md="6">
@@ -97,132 +89,19 @@
               v-model="getUsers.Food_Group"
               :rules="foodGroupRules"
               :items="foodGroupItems"
-              label="ประเภทอาหาร"
-              
+              label="ประเภทอาหาร"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
           </v-col>
 
-          <v-col cols="12" sm="12" md="6">
+          <v-col cols="12" sm="6" md="6">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Food_Allergy"
-              label="อาหารที่แพ้"
-              
+              label="อาหารที่แพ้"              
             ></v-text-field>
           </v-col>
         </v-row>
-      </div>
-
-      <div v-if="getUsers.User_ID != ''">
-        <v-row>
-          <v-col cols="12" sm="4" md="2">
-            <v-select
-              class="text-custom"
-              v-model="getUsers.Prefix"
-              :rules="prefixRules"
-              :items="prefixItems"
-              label="คำนำหน้า"
-              disabled
-            ></v-select>
-            
-          </v-col>
-
-          <v-col cols="6" sm="4" md="5">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.F_Name"
-              :rules="fnameRules"
-              label="ชื่อจริง"
-              disabled
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" sm="4" md="5">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.L_Name"
-              :rules="lnameRules"
-              label="นามสกุล"
-              disabled
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="7" sm="4" md="3">
-            <v-radio-group v-model="getUsers.Gender" :rules="genderRules" disabled row>
-              <v-radio label="ชาย" value="ชาย"></v-radio>
-              <v-radio label="หญิง" value="หญิง"></v-radio>
-            </v-radio-group>
-          </v-col>
-
-          <v-col cols="5" sm="8" md="5">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Rank"
-              :rules="rankRules"
-              label="ตำแหน่ง"
-              disabled
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" sm="6" md="4">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Phone"
-              :rules="phoneRules"
-              :counter="10"
-              maxlength="10"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              label="เบอร์โทรศัพท์"
-              type="number"
-              disabled
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" sm="6" md="6">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Email"
-              :rules="emailRules"
-              label="อีเมล"
-              disabled
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="6" sm="6" md="6">
-            <v-select
-              class="text-custom"
-              v-model="getUsers.Province"
-              :rules="provinceRules"
-              :items="getMyProvince"
-              
-              label="จังหวัด"
-              disabled
-            ></v-select>
-          </v-col>
-
-          <v-col cols="6" sm="6" md="6">
-            <v-select
-              class="text-custom"
-              v-model="getUsers.Food_Group"
-              :rules="foodGroupRules"
-              :items="foodGroupItems"
-              label="หมวดหมู่อาหาร"
-              disabled
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="12" md="6">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Food_Allergy"
-              label="อาหารที่แพ้"
-              disabled
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </div>
     </Wrapper>
-
 </template>
 
 <script>

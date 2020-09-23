@@ -1,5 +1,4 @@
 <template>
-
     <Wrapper>
       <v-row>
         <v-col cols="12" sm="12" md="12"><Header>ข้อมูลการลงทะเบียน</Header></v-col>
@@ -77,7 +76,6 @@
 
         <v-col cols="12" sm="12" md="12"><Header>คู่พักและห้องพัก</Header></v-col>
 
-        <!-- <div v-if="getUserTrack.Partner_ID != null"> -->
           <v-col v-if="getUserTrack.Partner_ID != null" cols="3" sm="2" md="2">
             <v-text-field
               :value="getPartner.Prefix"
