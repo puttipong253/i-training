@@ -31,7 +31,7 @@ const tracking = {
                 router.push('/track')
                 this.getters.getPhone.Phone = ''
               }else{
-                alert('เบอร์โทรศัพท์ไมู่กต้อง')
+                alert('เบอร์โทรศัพท์ไม่ถูกต้อง')
                 this.getters.getPhone.Phone = ''
               }
             } catch (error) {

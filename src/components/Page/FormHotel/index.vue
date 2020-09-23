@@ -44,11 +44,11 @@
       </v-dialog>
 
       <v-col cols="1" sm="1" md="1">
-      <v-icon slot="prepend" color="blue" @click="popup">mdi-exclamation-thick</v-icon>
+        <v-icon slot="prepend" color="blue" @click="popup">mdi-exclamation-thick</v-icon>
       </v-col>
 
       <v-col cols="6" sm="3" md="3">
-        <v-tooltip v-model="show1" color="success" bottom >
+        <v-tooltip v-model="show1" color="success" top>
           <template v-slot:activator="{ on }">  
             <div v-on="on">
               <v-radio-group v-model="getUsers.Status" required row >                
@@ -56,14 +56,13 @@
               </v-radio-group>
             </div>            
           </template>          
-          <v-card-text class="text-body-1">1. กรณีเลือก "รอจับคู่" เป็นการลงชื่อไว้ในระบบจับคู่</v-card-text>
-          <v-card-text class="text-body-1">เพื่อให้คู่พักของท่านมาเลือกท่านทีหลัง</v-card-text>
+          <v-card-text class="text-body-1">1. กรณีเลือก "รอจับคู่" เป็นการลงชื่อไว้ในระบบจับคู่เพื่อให้คู่พักของท่านมาเลือกท่านทีหลัง</v-card-text>
           <v-card-text class="text-body-1">**หมายเหตุ** ถ้าหากคู่พักของท่านยังไม่ได้ลงทะเบียนให้ท่านเลือก ตัวเลือกนี้ เพื่อรอจับคู่</v-card-text>
         </v-tooltip>
       </v-col>
 
       <v-col cols="5" sm="3" md="2">
-        <v-tooltip v-model="show2" color="success" bottom>
+        <v-tooltip v-model="show2" color="success" top>
           <template v-slot:activator="{ on }">  
             <div v-on="on">
                 <v-radio-group v-model="getUsers.Status" required row >
@@ -71,8 +70,7 @@
                 </v-radio-group>
             </div>            
           </template>          
-          <v-card-text class="text-body-1">2. กรณีเลือก "เลือกคู่พัก" ให้ท่านเลือกจังหวัดของคู่พักของท่าน </v-card-text>
-          <v-card-text class="text-body-1">แล้วรายชื่อของผู้ลงทะเบียนในจังหวัดนั้นๆ จะแสดงออกมาให้ท่านเลือก </v-card-text>
+          <v-card-text class="text-body-1">2. กรณีเลือก "เลือกคู่พัก" ให้ท่านเลือกจังหวัดของคู่พักของท่าน แล้วรายชื่อของผู้ลงทะเบียนในจังหวัดนั้นๆ จะแสดงออกมาให้ท่านเลือก</v-card-text>
           <v-card-text class="text-body-1">**หมายเหตุ** คู่พักของท่านจะต้องลงทะเบียนไว้ก่อนแล้วเท่านั้น รายชื่อถึงจะแสดง</v-card-text>
         </v-tooltip>
       </v-col>
