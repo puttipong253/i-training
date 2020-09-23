@@ -6,7 +6,7 @@ const hotel = {
             User_ID: "",
             Check_In: "19 ตุลาคม 2563",
             Check_Out: "21 ตุลาคม 2563",
-            Partner_Province_ID: "",
+            Partner_Province: "",
             Room_ID: "",
             Note: "",
             Partner_ID: "",
@@ -14,7 +14,6 @@ const hotel = {
         },
         partner: [],
         usersHotel: [],
-        partnerProvinceItems: [],
         partnerNameItems: []
     },
     getters: {
@@ -23,9 +22,6 @@ const hotel = {
         },
         getUsersHotel(state){
             return state.usersHotel
-        },
-        getPartnerProvinces(state){
-            return state.partnerProvinceItems 
         },
         getPartnerName(state){
             return state.partnerNameItems
@@ -44,9 +40,6 @@ const hotel = {
         SET_USER_HID(state, data){
             state.hotels.User_ID = data
         },
-        SET_PARTNER_PROVINCES(state, data){
-            state.partnerProvinceItems = data
-        },
         SET_PARTNER_NAME(state, data){
             state.partnerNameItems = data
         },
@@ -63,7 +56,7 @@ const hotel = {
                 commit('SET_USER_HID', this.getters.getUserID) //เก็บค่า user_ID ไว้ในตัวแปร 
                 commit('SET_PARTNER_ID', this.getters.getRoom.User_2_ID)
                 let r = await API.post(`/hotel`,this.getters.getHotel) //ส่งค่าใน state hotels ทั้งหมดไปให้ backend
-                this.getters.getHotel.Partner_Province_ID = 0
+                this.getters.getHotel.Partner_Province = ""
                 this.getters.getRoom.User_2_ID = ""
                 this.getters.getRoom.Note = ""
                 console.log('hotel', r.data)
@@ -81,14 +74,6 @@ const hotel = {
             }
             
         },
-        async setPartnerProvinces({ commit }){
-            try {
-                let r = await API.get(`/province`) //ดึงข้อมูลจังหวัด
-                commit('SET_PARTNER_PROVINCES', r.data)
-            } catch (error) {
-                console.log(error)
-            }
-          },
         async setPartnerName({ commit }){
             try {
                 let r = await API.post(`/partner`,this.getters.getHotel) //post หา $request ของ id จังหวัด แล้วไปเช็ค id ของจังหวัดนั้นๆ                      //ว่าตรงกับ ptovince_id ของ ของ user คนไหนบ้าง และให้แสดงชื่อของuser ที่มี status = 1
@@ -113,7 +98,7 @@ const hotel = {
             if (this.getters.getUserTrack.Partner_ID != null) {
                 try {
                     let r = await API.get(`/users/`+this.getters.getUserTrack.Partner_ID)
-                    commit('SET_PARTNER_PHONE', r.data[0])
+                    commit('SET_PARTNER_PHONE', r.data)
                     console.log('SET_PARTNER_PHONE', this.getters.getPartner)
                 } catch (error) {
                   console.log(error)

@@ -78,13 +78,12 @@
       <v-col cols="6" sm="5" md="3">
         <v-select
           class="text-custom"
-          v-model="getHotel.Partner_Province_ID"
-          :items="getPartnerProvinces"
+          v-model="getHotel.Partner_Province"
+          :items="getMyProvince"
           :disabled="getUsers.Status"
           @change="setPartnerName"
-          item-text="name_th"
-          item-value="id"
           label="จังหวัดของผู้ร่วมพัก"
+          item-text="th"
           clearable
         ></v-select>
       </v-col>
@@ -174,11 +173,10 @@
       <v-col cols="6" sm="6" md="6">
         <v-select
           class="text-custom"
-          v-model="getPartner.Province_ID"
-          :items="getPartnerProvinces"
+          v-model="getPartner.Province"
+          :items="getMyProvince"
           @change="setPartnerName"
-          item-text="name_th"
-          item-value="id"
+          item-text="th"
           label="จังหวัดของผู้ร่วมพัก"
           disabled
         ></v-select>
@@ -218,14 +216,14 @@ export default {
     Header
   },
   mounted(){
-    this.$store.dispatch("setPartnerProvinces") 
+    this.getMyProvince.sort(this.compareItem)
   },
   computed: {
     getHotel() {
       return this.$store.getters.getHotel;
     },
-    getPartnerProvinces() {
-      return this.$store.getters.getPartnerProvinces;
+    getMyProvince(){
+      return this.$store.getters.myProvince
     },
     getPartnerName(){
       return this.$store.getters.getPartnerName
@@ -246,6 +244,15 @@ export default {
     },
     popup(){
       this.dialog = true
+    },
+    compareItem(a, b){
+      if(a.th < b.th){
+              return -1;
+      }else if(a.th > b.th){
+              return 1;
+      }else{
+              return 0;
+      }
     },
     text: item => item.F_Name + ' ' + item.L_Name
   },

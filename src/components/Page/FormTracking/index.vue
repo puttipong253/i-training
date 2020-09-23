@@ -53,7 +53,7 @@
 
         <v-col cols="6" sm="4" md="4">
           <v-text-field
-            :value="getUserTrack.name_th"
+            :value="getUserTrack.Province"
             label="จังหวัด"
             readonly
           ></v-text-field>
@@ -112,7 +112,7 @@
 
           <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="4" md="4">
             <v-text-field
-              :value="getPartner.name_th"
+              :value="getPartner.Province"
               label="จังหวัด"
               readonly
             ></v-text-field>

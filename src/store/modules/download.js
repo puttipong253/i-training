@@ -23,28 +23,6 @@ const download = {
              console.log(error)
            ))
       },
-      downloadTraining(){
-        API.get(`/export-training`,{
-            responseType: 'blob'
-        })
-           .then((res) => {
-                FileSaver.saveAs(res.data,"training");
-           })
-           .catch(error => (
-             console.log(error)
-           ))
-      },
-      downloadHotel(){
-        API.get(`/export-hotel`,{
-            responseType: 'blob'
-        })
-           .then((res) => {
-                FileSaver.saveAs(res.data,"hotel");
-           })
-           .catch(error => (
-             console.log(error)
-           ))
-      }
     }
 }
 export default download;

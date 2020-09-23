@@ -76,17 +76,17 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="6" sm="6" md="6">
+          <v-col cols="6" sm="6" md="6" >
+       
             <v-select
               class="text-custom"
-              v-model="getUsers.Province_ID"
+              v-model="getUsers.Province"
               :rules="provinceRules"
-              :items="getProvinces"
-              item-text="name_th"
-              item-value="id"
+              :items="getMyProvince"
+              item-text="th"
               label="จังหวัด"
-              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
+     
           </v-col>
 
           <v-col cols="6" sm="6" md="6">
@@ -189,11 +189,10 @@
           <v-col cols="6" sm="6" md="6">
             <v-select
               class="text-custom"
-              v-model="getUsers.Province_ID"
+              v-model="getUsers.Province"
               :rules="provinceRules"
-              :items="getProvinces"
-              item-text="name_th"
-              item-value="id"
+              :items="getMyProvince"
+              
               label="จังหวัด"
               disabled
             ></v-select>
@@ -226,6 +225,7 @@
 
 <script>
 import { Wrapper } from "./index.style";
+
 export default {
   data: () => ({
     prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
@@ -250,15 +250,28 @@ export default {
     Wrapper,
   },
   mounted() {
-    this.$store.dispatch('setProvinces')
+    this.getMyProvince.sort(this.compareItem)
   },
   computed: {
-    getProvinces () {
-      return this.$store.getters.getProvinces
-    },
     getUsers () {
       return this.$store.getters.getUsers
     },
+    getMyProvince(){
+      return this.$store.getters.myProvince
+    }
+
   },
+  methods:{
+    
+    compareItem(a, b){
+        if(a.th < b.th){
+                return -1;
+        }else if(a.th > b.th){
+                return 1;
+        }else{
+                return 0;
+        }
+    }
+  }
 };
 </script>

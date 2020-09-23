@@ -11,23 +11,19 @@ const users = {
           Rank: "",
           Email: "",
           Phone: "",
-          Province_ID: 0,
+          Province: "",
           Food_Group: "",
           Food_Allergy: "",
           Status: true,
         },
         userID: "",
         showUsers: [],
-        Provinceitems: [],
         snackbar: false,
         alertColor: "",
         alertText: "",
         matching: [],
     },
     getters: {
-      getProvinces(state){
-        return state.Provinceitems 
-      },
       getUsers(state){
         return state.users 
       },
@@ -54,9 +50,6 @@ const users = {
       },
     },
     mutations: {
-      SET_PROVINCES(state, data){
-        state.Provinceitems = data
-      },
       SET_USERS(state, data){
         state.users = data
       },
@@ -93,14 +86,6 @@ const users = {
           try {
             let r = await API.get(`/users`)
             commit('SET_SHOWUSERS', r.data)
-          } catch (error) {
-            console.log(error)
-          }
-        },
-        async setProvinces({ commit }){
-          try {
-            let r = await API.get(`/province`)
-            commit('SET_PROVINCES', r.data)
           } catch (error) {
             console.log(error)
           }

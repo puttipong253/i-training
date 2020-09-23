@@ -45,7 +45,7 @@ export default {
         { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_1" },
         { text: "นามสกุล", value: "L_1" },
-        { text: "จังหวัด", value: "p_name" },
+        { text: "จังหวัด", value: "Province" },
         { text: "วันที่เช็คอิน", value: "Check_In" },
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
         { text: "Room_ID", value: "Room_ID" },

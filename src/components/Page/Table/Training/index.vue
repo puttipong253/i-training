@@ -44,7 +44,7 @@ export default {
         { text: "ID", value: "User_ID" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
-        { text: "จังหวัด", value: "p_name" },
+        { text: "จังหวัด", value: "Province" },
         { text: "ทะเบียนโรงงาน", value: "I_Factory" },
         { text: "ALOHA", value: "ALOHA" },
         { text: "ชำระค่าธรรมเนียมออนไลน์", value: "E_Payment" },

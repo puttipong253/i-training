@@ -150,7 +150,7 @@ export default {
                 { text: "นามสกุล", value: "L_Name" },
                 { text: "เพศ", value: "Gender" },
                 { text: "เบอร์โทรศัพท์", value: "Phone" },
-                { text: "จังหวัด", value: "p_name" },
+                { text: "จังหวัด", value: "Province" },
                 { text: "select", value: 'actions', sortable: false },
             ],
             search2: "",
@@ -161,7 +161,7 @@ export default {
                 { text: "นามสกุล", value: "L_Name" },
                 { text: "เพศ", value: "Gender" },
                 { text: "เบอร์โทรศัพท์", value: "Phone" },
-                { text: "จังหวัด", value: "p_name" },
+                { text: "จังหวัด", value: "Province" },
                 { text: "select", value: 'actions', sortable: false },
             ]
         }
