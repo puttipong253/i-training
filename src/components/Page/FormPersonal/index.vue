@@ -2,6 +2,8 @@
     <Wrapper>
       <div v-if="getUsers.User_ID == ''">
         <v-row>
+          <v-col cols="12" sm="12" md="12"><Header>ข้อมูลส่วนตัว</Header></v-col>
+
           <v-col cols="12" sm="4" md="2">
             <v-select
               class="text-custom"
@@ -224,7 +226,7 @@
 </template>
 
 <script>
-import { Wrapper } from "./index.style";
+import { Wrapper, Header } from "./index.style";
 
 export default {
   data: () => ({
@@ -248,6 +250,7 @@ export default {
   }),
   components: {
     Wrapper,
+    Header
   },
   mounted() {
     this.getMyProvince.sort(this.compareItem)

@@ -2,6 +2,8 @@
   <Wrapper>
     <div v-if="getUsers.User_ID == ''">
       <v-row>
+      <v-col cols="12" sm="12" md="12"><Header>การเข้าพักโรงแรม</Header></v-col>
+
       <v-col cols="6" sm="6" md="6">
         <v-select
           class="text-custom"
@@ -42,7 +44,7 @@
       </v-dialog>
 
       <v-col cols="1" sm="1" md="1">
-<v-icon slot="prepend" color="blue" @click="popup">mdi-exclamation-thick</v-icon>
+      <v-icon slot="prepend" color="blue" @click="popup">mdi-exclamation-thick</v-icon>
       </v-col>
 
       <v-col cols="6" sm="3" md="3">

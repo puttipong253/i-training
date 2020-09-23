@@ -124,11 +124,7 @@ export default {
       }
     },
     OnTrain() {
-      if (!this.getTraining.TISI && !this.getTraining.I_Factory && !this.getTraining.E_Payment) {
-          this.$store.dispatch('alertError')
-      } else {
-          this.steps = 3
-      }
+        this.steps = 3
     },
   },
 };

@@ -12,6 +12,9 @@ export const Wrapper = styled.div`
   .custom-stepper .v-stepper__step__step {
     background-color: purple !important;
     border-color: purple !important;
+  }
+  .v-stepper__content {
+    padding: 20px 24px 24px 24px !important;
 }
 `;
 

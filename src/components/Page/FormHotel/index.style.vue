@@ -8,15 +8,15 @@ export const Wrapper = styled.div`
   margin: auto;
   text-align: center;
   .text-custom .v-input__slot::before {
-      border-color: purple !important; 
-      color: #ECB8F2 !important;
-      font-size: 30px !important;
+    border-color: purple !important; 
+    color: #ECB8F2 !important;
+    font-size: 30px !important;
   }
   .text-custom label {
-      font-size: 14px !important;
+    font-size: 14px !important;
   }
   .v-text-field {
-      margin: 0px !important;
+    margin: 0px !important;
   }
   .mdi-asterisk::before {
     font-size:7px;
@@ -39,8 +39,11 @@ export const Wrapper = styled.div`
 `;
 export const Header = styled.div`
   color: white;
-  font-size: 16px;
+  font-size: 17px;
+  margin-bottom: 10px;
   background-color: purple;
+  padding-top: 2px;
+  height: 30px;
 `;
 
 export default {};

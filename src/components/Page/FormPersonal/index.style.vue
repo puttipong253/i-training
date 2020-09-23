@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
       border-color: purple !important; 
       color: #ECB8F2 !important;
       font-size: 30px !important;
-    
   }
   .text-custom label {
       font-size: 14px !important;
@@ -27,10 +26,10 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
   color: white;
   font-size: 17px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: purple;
-  padding-top: 6px;
-  height: 38px;
+  padding-top: 2px;
+  height: 30px;
 `;
 
 export default {};
