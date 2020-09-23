@@ -121,7 +121,6 @@ export default {
       } else {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
-        this.steps = 2
       }
     },
     OnTrain() {
