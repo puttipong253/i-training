@@ -7,7 +7,7 @@ const hotel = {
             Check_In: "19 ตุลาคม 2563",
             Check_Out: "21 ตุลาคม 2563",
             Partner_Province: "",
-            Room_ID: "",
+            Room_ID: 0,
             Note: "",
             Partner_ID: "",
             Partner_Phone: ""
@@ -72,7 +72,6 @@ const hotel = {
             } catch (error) {
                 console.log(error)
             }
-            
         },
         async setPartnerName({ commit }){
             try {
@@ -83,15 +82,17 @@ const hotel = {
                 console.log(error)
             }
         },
-        async partnerUpdateID() {
-            try {
-                if (this.getters.getRoom.User_2_ID != '' && this.getters.getRoom.User_2_ID != undefined) {
-                    let r = await API.put(`/hotel/`+this.getters.getRoom.User_2_ID,{Partner_ID:this.getters.getUserID})
-                    return r
-                }
+        partnerUpdateID() {
+            if (this.getters.getRoom.User_2_ID != '' && this.getters.getRoom.User_2_ID != undefined) {          
+                    API.put(`/hotel/`+this.getters.getRoom.User_2_ID,{Room_ID:this.getters.getRoomID,Partner_ID:this.getters.getUserID})
+                    .then(res => (
+                        console.log('updateID1',res.data),
 
-            } catch (error) {
-                console.log(error)
+                        API.put(`/hotel/`+this.getters.getUserID,{Room_ID:this.getters.getRoomID})
+                        .then(res => (
+                            console.log('updateID2',res.data)
+                        ))
+                    ))         
             }
         },
         async partnerPhone({ commit }){

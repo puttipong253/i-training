@@ -49,7 +49,6 @@ import { Wrapper } from "./index.style";
 import FormPersonal from "./FormPersonal";
 import FormTraining from "./FormTraining";
 import FormHotel from "./FormHotel";
-import { API } from '../../API'
 import router from '../../router';
 
 export default {
@@ -85,7 +84,7 @@ export default {
           this.overlay = false   
           router.push('/')                
         })        
-      }, 2500)
+      }, 3000)
     },
   },
   methods: {
@@ -97,6 +96,7 @@ export default {
       if (this.$refs.form2.validate() == true) { //ทำการเช็ค validate
             this.overlay = true
             await this.$store.dispatch("setUsers")
+            await this.$store.dispatch("setRoom")
             this.time = await setInterval(() => {
               if (!this.$store.getters.getUserID) {
                 console.log('loading')
@@ -104,12 +104,11 @@ export default {
                  clearInterval(this.time)
                   this.$store.dispatch("setTraining")
                   this.$store.dispatch("setHotel")
-                  this.$store.dispatch("setRoom")
-                  this.$store.dispatch("partnerUpdateID")
+                  this.$store.dispatch("partnerUpdateID")                       
                   this.$store.dispatch("setUserStatus")
                   this.$store.dispatch("alertSuccess")
               }
-            }, 800);
+            }, 1000);
       } else {
         this.$refs.form2.validate();
         this.$store.dispatch('alertError')
@@ -118,12 +117,7 @@ export default {
     },
     OnPersonal() {
       if (this.$refs.form.validate() == true) {
-          API.get(`/users`).then(() => (
-            console.log('API user => pass'), //check API
-            this.steps = 2
-        )).catch(() => (
-            console.log('API user => fail')
-        ))
+          this.steps = 2
       } else {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
@@ -133,12 +127,7 @@ export default {
       if (!this.getTraining.TISI && !this.getTraining.I_Factory && !this.getTraining.E_Payment) {
           this.$store.dispatch('alertError')
       } else {
-          API.get(`/training`).then(() => (
-            console.log('API training => pass'), //check API
-            this.steps = 3
-        )).catch(() => (
-            console.log('API training => fail')
-        ))
+          this.steps = 3
       }
     },
   },

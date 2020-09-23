@@ -92,20 +92,7 @@ const users = {
         },
         async setUserStatus(){
           if (this.getters.getUser2ID != '' && this.getters.getUser2ID != undefined) {
-              let data = await API.put(`/users/`+this.getters.getUser2ID,{Status:this.getters.getUsersStatus}  //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
-              ).then(() => {
-                // console.log('SET_USERS_STATUS', res.data)
-                API.put(`/room-update-1`)
-                // .then((res) => (
-                //   console.log('room-update-1',res.data)
-                // )) 
-                //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
-                API.put(`/room-update-2`)
-                // .then((res) => (
-                //   console.log('room-update-2',res.data)
-                // )) 
-                //update Room_ID ของ hotels ให้ตรงกับ Room_ID ของ rooms
-              })  
+              let data = await API.put(`/users/`+this.getters.getUser2ID,{Status:this.getters.getUsersStatus})  //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
               return data                                                                                       
             }       
         },

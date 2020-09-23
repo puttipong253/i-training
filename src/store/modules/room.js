@@ -9,7 +9,7 @@ const rooms = {
         },
         userRoom: [],
         roomItems: [],
-        roomID:""
+        roomID:0
     },
     getters: {
         getRoom(state){
@@ -40,11 +40,11 @@ const rooms = {
         },
     },
     actions: {
-        async setRoom(){
+        async setRoom({ commit }){
             if (this.getters.getUsersStatus == 0) {
                 try {
                     let r = await API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID})
-                    console.log('room', r.data)
+                    commit('SET_ROOM_ID', r.data.Room_ID)
                 } catch (error) {
                     console.log(error)
                 }
