@@ -262,7 +262,6 @@ export default {
 
   },
   methods:{
-    
     compareItem(a, b){
         if(a.th < b.th){
                 return -1;
