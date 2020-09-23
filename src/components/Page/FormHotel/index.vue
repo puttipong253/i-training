@@ -31,7 +31,7 @@
       <v-dialog v-model="dialog" persistent max-width="500">
         <v-card>
           <v-card-title class="headline">คำอธิบายการเลือกคู่</v-card-title>
-          <v-card-text class="text-body-1">1. กรณีเลือก "สุ่มจับคู่/รอเลือกคู่" เป็นการลงชื่อไว้ในระบบจับคู่ เพื่อให้คู่พักของท่านมาเลือกท่านทีหลัง</v-card-text>
+          <v-card-text class="text-body-1">1. กรณีเลือก "รอจับคู่" เป็นการลงชื่อไว้ในระบบจับคู่ เพื่อให้คู่พักของท่านมาเลือกท่านทีหลัง</v-card-text>
           <v-card-text class="text-body-1">2. กรณีเลือก "เลือกคู่พัก" ให้ท่านเลือกจังหวัดของคู่พักของท่าน แล้วรายชื่อของผู้ลงทะเบียนในจังหวัดนั้นๆ จะแสดงออกมาให้ท่านเลือก</v-card-text>
           <v-card-text class="red--text">****หมายเหตุ****</v-card-text>
           <v-card-text class="text-body-1">1.ถ้าหากคู่พักของท่านยังไม่ได้ลงทะเบียน ให้ท่านเลือก "กรณีที่ 1" เพื่อรอจับคู่</v-card-text>
@@ -52,11 +52,11 @@
           <template v-slot:activator="{ on }">  
             <div v-on="on">
               <v-radio-group v-model="getUsers.Status" required row >                
-                <v-radio class="mr-5" color="green" label="สุ่มจับคู่/รอเลือก" :value="true"></v-radio>
+                <v-radio class="mr-5" color="green" label="รอจับคู่" :value="true"></v-radio>
               </v-radio-group>
             </div>            
           </template>          
-          <v-card-text class="text-body-1">1. กรณีเลือก "สุ่มจับคู่/รอเลือกคู่" เป็นการลงชื่อไว้ในระบบจับคู่</v-card-text>
+          <v-card-text class="text-body-1">1. กรณีเลือก "รอจับคู่" เป็นการลงชื่อไว้ในระบบจับคู่</v-card-text>
           <v-card-text class="text-body-1">เพื่อให้คู่พักของท่านมาเลือกท่านทีหลัง</v-card-text>
           <v-card-text class="text-body-1">**หมายเหตุ** ถ้าหากคู่พักของท่านยังไม่ได้ลงทะเบียนให้ท่านเลือก ตัวเลือกนี้ เพื่อรอจับคู่</v-card-text>
         </v-tooltip>
@@ -110,88 +110,6 @@
           label="หมายเหตุ"
           rows="1"
           prepend-icon="mdi-comment"
-        ></v-textarea>
-      </v-col>
-    </v-row>
-    </div>
-
-    <div v-if="getUsers.User_ID != ''">
-      <v-row>
-      <v-col cols="6" sm="6" md="6">
-        <v-select
-          class="text-custom"
-          v-model="getHotel.Check_In"
-          :rules="checkInRules"
-          :items="checkInItems"
-          label="วันที่เช็คอิน"
-          disabled
-        ></v-select>
-      </v-col>
-
-      <v-col cols="6" sm="6" md="6">
-        <v-select
-          class="text-custom"
-          v-model="getHotel.Check_Out"
-          :rules="checkOutRules"
-          :items="checkOutItems"
-          label="วันที่เช็คเอาท์"
-          disabled
-        ></v-select>
-      </v-col>
-
-      <v-col cols="12" sm="12" md="12"><Header>คู่พัก</Header></v-col>
-
-      <v-col cols="6" sm="4" md="6">
-        <v-text-field
-          class="text-custom"
-          v-model="getPartner.F_Name"
-          label="ชื่อของผู้ร่วมพัก"
-          disabled
-        ></v-text-field>
-      </v-col>
-
-      <v-col cols="6" sm="4" md="6">
-        <v-text-field
-          class="text-custom"
-          v-model="getPartner.L_Name"
-          label="นามสกุลของผู้ร่วมพัก"
-          disabled
-        ></v-text-field>
-      </v-col>
-
-      <v-col cols="6" sm="4" md="6">
-        <v-text-field
-          class="text-custom"
-          v-model="getPartner.Phone"
-          :counter="10"
-          maxlength="10"
-          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-          label="เบอร์โทรศัพท์"
-          type="number"
-          disabled
-        ></v-text-field>
-      </v-col>
-
-      <v-col cols="6" sm="6" md="6">
-        <v-select
-          class="text-custom"
-          v-model="getPartner.Province"
-          :items="getMyProvince"
-          @change="setPartnerName"
-          item-text="th"
-          label="จังหวัดของผู้ร่วมพัก"
-          disabled
-        ></v-select>
-      </v-col>
-
-      <v-col cols="12" sm="6" md="12">
-        <v-textarea
-          class="mx-2"
-          v-model="getHotel.Note"
-          label="หมายเหตุ"
-          rows="1"
-          prepend-icon="mdi-comment"
-          disabled
         ></v-textarea>
       </v-col>
     </v-row>
