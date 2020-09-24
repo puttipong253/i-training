@@ -1,5 +1,9 @@
 <h2>ระบบลงทะเบียนอบรมออนไลน์</h2> <br> 
 
+https://online-registration-backend.herokuapp.com/ API
+
+https://online-registration-frontend.vercel.app/ Web
+
 <b>หน้าแรกของระบบ</b> <br>
 
 ![image](https://user-images.githubusercontent.com/31680381/93706963-59773d00-fb55-11ea-9b27-df491737275f.png)
