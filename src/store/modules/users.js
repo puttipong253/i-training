@@ -22,6 +22,7 @@ const users = {
         alertColor: "",
         alertText: "",
         matching: [],
+        check: []
     },
     getters: {
       getUsers(state){
@@ -48,6 +49,9 @@ const users = {
       getMatching(state){
         return state.matching 
       },
+      getCheckPhone(state){
+        return state.check 
+      },
     },
     mutations: {
       SET_USERS(state, data){
@@ -71,12 +75,14 @@ const users = {
       SET_MATCHING(state, data){
         state.matching = data
       },
+      SET_CHECK_PHONE(state, data){
+        state.check = data
+      },
     },
     actions: {
         async setUsers({ commit }){
           try {
             let r = await API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
-            console.log('user',r.data)
             commit('SET_USER_ID', r.data.User_ID)
           } catch (error) {
             console.log(error)
@@ -101,6 +107,14 @@ const users = {
             let r = await API.get(`/matching`)
             commit('SET_MATCHING', r.data)
             console.log('SET_MATCHING',r.data)
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        async checkPhone({ commit }){
+          try {
+            let r = await API.post(`/check-phone`, {Phone:this.getters.getUsers.Phone})
+            commit('SET_CHECK_PHONE', r.data[0].count_phone)
           } catch (error) {
             console.log(error)
           }

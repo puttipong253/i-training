@@ -115,9 +115,15 @@ export default {
         this.disable = false 
       }
     },
-    OnPersonal() {
+    async OnPersonal() {
       if (this.$refs.form.validate() == true) {
-          this.steps = 2
+          await this.$store.dispatch('checkPhone')
+          if (this.$store.getters.getCheckPhone == 0) {
+            this.steps = 2
+          } else {
+            alert("เบอร์โทรศัพท์ถูกใช้งานแล้ว")
+            this.$store.getters.getUsers.Phone = ""
+          }
       } else {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
