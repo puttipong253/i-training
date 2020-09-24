@@ -112,13 +112,10 @@ import { Wrapper } from './index.style'
       },
       close () {
         this.dialog = false
-        this.$nextTick(() => {
-          this.room.Room_number = this.userRoom.Room_Number
-        })
       },
-      async save () {
+      async save() {
         await this.$store.dispatch('updateRoom')
-        await this.$store.dispatch("setUserRoom")        
+        await this.$store.dispatch('setUserRoom')        
         await this.close()
       },
     },

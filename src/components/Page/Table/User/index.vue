@@ -248,11 +248,19 @@ export default {
       this.dialog = true
       console.log('items',this.$store.state.userById)
     },
-    close () {
+    close () {      
+      this.getUsers.Prefix = ""
+      this.getUsers.F_Name = ""
+      this.getUsers.L_Name = ""
+      this.getUsers.Gender = ""
+      this.getUsers.Phone = ""
+      this.getUsers.Rank = ""
+      this.getUsers.Email = ""
+      this.getUsers.Province = ""
+      this.getUsers.Food_Group = ""
+      this.getUsers.Food_Allergy = ""
+      this.$store.state.userById = ""
       this.dialog = false
-      this.$nextTick(() => {
-
-      })
     },
     async save () {     
       await this.$store.dispatch('editUser')
