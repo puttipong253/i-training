@@ -17,6 +17,7 @@ const users = {
           Status: true,
         },
         userID: "",
+        userById: [],
         showUsers: [],
         snackbar: false,
         alertColor: "",
@@ -52,6 +53,9 @@ const users = {
       getCheckPhone(state){
         return state.check 
       },
+      getUserById(state){
+        return state.userById
+      }
     },
     mutations: {
       SET_USERS(state, data){
@@ -115,6 +119,22 @@ const users = {
           try {
             let r = await API.post(`/check-phone`, {Phone:this.getters.getUsers.Phone})
             commit('SET_CHECK_PHONE', r.data)
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        async editUser(){
+          try {
+            let r = await API.put(`/users/`+this.state.userById, this.getters.getUsers)
+            return r.data
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        async deleteUser(){
+          try {
+            let r = await API.delete(`/users`+this.state.userById)
+            return r.data
           } catch (error) {
             console.log(error)
           }

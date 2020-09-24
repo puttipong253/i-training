@@ -3,18 +3,17 @@
         <v-row>
           <v-col cols="12" sm="12" md="12"><Header>ข้อมูลส่วนตัว</Header></v-col>
 
-          <v-col cols="12" sm="4" md="2">
+          <v-col cols="12" sm="3" md="2">
             <v-select
               class="text-custom"
               v-model="getUsers.Prefix"
               :rules="prefixRules"
               :items="prefixItems"
               label="คำนำหน้า"              
-            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
-            
+            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>            
           </v-col>
 
-          <v-col cols="6" sm="4" md="5">
+          <v-col cols="6" sm="5" md="5">
             <v-text-field
               class="text-custom"
               v-model="getUsers.F_Name"
@@ -32,12 +31,23 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="7" sm="4" md="3">
-            <v-radio-group v-model="getUsers.Gender" :rules="genderRules"  row>
-              <v-icon slot="prepend" color="red">mdi-asterisk</v-icon>
-              <v-radio label="ชาย" value="ชาย"></v-radio>
-              <v-radio label="หญิง" value="หญิง"></v-radio>
-            </v-radio-group>
+          <v-col cols="4" sm="3" md="2">
+            <v-select 
+              class="text-custom"
+              v-model="getUsers.Gender" 
+              :items="genderItems" 
+              :rules="genderRules"
+              label="เพศ"
+            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
+          </v-col>
+
+          <v-col cols="8" sm="5" md="6">
+            <v-text-field
+              class="text-custom"
+              v-model="getUsers.Rank"
+              :rules="rankRules"
+              label="ตำแหน่ง"              
+            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
           <v-col cols="5" sm="4" md="4">
@@ -53,16 +63,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="12" sm="4" md="5">
-            <v-text-field
-              class="text-custom"
-              v-model="getUsers.Rank"
-              :rules="rankRules"
-              label="ตำแหน่ง"              
-            ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="6">
+          <v-col cols="7" sm="6" md="6">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Email"
@@ -71,7 +72,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
 
-          <v-col cols="7" sm="6" md="6" >       
+          <v-col cols="12" sm="6" md="6" >       
             <v-select
               class="text-custom"
               v-model="getUsers.Province"
@@ -82,7 +83,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>     
           </v-col>
 
-          <v-col cols="5" sm="6" md="6">
+          <v-col cols="5" sm="5" md="5">
             <v-select
               class="text-custom"
               v-model="getUsers.Food_Group"
@@ -92,7 +93,7 @@
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-select>
           </v-col>
 
-          <v-col cols="12" sm="6" md="6">
+          <v-col cols="7" sm="7" md="7">
             <v-text-field
               class="text-custom"
               v-model="getUsers.Food_Allergy"
@@ -125,6 +126,7 @@ export default {
     foodGroupRules: [(v) => !!v || "กรุณาเลือกหมวดหมู่อาหาร"],
     prefixItems: ["นาย", "นาง", "นางสาว"],
     foodGroupItems: ["ทั่วไป", "มังสวิรัติ", "อิสลาม"],
+    genderItems: ["ชาย", "หญิง"],
   }),
   components: {
     Wrapper,
