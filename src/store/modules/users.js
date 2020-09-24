@@ -114,7 +114,7 @@ const users = {
         async checkPhone({ commit }){
           try {
             let r = await API.post(`/check-phone`, {Phone:this.getters.getUsers.Phone})
-            commit('SET_CHECK_PHONE', r.data[0].count_phone)
+            commit('SET_CHECK_PHONE', r.data)
           } catch (error) {
             console.log(error)
           }
