@@ -211,11 +211,11 @@ export default {
           if (confirm(this.name1 +' และ '+ this.name2)) {
             this.name1 = ''
             this.name2 = ''
-            await this.$store.dispatch("setRoomMatch")
-            await this.$store.dispatch("partnerHotel") 
-            await this.$store.dispatch("alertSuccess")
-            await this.$store.dispatch("matching")
-            await this.$store.dispatch("setUserRoom")               
+            await this.$store.dispatch('setRoomMatch')
+            await this.$store.dispatch('partnerHotel') 
+            await this.$store.dispatch('alertSuccess')
+            await this.$store.dispatch('matching')
+            await this.$store.dispatch('setUserRoom')               
           } 
         }
       },

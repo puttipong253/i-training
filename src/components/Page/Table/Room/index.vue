@@ -31,8 +31,8 @@
         :search="search"
         
       >
-      <template #[`item.full_name1`]="{ item }">{{ item.F_1 }} {{ item.L_1 }}</template>
-      <template #[`item.full_name2`]="{ item }">{{ item.F_2 }} {{ item.L_2 }}</template>
+      <template #[`item.full_name1`]="{ item }">{{ item.PF_1 }} {{ item.F_1 }} {{ item.L_1 }}</template>
+      <template #[`item.full_name2`]="{ item }">{{ item.PF_2 }} {{ item.F_2 }} {{ item.L_2 }}</template>
 
       <template v-slot:top>
         <v-dialog v-model="dialog" max-width="500px">
@@ -83,7 +83,9 @@ import { Wrapper } from './index.style'
           headers: [
             { text: 'ID', value: 'Room_ID' },
             { text: 'ชื่อคนที่ 1', value: 'full_name1' },
+            { text: 'จังหวัด', value: 'PV_1' },
             { text: 'ชื่อคนที่ 2', value: 'full_name2' },
+            { text: 'จังหวัด', value: 'PV_2' },
             { text: 'หมายเลขห้อง', value: 'Room_Number' },
             { text: 'แก้ไขเลขห้อง', value: 'actions', sortable: false }
           ]
