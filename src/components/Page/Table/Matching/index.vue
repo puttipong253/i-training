@@ -131,7 +131,7 @@
     </v-overlay>
     </v-row>
       <v-btn class="purple mt-5 mb-5 mr-1" dark @click="saveMatch">บันทึก</v-btn>
-      <v-btn class="warning mt-5 mb-5" dark @click="clear">Clear</v-btn>
+      <v-btn class="warning mt-5 mb-5" dark @click="clear">รีเซ็ต</v-btn>
   </Wrapper>
 </template>
 
