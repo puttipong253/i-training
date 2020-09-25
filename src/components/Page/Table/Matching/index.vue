@@ -130,7 +130,8 @@
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
     </v-row>
-      <v-btn class="purple mt-5 mb-5" dark @click="saveMatch">บันทึก</v-btn>
+      <v-btn class="purple mt-5 mb-5 mr-1" dark @click="saveMatch">บันทึก</v-btn>
+      <v-btn class="warning mt-5 mb-5" dark @click="clear">Clear</v-btn>
   </Wrapper>
 </template>
 
@@ -213,10 +214,16 @@ export default {
             await this.$store.dispatch("setRoomMatch")
             await this.$store.dispatch("partnerHotel") 
             await this.$store.dispatch("alertSuccess")
-            await this.$store.dispatch('matching')
+            await this.$store.dispatch("matching")
             await this.$store.dispatch("setUserRoom")               
           } 
         }
+      },
+      clear(){
+        this.name1 = ''
+        this.name2 = ''
+        this.userMatch.User_1_ID = ''
+        this.userMatch.User_2_ID = ''
       }
     }
 }
