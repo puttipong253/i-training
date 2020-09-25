@@ -130,7 +130,7 @@
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
     </v-row>
-      <v-btn class="purple mt-5" dark @click="saveMatch">บันทึก</v-btn>
+      <v-btn class="purple mt-5 mb-5" dark @click="saveMatch">บันทึก</v-btn>
   </Wrapper>
 </template>
 
