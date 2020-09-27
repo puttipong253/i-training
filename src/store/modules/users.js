@@ -88,6 +88,7 @@ const users = {
           try {
             let r = await API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
             commit('SET_USER_ID', r.data.User_ID)
+            console.log('user', r.data)
           } catch (error) {
             console.log(error)
           }
@@ -137,6 +138,15 @@ const users = {
             return r.data
           } catch (error) {
             console.log(error)
+          }
+        },
+        async setProvinceRoom({ commit }){
+          try {
+              let r = await API.post(`/provinceUserRoom`,this.getters.getHotel) //post หา $request ของ id จังหวัด แล้วไปเช็ค id ของจังหวัดนั้นๆ                      //ว่าตรงกับ ptovince_id ของ ของ user คนไหนบ้าง และให้แสดงชื่อของuser ที่มี status = 1
+              commit('SET_PARTNER_NAME', r.data) //เก็บค่า data ที่ได้จากการ post มาไว้ในตัวแปร             
+              console.log('SET_PARTNER_NAME', r.data)        
+          } catch (error) {
+              console.log(error)
           }
         },
         closeAlert({ commit }){

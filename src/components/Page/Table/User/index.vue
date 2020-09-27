@@ -191,25 +191,25 @@ export default {
         { text: "อาหารที่แพ้", value: "Food_Allergy" },
         { text: 'actions', value: 'actions', sortable: false }
       ],
-    prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
-    fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
-    lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
-    genderRules: [(v) => !!v || "กรุณาเลือกเพศ"],
-    rankRules: [(v) => !!v || "กรุณากรอกตำแหน่ง"],
-    emailRules: [
+      prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
+      fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
+      lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
+      genderRules: [(v) => !!v || "กรุณาเลือกเพศ"],
+      rankRules: [(v) => !!v || "กรุณากรอกตำแหน่ง"],
+      emailRules: [
       v => !!v || "กรุณากรอกอีเมล",
       v => /.+@.+\..+/.test(v) || "อีเมลไม่ถูกต้อง",
-    ],
-    phoneRules: [
-      v => !!v || "กรุณากรอกเบอร์โทรศัพท์",
-      v => (v && v.length == 10) || "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก",
-    ],
-    provinceRules: [(v) => !!v || "กรุณาเลือกจังหวัด"],
-    foodGroupRules: [(v) => !!v || "กรุณาเลือกประเภทอาหาร"],
-    prefixItems: ["นาย", "นาง", "นางสาว"],
-    foodGroupItems: ["ทั่วไป", "มังสวิรัติ", "อิสลาม"],
-    genderItems: ["ชาย", "หญิง"],
-    }
+      ],
+      phoneRules: [
+        v => !!v || "กรุณากรอกเบอร์โทรศัพท์",
+        v => (v && v.length == 10) || "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก",
+      ],
+      provinceRules: [(v) => !!v || "กรุณาเลือกจังหวัด"],
+      foodGroupRules: [(v) => !!v || "กรุณาเลือกประเภทอาหาร"],
+      prefixItems: ["นาย", "นาง", "นางสาว"],
+      foodGroupItems: ["ทั่วไป", "มังสวิรัติ", "อิสลาม"],
+      genderItems: ["ชาย", "หญิง"],
+    } 
   },
   components:{
     Wrapper

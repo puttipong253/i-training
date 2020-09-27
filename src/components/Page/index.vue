@@ -23,7 +23,7 @@
         <v-stepper-content step="2">
           <v-form ref="form3" v-model="valid" lazy-validation>
             <FormTraining />
-            <v-btn class="mr-5" color="info" @click="steps = 1">ย้อนกลับ</v-btn>
+            <v-btn class="mr-1" color="info" @click="steps = 1">ย้อนกลับ</v-btn>
             <v-btn color="purple" @click="OnTrain" dark>ถัดไป</v-btn>
           </v-form>
         </v-stepper-content>
@@ -31,7 +31,7 @@
         <v-stepper-content step="3">
           <v-form ref="form2" v-model="valid" lazy-validation>
             <FormHotel />
-            <v-btn class="mr-5" color="info" @click="steps = 2">ย้อนกลับ</v-btn>
+            <v-btn class="mr-1" color="info" @click="steps = 2">ย้อนกลับ</v-btn>
             <v-btn class="white--text" v-if="getUsers.User_ID == ''" color="purple" @click="submit" :disabled="disable">บันทึกข้อมูล</v-btn>
             <v-btn v-if="getUsers.User_ID != ''" color="purple" dark href="/">หน้าหลัก</v-btn>
           </v-form>

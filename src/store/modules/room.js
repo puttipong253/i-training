@@ -3,20 +3,36 @@ import { API } from "../../API";
 const rooms = {
     state: {
         room:{
-            User_1_ID: "",
-            User_2_ID: "",
-            Room_Number: ""
+            Room_ID: '',
+            User_1_ID: '',
+            User_2_ID: '',
+            Room_Number: '',
+            Province_1: '',
+            Province_2: ''
+        },
+        tmp:{
+            User_1_ID: '',
+            User_2_ID: '',
         },
         userRoom: [],
         roomItems: [],
-        roomID:0
+        roomID:0 ,
+        roomData: [],
+        updateUserRoom1: [],
+        updateUserRoom2: []
     },
     getters: {
         getRoom(state){
             return state.room
         },
+        getTmp(state){
+            return state.tmp
+        },
         getRoomID(state){
             return state.roomID
+        },
+        getRoomData(state){
+            return state.roomData
         },
         getUser2ID(state){
             return state.room.User_2_ID
@@ -26,6 +42,12 @@ const rooms = {
         },
         getRoomItems(state){
             return state.roomItems
+        },
+        getUpdateUserRoom1(state){
+            return state.updateUserRoom1
+        },
+        getUpdateUserRoom2(state){
+            return state.updateUserRoom2
         }
     },
     mutations: {
@@ -38,6 +60,15 @@ const rooms = {
         SET_ROOM_ID(state, data){
             state.roomID = data
         },
+        SET_ROOM_DATA(state, data){
+            state.roomData = data
+        },
+        SET_UPDATE_USER_ROOM1(state, data){
+            state.updateUserRoom1 = data
+        },
+        SET_UPDATE_USER_ROOM2(state, data){
+            state.updateUserRoom2 = data
+        }
     },
     actions: {
         async setRoom({ commit }){
@@ -55,9 +86,8 @@ const rooms = {
                 try {
                     let r = await API.post(`/room`,{User_1_ID:this.getters.getRoom.User_1_ID, User_2_ID:this.getters.getRoom.User_2_ID})
                     .then(res => (
-                        commit('SET_ROOM_ID', res.data),
+                        commit('SET_ROOM_DATA', res.data),
                         console.log('roomMatch',res.data),
-                        console.log('getRoomID',this.getters.getRoomID),
                         API.put(`/users/`+this.getters.getRoom.User_1_ID,{Status:false}).then(res => (
                             console.log('User_1_ID',res.data),
                             this.getters.getRoom.User_1_ID = ''
@@ -84,12 +114,43 @@ const rooms = {
         },
         async updateRoom(){
             try {
-                let r = await API.put(`/room/`+this.state.roomItems.Room_ID,{Room_Number:this.getters.getRoom.Room_Number})
+                let r = await API.put(`/room/`+this.getters.getRoom.Room_ID,{User_1_ID:this.getters.getRoom.User_1_ID,User_2_ID:this.getters.getRoom.User_2_ID,Room_Number:this.getters.getRoom.Room_Number})
                 console.log('update',r.data)
+                API.put(`/users/`+this.getters.getRoom.User_1_ID,{Status:false})
+                API.put(`/users/`+this.getters.getRoom.User_2_ID,{Status:false}).then(() => (
+                    this.getters.getRoom.Room_ID = '',
+                    this.getters.getRoom.User_1_ID = '',
+                    this.getters.getRoom.User_2_ID = '',
+                    this.getters.getRoom.Room_Number = '',
+                    this.getters.getRoom.Province_1 = '',
+                    this.getters.getRoom.Province_2 = ''
+                ))
             } catch (error) {
                 console.log(error)
             }
-        }
+        },
+        async updateUserRoom1({ commit }){
+            try {
+                let r = await API.post(`/provinceUserRoom1`,this.getters.getRoom)                
+                commit('SET_UPDATE_USER_ROOM1', r.data)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async updateUserRoom2({ commit }){
+            try {
+                let r = await API.post(`/provinceUserRoom2`,this.getters.getRoom)                
+                commit('SET_UPDATE_USER_ROOM2' ,r.data)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        resetData(){
+            API.put(`/hotel/`+this.getters.getTmp.User_1_ID,{Room_ID:'',Partner_ID:''})
+            API.put(`/hotel/`+this.getters.getTmp.User_2_ID,{Room_ID:'',Partner_ID:''})
+            API.put(`/users/`+this.getters.getTmp.User_1_ID,{Status:true})
+            API.put(`/users/`+this.getters.getTmp.User_2_ID,{Status:true})
+        },
     }
 }
 export default rooms;

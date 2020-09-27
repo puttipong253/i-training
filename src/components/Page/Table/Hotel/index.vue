@@ -42,7 +42,7 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "ID", value: "User_ID" },
+        { text: "ID", value: "Hotel_ID" },
         { text: "ชื่อ", value: "F_1" },
         { text: "นามสกุล", value: "L_1" },
         { text: "จังหวัด", value: "Province" },

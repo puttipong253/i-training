@@ -7,7 +7,7 @@ const hotel = {
             Check_In: "19 ตุลาคม 2563",
             Check_Out: "21 ตุลาคม 2563",
             Partner_Province: "",
-            Room_ID: 0,
+            Room_ID: "",
             Note: "",
             Partner_ID: "",
             Partner_Phone: ""
@@ -107,14 +107,20 @@ const hotel = {
             }
         },
         partnerHotel(){
-            API.put(`/hotel/`+this.getters.getRoomID.User_1_ID,{Room_ID:this.getters.getRoomID.Room_ID,Partner_ID:this.getters.getRoomID.User_2_ID})
+            API.put(`/hotel/`+this.getters.getRoomData.User_1_ID,{Room_ID:this.getters.getRoomData.Room_ID,Partner_ID:this.getters.getRoomData.User_2_ID})
             .then((res => (
                 console.log('updatePartnerRoom1',res.data)
             )))
-            API.put(`/hotel/`+this.getters.getRoomID.User_2_ID,{Room_ID:this.getters.getRoomID.Room_ID,Partner_ID:this.getters.getRoomID.User_1_ID})
+            API.put(`/hotel/`+this.getters.getRoomData.User_2_ID,{Room_ID:this.getters.getRoomData.Room_ID,Partner_ID:this.getters.getRoomData.User_1_ID})
             .then((res => (
                 console.log('updatePartnerRoom2',res.data)
             )))            
+        },
+        partnerRoomHotel(){
+            API.put(`/hotel/`+this.getters.getRoom.User_1_ID,{Room_ID:this.getters.getRoom.Room_ID,Partner_ID:this.getters.getRoom.User_2_ID})
+
+            API.put(`/hotel/`+this.getters.getRoom.User_2_ID,{Room_ID:this.getters.getRoom.Room_ID,Partner_ID:this.getters.getRoom.User_1_ID})
+           
         },
     }
 }

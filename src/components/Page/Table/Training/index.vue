@@ -41,7 +41,7 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "ID", value: "User_ID" },
+        { text: "ID", value: "T_ID" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
         { text: "จังหวัด", value: "Province" },
