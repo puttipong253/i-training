@@ -30,7 +30,6 @@
                     required
                     :autofocus="true"
                   ></v-text-field>
-
                 </v-form>
                 </v-col>
               </v-row>
@@ -43,8 +42,9 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-btn class="purple" dark to="page">ลงทะเบียน</v-btn>
-      <v-btn class="orange ml-1" dark @click="tracking">ตรวจสอบการลงทะเบียน</v-btn>
+      <v-btn class="purple" to="page" dark>ลงทะเบียน</v-btn>
+      <v-btn class="orange ml-1" @click="tracking" dark>ตรวจสอบการลงทะเบียน</v-btn> <br>
+      <v-btn class="green mt-2" target="_blank" href="https://www.google.com/maps/place/KU+Home+@+Kasetsart+University+Bangkok/@13.8453406,100.567736,251m/data=!3m1!1e3!4m8!3m7!1s0x30e29cddec0efb41:0x4fac1d0b01aca6c8!5m2!4m1!1i2!8m2!3d13.845122!4d100.5676568" dark>แผนที่เข้าพักโรงแรม</v-btn>
   </Wrapper>
 </template>
 
@@ -90,7 +90,7 @@ export default {
         this.$refs.form.validate();
         this.$store.dispatch('alertError')
       }
-    }
+    },
   },
 }
 </script>
