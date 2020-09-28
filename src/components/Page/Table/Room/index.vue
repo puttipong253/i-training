@@ -189,6 +189,15 @@ import { Wrapper } from './index.style'
         this.dialog = true
       },
       close () {
+        this.getRoom.Room_Number = ''
+        this.getRoom.User_1_ID = ''
+        this.getRoom.User_2_ID = ''
+        this.getTmp.User_1_ID = ''
+        this.getTmp.User_2_ID = ''
+        this.getRoom.Province_1 = ''
+        this.getRoom.Province_2 = ''
+        this.getRoom.Room_ID = ''
+        this.$store.state.roomItems = ''
         this.dialog = false
       },
       async save() {      
