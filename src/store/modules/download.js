@@ -23,6 +23,17 @@ const download = {
              console.log(error)
            ))
       },
+      downloadListUser(){
+        API.get(`/export-listUsers`,{
+            responseType: 'blob'
+        })
+           .then((res) => {
+                FileSaver.saveAs(res.data,"listUsers");
+           })
+           .catch(error => (
+             console.log(error)
+           ))
+      },
     }
 }
 export default download;

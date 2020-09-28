@@ -3,6 +3,7 @@
     <v-card-title>
       รายชื่อผู้ลงทะเบียนทั้งหมด
       <v-btn class="ml-5 info" @click="downloadUser">ดาวน์โหลด</v-btn>
+      <v-btn class="ml-1 info" @click="downloadListUser">ดาวน์โหลดใบเซ็นชื่อ</v-btn>
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -232,6 +233,9 @@ export default {
   methods:{
     downloadUser(){
       this.$store.dispatch("downloadUser");
+    },
+    downloadListUser(){
+      this.$store.dispatch("downloadListUser");
     },
     editItem (item) {
       this.getUsers.Prefix = item.Prefix
