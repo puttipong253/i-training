@@ -117,11 +117,20 @@
           </v-col>
 
           <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="4" md="4">
-            <v-text-field
+            <div v-if="getUserTrack.Room_Number == '000'">
+              <v-text-field
+              value="กำลังดำเนินการ"
+              label="หมายเลขห้องพัก"
+              readonly
+            ></v-text-field>
+            </div>
+            <div v-if="getUserTrack.Room_Number != '000'">
+              <v-text-field
               :value="getUserTrack.Room_Number"
               label="หมายเลขห้องพัก"
               readonly
             ></v-text-field>
+            </div>
           </v-col>
       </v-row>
 
