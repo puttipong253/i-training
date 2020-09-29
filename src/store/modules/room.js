@@ -19,7 +19,8 @@ const rooms = {
         roomID:0 ,
         roomData: [],
         updateUserRoom1: [],
-        updateUserRoom2: []
+        updateUserRoom2: [],
+        countUserRoom: ""
     },
     getters: {
         getRoom(state){
@@ -48,6 +49,9 @@ const rooms = {
         },
         getUpdateUserRoom2(state){
             return state.updateUserRoom2
+        },
+        getCountUserRoom(state){
+            return state.countUserRoom
         }
     },
     mutations: {
@@ -68,6 +72,9 @@ const rooms = {
         },
         SET_UPDATE_USER_ROOM2(state, data){
             state.updateUserRoom2 = data
+        },
+        SET_COUNT_USERROOM(state, data){
+            state.countUserRoom = data
         }
     },
     actions: {
@@ -151,6 +158,14 @@ const rooms = {
             API.put(`/users/`+this.getters.getTmp.User_1_ID,{Status:true})
             API.put(`/users/`+this.getters.getTmp.User_2_ID,{Status:true})
         },
+        async countUserRoom({ commit }){
+            try {
+                let r = await API.get(`/countUserRoom`)
+                commit('SET_COUNT_USERROOM', r.data)
+            } catch (error) {
+                console.log(error)
+            }
+          },
     }
 }
 export default rooms;

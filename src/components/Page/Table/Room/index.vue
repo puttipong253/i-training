@@ -201,12 +201,12 @@ import { Wrapper } from './index.style'
         this.dialog = false
       },
       async save() {      
-        // this.disabled = true,     
-        // await this.$store.dispatch('resetData')             
-        // await this.$store.dispatch('updateRoom')
-        // await this.$store.dispatch('partnerRoomHotel')   
-        // await this.$store.dispatch('setUserRoom')      
-        // await this.$store.dispatch('setUsersHotel');  
+        this.disabled = true,     
+        await this.$store.dispatch('resetData')             
+        await this.$store.dispatch('updateRoom')
+        await this.$store.dispatch('partnerRoomHotel')   
+        await this.$store.dispatch('setUserRoom')      
+        await this.$store.dispatch('setUsersHotel');  
         await this.close()
       },
       updateUserRoom1(){

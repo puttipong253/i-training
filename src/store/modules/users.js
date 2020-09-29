@@ -23,7 +23,10 @@ const users = {
         alertColor: "",
         alertText: "",
         matching: [],
-        check: []
+        check: [],
+        countAllUser: "",
+        countUserMatch: "",
+        countUserNotMatch: "",
     },
     getters: {
       getUsers(state){
@@ -55,6 +58,15 @@ const users = {
       },
       getUserById(state){
         return state.userById
+      },
+      getCountAllUser(state){
+        return state.countAllUser
+      },
+      getCountUserMatch(state){
+        return state.countUserMatch
+      },
+      getCountUserNotMatch(state){
+        return state.countUserNotMatch
       }
     },
     mutations: {
@@ -81,6 +93,15 @@ const users = {
       },
       SET_CHECK_PHONE(state, data){
         state.check = data
+      },
+      SET_COUNT_ALLUSER(state, data){
+        state.countAllUser = data
+      },
+      SET_COUNT_USERMATCH(state, data){
+        state.countUserMatch = data
+      },
+      SET_COUNT_USERNOTMATCH(state, data){
+        state.countUserNotMatch = data
       },
     },
     actions: {
@@ -145,6 +166,30 @@ const users = {
               let r = await API.post(`/provinceUserRoom`,this.getters.getHotel) //post หา $request ของ id จังหวัด แล้วไปเช็ค id ของจังหวัดนั้นๆ                      //ว่าตรงกับ ptovince_id ของ ของ user คนไหนบ้าง และให้แสดงชื่อของuser ที่มี status = 1
               commit('SET_PARTNER_NAME', r.data) //เก็บค่า data ที่ได้จากการ post มาไว้ในตัวแปร             
               console.log('SET_PARTNER_NAME', r.data)        
+          } catch (error) {
+              console.log(error)
+          }
+        },
+        async countAllUser({ commit }){
+          try {
+              let r = await API.get(`/countAllUser`)
+              commit('SET_COUNT_ALLUSER', r.data)
+          } catch (error) {
+              console.log(error)
+          }
+        },
+        async countUserMatch({ commit }){
+          try {
+              let r = await API.get(`/countUserMatch`)
+              commit('SET_COUNT_USERMATCH', r.data)
+          } catch (error) {
+              console.log(error)
+          }
+        },
+        async countUserNotMatch({ commit }){
+          try {
+              let r = await API.get(`/countUserNotMatch`)
+              commit('SET_COUNT_USERNOTMATCH', r.data)
           } catch (error) {
               console.log(error)
           }

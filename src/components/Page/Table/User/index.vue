@@ -32,7 +32,7 @@
         :search="search"
       >
       <template v-slot:top>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" persistent max-width="500px">
           <v-card>
             <v-card-title>
               <span class="headline"><h5>แก้ไขข้อมูล</h5></span>
@@ -144,8 +144,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="save">บันทึก</v-btn>
-              <v-btn color="blue darken-1" text @click="close">ยกเลิก</v-btn>
+              <v-btn color="blue darken-1" text :disabled="disabled" @click="save">บันทึก</v-btn>
+              <v-btn color="blue darken-1" text :disabled="disabled" @click="close">ยกเลิก</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -178,6 +178,7 @@ export default {
     return {
       search: "",
       dialog: false,
+      disabled: false,
       headers: [
         { text: "ID", value: "User_ID" },
         { text: "คำนำหน้า", value: "Prefix" },
@@ -238,6 +239,7 @@ export default {
       this.$store.dispatch("downloadListUser");
     },
     editItem (item) {
+      this.disabled = false
       this.getUsers.Prefix = item.Prefix
       this.getUsers.F_Name = item.F_Name
       this.getUsers.L_Name = item.L_Name
@@ -248,7 +250,7 @@ export default {
       this.getUsers.Province = item.Province
       this.getUsers.Food_Group = item.Food_Group
       this.getUsers.Food_Allergy = item.Food_Allergy
-      this.getUsers.Status = false
+      this.getUsers.Status = item.Status
       this.$store.state.userById = item.User_ID
       this.dialog = true
       console.log('items',item)
@@ -267,7 +269,8 @@ export default {
       this.$store.state.userById = ""
       this.dialog = false
     },
-    async save () {     
+    async save () {   
+      this.disabled = true  
       await this.$store.dispatch('editUser')
       await this.$store.dispatch('setShowUsers');
       await this.close()
