@@ -188,7 +188,7 @@ export default {
         { text: "อีเมล", value: "Email" },
         { text: "เบอร์โทรศัพท์", value: "Phone" },
         { text: "จังหวัด", value: "Province" },
-        { text: "หมวดหมู่อาหาร", value: "Food_Group" },
+        { text: "ประเภทอาหาร", value: "Food_Group" },
         { text: "อาหารที่แพ้", value: "Food_Allergy" },
         { text: 'actions', value: 'actions', sortable: false }
       ],
@@ -248,9 +248,10 @@ export default {
       this.getUsers.Province = item.Province
       this.getUsers.Food_Group = item.Food_Group
       this.getUsers.Food_Allergy = item.Food_Allergy
+      this.getUsers.Status = false
       this.$store.state.userById = item.User_ID
       this.dialog = true
-      console.log('items',this.$store.state.userById)
+      console.log('items',item)
     },
     close () {      
       this.getUsers.Prefix = ""

@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: `https://online-registration-backend.herokuapp.com/api`
+  baseURL: `http://127.0.0.1:8000/api`
 })

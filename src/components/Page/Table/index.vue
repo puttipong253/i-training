@@ -5,6 +5,9 @@
     dark
   >
     <v-tab>
+      DashBoard
+    </v-tab>
+    <v-tab>
       ข้อมูลส่วนตัว
     </v-tab>
     <v-tab>
@@ -21,24 +24,28 @@
     </v-tab>
     
     <v-tab-item>
-         <User/>
+      <DashBoard/>
+    </v-tab-item>  
+    <v-tab-item>
+      <User/>
     </v-tab-item>   
     <v-tab-item> 
-         <Training/> 
+      <Training/> 
     </v-tab-item>   
     <v-tab-item>
-         <Hotel/> 
+      <Hotel/> 
     </v-tab-item>  
     <v-tab-item>
-         <Room/> 
+      <Room/> 
     </v-tab-item>  
     <v-tab-item>
-         <Matching/> 
+      <Matching/> 
     </v-tab-item>  
 
   </v-tabs>
 </template>
 <script>
+import DashBoard from './DashBoard'
 import User from './User'
 import Training from './Training'
 import Hotel from './Hotel'
@@ -46,6 +53,7 @@ import Room from './Room'
 import Matching from './Matching'
 export default {
     components:{
+        DashBoard,
         User,
         Training,
         Hotel,
