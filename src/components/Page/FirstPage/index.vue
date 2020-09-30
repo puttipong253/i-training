@@ -38,7 +38,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="submitTrack">ตกลง</v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false">ยกเลิก</v-btn>
+            <v-btn color="blue darken-1" text @click="close">ยกเลิก</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -80,8 +80,9 @@ export default {
     }
   },
   methods:{
-    tracking(){
+    tracking(){      
       this.dialog = true
+      this.$refs.form.resetValidation()
     },
     async submitTrack(){
       if (this.$refs.form.validate() == true) {
@@ -92,6 +93,10 @@ export default {
         this.$store.dispatch('alertError')
       }
     },
+    close(){
+      this.dialog = false
+      this.$store.getters.getPhone.Phone = ''
+    }
   },
 }
 </script>
