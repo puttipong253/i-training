@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   width:100%;
   margin-top: 30px;
+  margin-bottom: 30px;
   text-align: center;
   height: auto;
 `;
