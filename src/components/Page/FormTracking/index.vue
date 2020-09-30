@@ -141,7 +141,7 @@
           color="red"
           indeterminate
         ></v-progress-circular>
-        <div class="mt-5">กำลังรอจับคู่ ...</div> 
+        <div class="mt-5">อยู่ระหว่างรอเจ้าหน้าที่ดำเนินการจับคู่พัก</div> 
       </div>
       
       <v-btn class="purple mt-5" href="/" dark>กลับหน้าหลัก</v-btn>
