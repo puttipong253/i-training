@@ -267,6 +267,7 @@ export default {
       this.getUsers.Food_Group = ""
       this.getUsers.Food_Allergy = ""
       this.$store.state.userById = ""
+      this.getUsers.Status = ""
       this.dialog = false
     },
     async save () {   
