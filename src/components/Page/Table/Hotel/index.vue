@@ -43,6 +43,7 @@ export default {
       search: "",
       headers: [
         { text: "ID", value: "Hotel_ID" },
+        { text: "คำนำหน้า", value: "Prefix" },
         { text: "ชื่อ", value: "F_1" },
         { text: "นามสกุล", value: "L_1" },
         { text: "จังหวัด", value: "Province" },

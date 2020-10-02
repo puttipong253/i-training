@@ -42,6 +42,7 @@ export default {
       search: "",
       headers: [
         { text: "ID", value: "T_ID" },
+        { text: "คำนำหน้า", value: "Prefix" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
         { text: "จังหวัด", value: "Province" },
