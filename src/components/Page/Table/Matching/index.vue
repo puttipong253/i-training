@@ -215,7 +215,8 @@ export default {
             await this.$store.dispatch('partnerHotel') 
             await this.$store.dispatch('alertSuccess')
             await this.$store.dispatch('matching')
-            await this.$store.dispatch('setUserRoom')               
+            await this.$store.dispatch('setUserRoom')     
+            await this.$store.dispatch('setUsersHotel')     
           } 
         }
       },

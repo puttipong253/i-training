@@ -207,6 +207,7 @@ import { Wrapper } from './index.style'
         await this.$store.dispatch('partnerRoomHotel')   
         await this.$store.dispatch('setUserRoom')      
         await this.$store.dispatch('setUsersHotel');  
+        await this.$store.dispatch('matching')
         await this.close()
       },
       updateUserRoom1(){
