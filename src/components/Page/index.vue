@@ -84,7 +84,7 @@ export default {
           this.overlay = false   
           router.push('/')                
         })        
-      }, 3000)
+      }, 4000)
     },
   },
   methods: {

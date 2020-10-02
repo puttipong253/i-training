@@ -2,7 +2,6 @@
   <Wrapper>
     <v-card-title>
       รายชื่อห้องพัก
-      <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -140,7 +139,8 @@ import { Wrapper } from './index.style'
       Wrapper
     },
     mounted() {
-      this.$store.dispatch('setUserRoom');      
+      this.$store.dispatch('setUserRoom');   
+      this.myProvince.sort(this.compareItem)  
     },
     watch: {
       overlay (val) {
@@ -214,6 +214,15 @@ import { Wrapper } from './index.style'
       },
       updateUserRoom2(){
         this.$store.dispatch('updateUserRoom2')
+      },
+      compareItem(a, b){
+        if(a.th < b.th){
+                return -1;
+        }else if(a.th > b.th){
+                return 1;
+        }else{
+                return 0;
+        }
       },
       text: item => item.F_Name + ' ' +  item.L_Name
     },
