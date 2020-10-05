@@ -6,7 +6,7 @@
       height="40"
     >
       <TextFooter>
-        <strong>@I-industry</strong>
+        <strong>ติดต่อสอบถาม: 065-9598824</strong>
       </TextFooter>
     </v-footer>
 </template>
