@@ -6,7 +6,7 @@
       height="40"
     >
       <TextFooter>
-        <strong>ติดต่อสอบถาม: 065-9598824, โรงแรม: 084-5504818</strong>
+        <strong>ติดต่อสอบถาม: 084-5504818</strong>
       </TextFooter>
     </v-footer>
 </template>
