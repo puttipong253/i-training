@@ -28,7 +28,7 @@ export const Content = styled.div`
 export const Table1 = styled.div`
   width: 48%;
   height: auto;
-  margin: auto;
+  margin: 6px auto;
 `;
 
 export default {};
