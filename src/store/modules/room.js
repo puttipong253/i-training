@@ -153,8 +153,8 @@ const rooms = {
             }
         },
         resetData(){
-            API.put(`/hotel/`+this.getters.getTmp.User_1_ID,{Room_ID:'',Partner_ID:''})
-            API.put(`/hotel/`+this.getters.getTmp.User_2_ID,{Room_ID:'',Partner_ID:''})
+            API.put(`/hotel/`+this.getters.getTmp.User_1_ID,{Room_ID:0,Partner_ID:''})
+            API.put(`/hotel/`+this.getters.getTmp.User_2_ID,{Room_ID:0,Partner_ID:''})
             API.put(`/users/`+this.getters.getTmp.User_1_ID,{Status:true})
             API.put(`/users/`+this.getters.getTmp.User_2_ID,{Status:true})
         },
