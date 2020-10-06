@@ -162,6 +162,7 @@
         <v-icon
           small
           color="red"
+          @click="deleteUser(item)"
         >
           mdi-delete
         </v-icon>
@@ -275,6 +276,17 @@ export default {
       await this.$store.dispatch('editUser')
       await this.$store.dispatch('setShowUsers');
       await this.close()
+    },
+    async deleteUser(item){
+      var x = confirm("ต้องการลบคุณ"+" "+item.F_Name+" "+"ใช่หรือไม่ ?");
+      if (x) {
+        this.$store.state.userById = item.User_ID
+        await this.$store.dispatch('deleteUser')
+        await this.$store.dispatch('setShowUsers');
+      }        
+      else{
+        return false;
+      }        
     },
     compareItem(a, b){
         if(a.th < b.th){

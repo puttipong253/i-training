@@ -155,7 +155,7 @@ const users = {
         },
         async deleteUser(){
           try {
-            let r = await API.delete(`/users`+this.state.userById)
+            let r = await API.delete(`/users/`+this.state.userById)
             return r.data
           } catch (error) {
             console.log(error)
