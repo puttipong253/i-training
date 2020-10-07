@@ -2,6 +2,7 @@
   <Wrapper>
     <v-card-title>
       รายชื่อห้องพัก
+      <v-btn class="ml-5 info" @click="downloadRoom">ดาวน์โหลด</v-btn>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -224,6 +225,9 @@ import { Wrapper } from './index.style'
         }else{
                 return 0;
         }
+      },
+      downloadRoom(){
+        this.$store.dispatch('downloadRoom')
       },
       text: item => item.F_Name + ' ' +  item.L_Name
     },

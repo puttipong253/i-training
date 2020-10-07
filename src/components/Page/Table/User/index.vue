@@ -278,11 +278,18 @@ export default {
       await this.close()
     },
     async deleteUser(item){
-      var x = confirm("ต้องการลบคุณ"+" "+item.F_Name+" "+"ใช่หรือไม่ ?");
-      if (x) {
-        this.$store.state.userById = item.User_ID
+      this.$store.state.userById = item.User_ID
+      this.$store.dispatch('getpartnerID')
+      var con = confirm("ต้องการลบคุณ"+" "+item.F_Name+" "+"ใช่หรือไม่ ?");      
+      if (con) {
         await this.$store.dispatch('deleteUser')
+        await this.$store.dispatch('deleteTraining')
+        await this.$store.dispatch('deleteHotel')
+        await this.$store.dispatch('resetPartnerID');
         await this.$store.dispatch('setShowUsers');
+        await this.$store.dispatch('setUsersTraining');
+        await this.$store.dispatch('setUsersHotel');     
+        await this.$store.dispatch('setUserRoom');     
       }        
       else{
         return false;

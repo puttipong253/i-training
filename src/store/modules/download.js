@@ -34,6 +34,17 @@ const download = {
              console.log(error)
            ))
       },
+      downloadRoom(){
+        API.get(`/export-room`,{
+            responseType: 'blob'
+        })
+           .then((res) => {
+                FileSaver.saveAs(res.data,"room");
+           })
+           .catch(error => (
+             console.log(error)
+           ))
+      },
     }
 }
 export default download;

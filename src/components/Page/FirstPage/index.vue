@@ -81,8 +81,7 @@ export default {
   },
   methods:{
     tracking(){      
-      this.dialog = true
-      this.$refs.form.resetValidation()
+      this.dialog = true      
     },
     async submitTrack(){
       if (this.$refs.form.validate() == true) {
@@ -96,6 +95,7 @@ export default {
     close(){
       this.dialog = false
       this.$store.getters.getPhone.Phone = ''
+      this.$refs.form.resetValidation()
     }
   },
 }

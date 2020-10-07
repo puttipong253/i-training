@@ -40,7 +40,15 @@ const trainings = {
             let r = await API.get(`/users-training`)
             commit('SET_USERS_TRAINING', r.data)
             console.log('SET_USERS_TRAINING', r.data)
-        }
+        },
+        async deleteTraining(){
+            try {
+              let r = await API.delete(`/training/`+this.state.userById)
+              return r.data
+            } catch (error) {
+              console.log(error)
+            }
+        },
     }
 }
 export default trainings;

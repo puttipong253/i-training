@@ -2,7 +2,6 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้เข้าอบรม
-      <!-- <v-btn class="ml-5 info" @click="downloadTraining">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -62,12 +61,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("setUsersTraining");
+    this.$store.dispatch('setUsersTraining');
   },
-  methods:{
-    downloadTraining(){
-      this.$store.dispatch("downloadTraining");
-    },
-  }
 };
 </script>

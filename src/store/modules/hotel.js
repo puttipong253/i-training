@@ -14,7 +14,8 @@ const hotel = {
         },
         partner: [],
         usersHotel: [],
-        partnerNameItems: []
+        partnerNameItems: [],
+        partnerID: []
     },
     getters: {
         getHotel(state){
@@ -28,6 +29,9 @@ const hotel = {
         },
         getPartner(state){
             return state.partner
+        },
+        getPartnerID(state){
+            return state.partnerID
         }
    },
     mutations: {
@@ -49,6 +53,9 @@ const hotel = {
         SET_PARTNER_PHONE(state, data){
             state.partner = data
         },
+        SET_PARTNERID(state, data){
+            state.partnerID = data
+        }
     },
     actions: {
         async setHotel({commit}){
@@ -120,8 +127,31 @@ const hotel = {
             API.put(`/hotel/`+this.getters.getRoom.User_1_ID,{Room_ID:this.getters.getRoom.Room_ID,Partner_ID:this.getters.getRoom.User_2_ID})
 
             API.put(`/hotel/`+this.getters.getRoom.User_2_ID,{Room_ID:this.getters.getRoom.Room_ID,Partner_ID:this.getters.getRoom.User_1_ID})
-           
         },
+        async deleteHotel(){
+            try {
+              let r = await API.delete(`/hotel/`+this.state.userById)
+              return r.data
+            } catch (error) {
+              console.log(error)
+            }
+        },
+        async getpartnerID({ commit }){
+            try {
+                let r = await API.get(`/hotel/`+this.state.userById)
+                commit('SET_PARTNERID', r.data.Partner_ID)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async resetPartnerID(){
+            try {
+                let r = await API.put(`/hotel/`+this.getters.getPartnerID,{Partner_ID:null})
+                return r.data
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 }
 export default hotel;
