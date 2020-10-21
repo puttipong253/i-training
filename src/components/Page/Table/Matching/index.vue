@@ -38,13 +38,13 @@
             :items="getMatching"
             :search="search1"
           >
-            <template v-if="userMatch.User_1_ID == '' " v-slot:[`item.actions`]="{ item }">
+            <template v-if="customerMatch.Customer_1_ID == '' " v-slot:[`item.actions`]="{ item }">
               <v-icon
                 small
                 class="mr-2"
                 color="green"
-                @click="selectUser1(item)"
-                :disabled="item.User_ID == userMatch.User_2_ID"
+                @click="selectCustomer1(item)"
+                :disabled="item.Customer_ID == customerMatch.Customer_2_ID"
               >
                 mdi-plus
               </v-icon>
@@ -53,7 +53,7 @@
               <v-icon
                 small
                 class="mr-2"
-                @click="selectUser1(item)"
+                @click="selectCustomer1(item)"
                 disabled
               >
                 mdi-plus
@@ -101,13 +101,13 @@
             :search="search2"
 
           >
-          <template v-if="userMatch.User_2_ID == ''" v-slot:[`item.actions`]="{ item }">
+          <template v-if="customerMatch.Customer_2_ID == ''" v-slot:[`item.actions`]="{ item }">
             <v-icon
               small
               class="mr-2"
               color="blue"
-              @click="selectUser2(item)"
-              :disabled="item.User_ID == userMatch.User_1_ID"
+              @click="selectCustomer2(item)"
+              :disabled="item.Customer_ID == customerMatch.Customer_1_ID"
             >
               mdi-plus
             </v-icon>
@@ -116,7 +116,7 @@
             <v-icon
               small
               class="mr-2"
-              @click="selectUser2(item)"
+              @click="selectCustomer2(item)"
               disabled
             >
               mdi-plus
@@ -144,7 +144,7 @@ export default {
             name2:"",
             overlay: false,
             headers1:[
-                { text: "ID", value: "User_ID" },
+                { text: "ID", value: "Customer_ID" },
                 { text: "คำนำหน้า", value: "Prefix" },
                 { text: "ชื่อ", value: "F_Name" },
                 { text: "นามสกุล", value: "L_Name" },
@@ -155,7 +155,7 @@ export default {
             ],
             search2: "",
             headers2:[
-                { text: "ID", value: "User_ID" },
+                { text: "ID", value: "Customer_ID" },
                 { text: "คำนำหน้า", value: "Prefix" },
                 { text: "ชื่อ", value: "F_Name" },
                 { text: "นามสกุล", value: "L_Name" },
@@ -184,7 +184,7 @@ export default {
         getMatching(){
             return this.$store.getters.getMatching
         },
-        userMatch(){
+        customerMatch(){
             return this.$store.getters.getRoom
         },
         getMatchingStatus(){
@@ -192,21 +192,21 @@ export default {
         }
     },
     methods:{
-      selectUser1(item){
+      selectCustomer1(item){
         if (confirm('เลือกคุณ'+' '+item.F_Name+' '+'ใช่หรือไม่')) {
-          this.userMatch.User_1_ID = item.User_ID
+          this.customerMatch.Customer_1_ID = item.Customer_ID
           this.name1 = item.F_Name +" "+ item.L_Name
         }
       },
-      selectUser2(item){
+      selectCustomer2(item){
         if (confirm('เลือกคุณ'+' '+item.F_Name+' '+'ใช่หรือไม่')) {
-          this.userMatch.User_2_ID = item.User_ID
+          this.customerMatch.Customer_2_ID = item.Customer_ID
           this.name2 = item.F_Name +" "+ item.L_Name
         }
       },
       async saveMatch(){
         this.overlay = true
-        if (this.userMatch.User_1_ID !='' && this.userMatch.User_2_ID !='') {
+        if (this.customerMatch.Customer_1_ID !='' && this.customerMatch.Customer_2_ID !='') {
           if (confirm(this.name1 +' และ '+ this.name2)) {
             this.name1 = ''
             this.name2 = ''
@@ -214,16 +214,16 @@ export default {
             await this.$store.dispatch('partnerHotel') 
             await this.$store.dispatch('alertSuccess')
             await this.$store.dispatch('matching')
-            await this.$store.dispatch('setUserRoom')     
-            await this.$store.dispatch('setUsersHotel')     
+            await this.$store.dispatch('setCustomerRoom')     
+            await this.$store.dispatch('setCustomerHotel')     
           } 
         }
       },
       clear(){
         this.name1 = ''
         this.name2 = ''
-        this.userMatch.User_1_ID = ''
-        this.userMatch.User_2_ID = ''
+        this.customerMatch.Customer_1_ID = ''
+        this.customerMatch.Customer_2_ID = ''
       }
     }
 }

@@ -30,6 +30,49 @@
         :search="search"
       >
       <template #[`item.Room`]="{ item }">{{item.Room_ID == 0 ? 'ไม่มี' : item.Room_ID}}</template>
+
+      <template v-slot:top>
+        <v-dialog v-model="dialog" persistent max-width="500px">
+          <v-card>
+            <v-card-title>
+              <span class="headline"><h5>แก้ไข</h5></span>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="6" sm="6" md="6">
+                    
+                  </v-col>
+
+                  <v-col cols="6" sm="6" md="6">
+
+                  </v-col>
+
+                  <v-col cols="6" sm="6" md="6">
+
+                  </v-col>              
+                </v-row>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="save">บันทึก</v-btn>
+              <v-btn color="blue darken-1" text @click="close">ยกเลิก</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon
+          small
+          class="mr-2"
+          @click="editItem(item)"
+        >
+          mdi-pencil
+        </v-icon>
+      </template>
       </v-data-table>
       
     </div>
@@ -41,6 +84,7 @@ import { Wrapper } from './index.style'
 export default {
   data() {
     return {
+      dialog: false,
       search: "",
       text: "ว่าง",
       headers: [
@@ -53,6 +97,7 @@ export default {
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
         { text: "รหัสห้องพัก", value: "Room" },
         { text: "หมายเหตุ", value: "Note" },
+        { text: "actions", value: "actions" },
       ],
     };
   },
@@ -67,5 +112,16 @@ export default {
   mounted() {
     this.$store.dispatch('setCustomerHotel');
   },
+  methods:{
+    editItem() {    
+      this.dialog = true        
+    },
+    close() {
+      this.dialog = false 
+    },
+    save() {
+      this.dialog = false 
+    }
+  }
 };
 </script>
