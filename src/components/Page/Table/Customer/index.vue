@@ -162,7 +162,7 @@
         <v-icon
           small
           color="red"
-          @click="deleteUser(item)"
+          @click="deleteCustomer(item)"
         >
           mdi-delete
         </v-icon>
@@ -252,7 +252,7 @@ export default {
       this.getCustomer.Food_Group = item.Food_Group
       this.getCustomer.Food_Allergy = item.Food_Allergy
       this.getCustomer.Status = item.Status
-      this.$store.state.userById = item.User_ID
+      this.$store.state.customerById = item.Customer_ID
       this.dialog = true
       console.log('items',item)
     },
