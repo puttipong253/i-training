@@ -75,9 +75,6 @@ export default {
     getPhone(){
       return this.$store.getters.getPhone
     },
-    getUserTrack(){
-      return this.$store.getters.getUserTrack
-    }
   },
   methods:{
     tracking(){      
@@ -85,7 +82,7 @@ export default {
     },
     async submitTrack(){
       if (this.$refs.form.validate() == true) {
-        await this.$store.dispatch('userTracking')
+        await this.$store.dispatch('customerTracking')
         await this.$store.dispatch('partnerPhone')
       } else {
         this.$refs.form.validate();

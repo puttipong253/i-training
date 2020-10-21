@@ -7,12 +7,12 @@
                     max-width="344"
                     height="200px"
                 >
-                    <v-card-title class="blue white--text">
+                    <v-card-title class="blue white--text justify-center">
                       ผู้ลงทะเบียนทั้งหมด
                     </v-card-title>
 
                     <div class="mt-1 blue--text">
-                      {{getCountAllUser}}
+                      {{getCountAllCustomer}}
                     </div>
                 </v-card>
             </v-col> 
@@ -22,12 +22,12 @@
                     max-width="344"
                     height="200px"
                 >
-                    <v-card-title class="green white--text">
+                    <v-card-title class="green white--text justify-center">
                       ผู้ลงทะเบียนที่จับคู่แล้ว
                     </v-card-title>
 
                     <div class="mt-1 green--text">
-                      {{getCountUserMatch}}
+                      {{getCountCustomerMatch}}
                     </div>
                 </v-card>
             </v-col> 
@@ -37,12 +37,12 @@
                     max-width="344"
                     height="200px"
                 >
-                    <v-card-title class="orange white--text" >
+                    <v-card-title class="orange white--text justify-center" >
                       ผู้ลงทะเบียนที่ยังไม่จับคู่
                     </v-card-title>
 
                     <div class="mt-1 orange--text">
-                      {{getCountUserNotMatch}}
+                      {{getCountCustomerNotMatch}}
                     </div>
                 </v-card>
             </v-col> 
@@ -52,12 +52,12 @@
                     max-width="344"
                     height="200px"
                 >                   
-                    <v-card-title class="red white--text">
+                    <v-card-title class="red white--text justify-center">
                       ห้องพักที่ลงทะเบียนแล้ว
                     </v-card-title>
 
                     <div class="mt-1 red--text">
-                      {{getCountUserRoom}}
+                      {{getCountCustomerRoom}}
                     </div>
                 </v-card>
             </v-col> 
@@ -77,23 +77,23 @@ export default {
         Wrapper
     },
     mounted(){
-        this.$store.dispatch('countAllUser')
-        this.$store.dispatch('countUserMatch')
-        this.$store.dispatch('countUserNotMatch')
-        this.$store.dispatch('countUserRoom')
+        this.$store.dispatch('countAllCustomer')
+        this.$store.dispatch('countCustomerMatch')
+        this.$store.dispatch('countCustomerNotMatch')
+        this.$store.dispatch('countCustomerRoom')
     },
     computed: {
-        getCountAllUser(){
-            return this.$store.getters.getCountAllUser
+        getCountAllCustomer(){
+            return this.$store.getters.getCountAllCustomer
         },
-        getCountUserMatch(){
-            return this.$store.getters.getCountUserMatch
+        getCountCustomerMatch(){
+            return this.$store.getters.getCountCustomerMatch
         },
-        getCountUserNotMatch(){
-            return this.$store.getters.getCountUserNotMatch
+        getCountCustomerNotMatch(){
+            return this.$store.getters.getCountCustomerNotMatch
         },
-        getCountUserRoom(){
-            return this.$store.getters.getCountUserRoom
+        getCountCustomerRoom(){
+            return this.$store.getters.getCountCustomerRoom
         }
     },
 }

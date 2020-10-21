@@ -6,28 +6,28 @@ const tracking = {
         items:{
             Phone: ""
         },        
-        userTrack: []
+        customerTrack: []
     },
     getters: {
-        getUserTrack(state){
-            return state.userTrack
+        getCustomerTrack(state){
+            return state.customerTrack
         },
         getPhone(state){
             return state.items
         }
     },
     mutations:{
-        SET_USER_TRACK(state, data){
-            state.userTrack = data
+        SET_CUSTOMER_TRACK(state, data){
+            state.customerTrack = data
           },
     },
     actions: {
-        async userTracking({ commit }){
+        async customerTracking({ commit }){
             try {
               let r = await API.post(`/tracking`, this.getters.getPhone)
               if (r.data != '') {
-                commit('SET_USER_TRACK', r.data[0])
-                console.log('SET_USER_TRACK', this.getters.getUserTrack)
+                commit('SET_CUSTOMER_TRACK', r.data[0])
+                console.log('SET_CUSTOMER_TRACK', this.getters.getCustomerTrack)
                 router.push('/track')
                 this.getters.getPhone.Phone = ''
               }else{

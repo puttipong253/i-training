@@ -12,23 +12,23 @@ const download = {
      
     },
     actions: {
-      downloadUser(){
-        API.get(`/export-users`,{
+      downloadCustomer(){
+        API.get(`/export-customers`,{
             responseType: 'blob'
         })
            .then((res) => {
-                FileSaver.saveAs(res.data,"users");
+                FileSaver.saveAs(res.data,"Customers");
            })
            .catch(error => (
              console.log(error)
            ))
       },
-      downloadListUser(){
-        API.get(`/export-listUsers`,{
+      downloadListCustomer(){
+        API.get(`/export-ListCustomers`,{
             responseType: 'blob'
         })
            .then((res) => {
-                FileSaver.saveAs(res.data,"listUsers");
+                FileSaver.saveAs(res.data,"listCustomers");
            })
            .catch(error => (
              console.log(error)

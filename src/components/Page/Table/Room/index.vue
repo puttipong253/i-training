@@ -13,7 +13,7 @@
       ></v-text-field>
     </v-card-title>
 
-    <div v-if="userRoom == ''">
+    <div v-if="customerRoom == ''">
       <v-data-table
         item-key="name"
         class="elevation-1"
@@ -27,7 +27,7 @@
     <div v-else>
       <v-data-table
         :headers="headers"
-        :items="userRoom"
+        :items="customerRoom"
         :search="search"        
       >
       <template #[`item.full_name1`]="{ item }">{{ item.PF_1 }} {{ item.F_1 }} {{ item.L_1 }}</template>
@@ -48,7 +48,7 @@
                       class="text-custom"
                       v-model="getRoom.Province_1"
                       :items="myProvince" 
-                      @change="updateUserRoom1"
+                      @change="updateCustomerRoom1"
                       item-text="th"
                       label="จังหวัด"
                     ></v-select>
@@ -57,10 +57,10 @@
                   <v-col cols="6" sm="6" md="6">
                     <v-select
                       class="text-custom"
-                      v-model="getRoom.User_1_ID"
-                      :items="getUpdateUserRoom1" 
+                      v-model="getRoom.Customer_1_ID"
+                      :items="getUpdateCustomerRoom1" 
                       :item-text="text"
-                      item-value="User_ID"
+                      item-value="Customer_ID"
                       label="ชื่อคนที่ 1"
                     ></v-select>
                   </v-col>
@@ -70,7 +70,7 @@
                       class="text-custom"
                       v-model="getRoom.Province_2"
                       :items="myProvince" 
-                      @change="updateUserRoom2"
+                      @change="updateCustomerRoom2"
                       item-text="th"
                       label="จังหวัด"
                     ></v-select>
@@ -79,10 +79,10 @@
                   <v-col cols="6" sm="6" md="6">
                     <v-select
                       class="text-custom"
-                      v-model="getRoom.User_2_ID"
-                      :items="getUpdateUserRoom2" 
+                      v-model="getRoom.Customer_2_ID"
+                      :items="getUpdateCustomerRoom2" 
                       :item-text="text"
-                      item-value="User_ID"
+                      item-value="Customer_ID"
                       label="ชื่อคนที่ 2"
                     ></v-select>
                   </v-col>
@@ -140,7 +140,7 @@ import { Wrapper } from './index.style'
       Wrapper
     },
     mounted() {
-      this.$store.dispatch('setUserRoom');   
+      this.$store.dispatch('setCustomerRoom');   
       this.myProvince.sort(this.compareItem)  
     },
     watch: {
@@ -151,8 +151,8 @@ import { Wrapper } from './index.style'
       },
     },
     computed: {
-      userRoom() {
-        return this.$store.getters.getUserRoom;
+      customerRoom() {
+        return this.$store.getters.getCustomerRoom;
       },
       getRoom() {
         return this.$store.getters.getRoom;
@@ -160,29 +160,29 @@ import { Wrapper } from './index.style'
       getTmp() {
         return this.$store.getters.getTmp;
       },
-      users() {
-        return this.$store.getters.getShowUsers;
+      customer() {
+        return this.$store.getters.getShowCustomer;
       },
       myProvince() {
         return this.$store.getters.myProvince;
       },
-      getUpdateUserRoom1(){
-        return this.$store.getters.getUpdateUserRoom1;
+      getUpdateCustomerRoom1(){
+        return this.$store.getters.getUpdateCustomerRoom1;
       },
-      getUpdateUserRoom2(){
-        return this.$store.getters.getUpdateUserRoom2;
+      getUpdateCustomerRoom2(){
+        return this.$store.getters.getUpdateCustomerRoom2;
       }
     },
     methods: {
       editItem (item) {    
         this.disabled = false,          
-        this.$store.dispatch('updateUserRoom1')
-        this.$store.dispatch('updateUserRoom2')
+        this.$store.dispatch('updateCustomerRoom1')
+        this.$store.dispatch('updateCustomerRoom2')
         this.getRoom.Room_Number = item.Room_Number
-        this.getRoom.User_1_ID = item.UID1
-        this.getRoom.User_2_ID = item.UID2
-        this.getTmp.User_1_ID = item.UID1
-        this.getTmp.User_2_ID = item.UID2
+        this.getRoom.Customer_1_ID = item.UID1
+        this.getRoom.Customer_2_ID = item.UID2
+        this.getTmp.Customer_1_ID = item.UID1
+        this.getTmp.Customer_2_ID = item.UID2
         this.getRoom.Province_1 = item.PV_1
         this.getRoom.Province_2 = item.PV_2
         this.getRoom.Room_ID = item.Room_ID
@@ -191,10 +191,10 @@ import { Wrapper } from './index.style'
       },
       close () {
         this.getRoom.Room_Number = ''
-        this.getRoom.User_1_ID = ''
-        this.getRoom.User_2_ID = ''
-        this.getTmp.User_1_ID = ''
-        this.getTmp.User_2_ID = ''
+        this.getRoom.Customer_1_ID = ''
+        this.getRoom.Customer_2_ID = ''
+        this.getTmp.Customer_1_ID = ''
+        this.getTmp.Customer_2_ID = ''
         this.getRoom.Province_1 = ''
         this.getRoom.Province_2 = ''
         this.getRoom.Room_ID = ''
@@ -206,16 +206,16 @@ import { Wrapper } from './index.style'
         await this.$store.dispatch('resetData')             
         await this.$store.dispatch('updateRoom')
         await this.$store.dispatch('partnerRoomHotel')   
-        await this.$store.dispatch('setUserRoom')      
-        await this.$store.dispatch('setUsersHotel');  
+        await this.$store.dispatch('setCustomerRoom')      
+        await this.$store.dispatch('setCustomersHotel');  
         await this.$store.dispatch('matching')
         await this.close()
       },
-      updateUserRoom1(){
-        this.$store.dispatch('updateUserRoom1')
+      updateCustomerRoom1(){
+        this.$store.dispatch('updateCustomerRoom1')
       },
-      updateUserRoom2(){
-        this.$store.dispatch('updateUserRoom2')
+      updateCustomerRoom2(){
+        this.$store.dispatch('updateCustomerRoom2')
       },
       compareItem(a, b){
         if(a.th < b.th){

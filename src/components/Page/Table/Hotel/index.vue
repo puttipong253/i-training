@@ -2,7 +2,6 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้เช็คอิน
-      <!-- <v-btn class="ml-5 info" @click="downloadHotel">ดาวน์โหลด</v-btn> -->
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -14,7 +13,7 @@
       ></v-text-field>
     </v-card-title>
 
-    <div v-if="usersHotel == ''">
+    <div v-if="customerHotel == ''">
       <v-data-table
         item-key="name"
         class="elevation-1"
@@ -27,10 +26,12 @@
     <div v-else>
       <v-data-table
         :headers="headers"
-        :items="usersHotel"
+        :items="customerHotel"
         :search="search"
-        
-      ></v-data-table>
+      >
+      <template #[`item.Room`]="{ item }">{{item.Room_ID == 0 ? 'ไม่มี' : item.Room_ID}}</template>
+      </v-data-table>
+      
     </div>
   </Wrapper>
 </template>
@@ -41,6 +42,7 @@ export default {
   data() {
     return {
       search: "",
+      text: "ว่าง",
       headers: [
         { text: "ID", value: "Hotel_ID" },
         { text: "คำนำหน้า", value: "Prefix" },
@@ -49,7 +51,7 @@ export default {
         { text: "จังหวัด", value: "Province" },
         { text: "วันที่เช็คอิน", value: "Check_In" },
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
-        { text: "Room_ID", value: "Room_ID" },
+        { text: "รหัสห้องพัก", value: "Room" },
         { text: "หมายเหตุ", value: "Note" },
       ],
     };
@@ -58,17 +60,12 @@ export default {
       Wrapper
   },
   computed: {
-    usersHotel() {
-      return this.$store.getters.getUsersHotel;
+    customerHotel() {
+      return this.$store.getters.getCustomerHotel;
     },
   },
   mounted() {
-    this.$store.dispatch("setUsersHotel");
+    this.$store.dispatch('setCustomerHotel');
   },
-  methods:{
-    downloadHotel(){
-      this.$store.dispatch("downloadHotel");
-    }
-  }
 };
 </script>

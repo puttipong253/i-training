@@ -1,6 +1,6 @@
 <template>
   <Wrapper>
-    <div v-if="getUsers.User_ID == ''">
+    <div>
       <v-row>
       <v-col cols="12" sm="12" md="12"><Header>การเข้าพักโรงแรม</Header></v-col>
 
@@ -51,7 +51,7 @@
         <v-tooltip v-model="show1" color="success" top>
           <template v-slot:activator="{ on }">  
             <div v-on="on">
-              <v-radio-group v-model="getUsers.Status" required row >                
+              <v-radio-group v-model="getCustomer.Status" required row >                
                 <v-radio class="mr-5" color="green" label="รอจับคู่" :value="true"></v-radio>
               </v-radio-group>
             </div>            
@@ -65,7 +65,7 @@
         <v-tooltip v-model="show2" color="success" top>
           <template v-slot:activator="{ on }">  
             <div v-on="on">
-                <v-radio-group v-model="getUsers.Status" required row >
+                <v-radio-group v-model="getCustomer.Status" required row >
                   <v-radio color="green" label="เลือกคู่พัก" :value="false"></v-radio>                    
                 </v-radio-group>
             </div>            
@@ -80,7 +80,7 @@
           class="text-custom"
           v-model="getHotel.Partner_Province"
           :items="getMyProvince"
-          :disabled="getUsers.Status"
+          :disabled="getCustomer.Status"
           @change="setPartnerName"
           label="จังหวัดของผู้ร่วมพัก"
           item-text="th"
@@ -91,11 +91,11 @@
       <v-col cols="6" sm="6" md="3">
         <v-select
           class="text-custom"
-          v-model="getRoom.User_2_ID"
+          v-model="getRoom.Customer_2_ID"
           :items="getPartnerName"
-          :disabled="getUsers.Status"
+          :disabled="getCustomer.Status"
           :item-text="text"
-          item-value="User_ID"
+          item-value="Customer_ID"
           label="ชื่อของผู้ร่วมพัก"
           clearable
         ></v-select>
@@ -146,8 +146,8 @@ export default {
     getPartnerName(){
       return this.$store.getters.getPartnerName
     },
-    getUsers () {
-      return this.$store.getters.getUsers
+    getCustomer() {
+      return this.$store.getters.getCustomer
     },
     getRoom() {
       return this.$store.getters.getRoom;
@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     setPartnerName(){
-      this.$store.dispatch('setPartnerName') //เมื่อจังหวัดมีการเปลี่ยนแปลงจะทำการ get user ที่มี id จังหวัด ที่ตรงกับจังหวัดที่เลือก
+      this.$store.dispatch('setPartnerName') //เมื่อจังหวัดมีการเปลี่ยนแปลงจะทำการ get Customer ที่มี id จังหวัด ที่ตรงกับจังหวัดที่เลือก
     },
     popup(){
       this.dialog = true

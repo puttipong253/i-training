@@ -11,9 +11,6 @@
       ข้อมูลส่วนตัว
     </v-tab>
     <v-tab>
-      หัวข้อการอบรม
-    </v-tab>
-    <v-tab>
       เช็คอิน
     </v-tab>
     <v-tab>
@@ -27,11 +24,8 @@
       <DashBoard/>
     </v-tab-item>  
     <v-tab-item>
-      <User/>
-    </v-tab-item>   
-    <v-tab-item> 
-      <Training/> 
-    </v-tab-item>   
+      <Customer/>
+    </v-tab-item>    
     <v-tab-item>
       <Hotel/> 
     </v-tab-item>  
@@ -46,16 +40,14 @@
 </template>
 <script>
 import DashBoard from './DashBoard'
-import User from './User'
-import Training from './Training'
+import Customer from './Customer'
 import Hotel from './Hotel'
 import Room from './Room'
 import Matching from './Matching'
 export default {
     components:{
         DashBoard,
-        User,
-        Training,
+        Customer,
         Hotel,
         Room,
         Matching

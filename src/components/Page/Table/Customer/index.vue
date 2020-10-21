@@ -2,8 +2,8 @@
   <Wrapper>
     <v-card-title>
       รายชื่อผู้ลงทะเบียนทั้งหมด
-      <v-btn class="ml-5 info" @click="downloadUser">ดาวน์โหลด</v-btn>
-      <v-btn class="ml-1 info" @click="downloadListUser">ดาวน์โหลดใบเซ็นชื่อ</v-btn>
+      <v-btn class="ml-5 info" @click="downloadCustomer">ดาวน์โหลด</v-btn>
+      <v-btn class="ml-1 info" @click="downloadListCustomer">ดาวน์โหลดใบเซ็นชื่อ</v-btn>
       <v-spacer></v-spacer>
       
       <v-text-field
@@ -15,7 +15,7 @@
       ></v-text-field>
     </v-card-title>
 
-    <div v-if="users == ''">
+    <div v-if="customer == ''">
       <v-data-table
         item-key="name"
         class="elevation-1"
@@ -28,7 +28,7 @@
     <div v-else>
       <v-data-table
         :headers="headers"
-        :items="users"
+        :items="customer"
         :search="search"
       >
       <template v-slot:top>
@@ -44,7 +44,7 @@
                   <v-col cols="12" sm="3" md="3">
                     <v-select
                       class="text-custom"
-                      v-model="getUsers.Prefix"
+                      v-model="getCustomer.Prefix"
                       :rules="prefixRules"
                       :items="prefixItems"
                       label="คำนำหน้า"              
@@ -54,7 +54,7 @@
                   <v-col cols="6" sm="5" md="5">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.F_Name"
+                      v-model="getCustomer.F_Name"
                       :rules="fnameRules"
                       label="ชื่อจริง"              
                     ></v-text-field>
@@ -63,7 +63,7 @@
                   <v-col cols="6" sm="4" md="4">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.L_Name"
+                      v-model="getCustomer.L_Name"
                       :rules="lnameRules"
                       label="นามสกุล"              
                     ></v-text-field>
@@ -72,7 +72,7 @@
                   <v-col cols="5" sm="3" md="3">
                     <v-select 
                       class="text-custom"
-                      v-model="getUsers.Gender" 
+                      v-model="getCustomer.Gender" 
                       :items="genderItems" 
                       :rules="genderRules"
                       label="เพศ"
@@ -82,7 +82,7 @@
                   <v-col cols="7" sm="5" md="5">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.Rank"
+                      v-model="getCustomer.Rank"
                       :rules="rankRules"
                       label="ตำแหน่ง"              
                     ></v-text-field>
@@ -91,7 +91,7 @@
                   <v-col cols="5" sm="4" md="4">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.Phone"
+                      v-model="getCustomer.Phone"
                       :rules="phoneRules"
                       :counter="10"
                       maxlength="10"
@@ -104,7 +104,7 @@
                   <v-col cols="7" sm="6" md="6">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.Email"
+                      v-model="getCustomer.Email"
                       :rules="emailRules"
                       label="อีเมล"              
                     ></v-text-field>
@@ -113,7 +113,7 @@
                   <v-col cols="12" sm="6" md="6" >       
                     <v-select
                       class="text-custom"
-                      v-model="getUsers.Province"
+                      v-model="getCustomer.Province"
                       :rules="provinceRules"
                       :items="getMyProvince"
                       item-text="th"
@@ -124,7 +124,7 @@
                   <v-col cols="5" sm="5" md="5">
                     <v-select
                       class="text-custom"
-                      v-model="getUsers.Food_Group"
+                      v-model="getCustomer.Food_Group"
                       :rules="foodGroupRules"
                       :items="foodGroupItems"
                       label="ประเภทอาหาร"              
@@ -134,7 +134,7 @@
                   <v-col cols="7" sm="7" md="7">
                     <v-text-field
                       class="text-custom"
-                      v-model="getUsers.Food_Allergy"
+                      v-model="getCustomer.Food_Allergy"
                       label="อาหารที่แพ้"              
                     ><v-icon slot="prepend" color="red"></v-icon></v-text-field>
                   </v-col>
@@ -181,7 +181,7 @@ export default {
       dialog: false,
       disabled: false,
       headers: [
-        { text: "ID", value: "User_ID" },
+        { text: "ID", value: "Customer_ID" },
         { text: "คำนำหน้า", value: "Prefix" },
         { text: "ชื่อ", value: "F_Name" },
         { text: "นามสกุล", value: "L_Name" },
@@ -218,78 +218,76 @@ export default {
     Wrapper
   },
   computed: {
-    users() {
-      return this.$store.getters.getShowUsers;
+    customer() {
+      return this.$store.getters.getShowCustomer;
     },
-    getUsers () {
-      return this.$store.getters.getUsers
+    getCustomer () {
+      return this.$store.getters.getCustomer
     },
     getMyProvince(){
       return this.$store.getters.myProvince
     }
   },
   mounted() {
-    this.$store.dispatch("setShowUsers");
+    this.$store.dispatch('setShowCustomer');
     this.getMyProvince.sort(this.compareItem)
   },
   methods:{
-    downloadUser(){
-      this.$store.dispatch("downloadUser");
+    downloadCustomer(){
+      this.$store.dispatch('downloadCustomer');
     },
-    downloadListUser(){
-      this.$store.dispatch("downloadListUser");
+    downloadListCustomer(){
+      this.$store.dispatch('downloadListCustomer');
     },
     editItem (item) {
       this.disabled = false
-      this.getUsers.Prefix = item.Prefix
-      this.getUsers.F_Name = item.F_Name
-      this.getUsers.L_Name = item.L_Name
-      this.getUsers.Gender = item.Gender
-      this.getUsers.Phone = item.Phone
-      this.getUsers.Rank = item.Rank
-      this.getUsers.Email = item.Email
-      this.getUsers.Province = item.Province
-      this.getUsers.Food_Group = item.Food_Group
-      this.getUsers.Food_Allergy = item.Food_Allergy
-      this.getUsers.Status = item.Status
+      this.getCustomer.Prefix = item.Prefix
+      this.getCustomer.F_Name = item.F_Name
+      this.getCustomer.L_Name = item.L_Name
+      this.getCustomer.Gender = item.Gender
+      this.getCustomer.Phone = item.Phone
+      this.getCustomer.Rank = item.Rank
+      this.getCustomer.Email = item.Email
+      this.getCustomer.Province = item.Province
+      this.getCustomer.Food_Group = item.Food_Group
+      this.getCustomer.Food_Allergy = item.Food_Allergy
+      this.getCustomer.Status = item.Status
       this.$store.state.userById = item.User_ID
       this.dialog = true
       console.log('items',item)
     },
     close () {      
-      this.getUsers.Prefix = ""
-      this.getUsers.F_Name = ""
-      this.getUsers.L_Name = ""
-      this.getUsers.Gender = ""
-      this.getUsers.Phone = ""
-      this.getUsers.Rank = ""
-      this.getUsers.Email = ""
-      this.getUsers.Province = ""
-      this.getUsers.Food_Group = ""
-      this.getUsers.Food_Allergy = ""
-      this.$store.state.userById = ""
-      this.getUsers.Status = ""
+      this.getCustomer.Prefix = ""
+      this.getCustomer.F_Name = ""
+      this.getCustomer.L_Name = ""
+      this.getCustomer.Gender = ""
+      this.getCustomer.Phone = ""
+      this.getCustomer.Rank = ""
+      this.getCustomer.Email = ""
+      this.getCustomer.Province = ""
+      this.getCustomer.Food_Group = ""
+      this.getCustomer.Food_Allergy = ""
+      this.$store.state.customerById = ""
+      this.getCustomer.Status = ""
       this.dialog = false
     },
     async save () {   
       this.disabled = true  
-      await this.$store.dispatch('editUser')
-      await this.$store.dispatch('setShowUsers');
+      await this.$store.dispatch('editCustomer')
+      await this.$store.dispatch('setShowCustomer');
       await this.close()
     },
-    async deleteUser(item){
-      this.$store.state.userById = item.User_ID
+    async deleteCustomer(item){
+      this.$store.state.customerById = item.Customer_ID
       this.$store.dispatch('getpartnerID')
       var con = confirm("ต้องการลบคุณ"+" "+item.F_Name+" "+"ใช่หรือไม่ ?");      
       if (con) {
-        await this.$store.dispatch('deleteUser')
-        await this.$store.dispatch('deleteTraining')
+        await this.$store.dispatch('deleteCustomer')
         await this.$store.dispatch('deleteHotel')
         await this.$store.dispatch('resetPartnerID');
-        await this.$store.dispatch('setShowUsers');
-        await this.$store.dispatch('setUsersTraining');
-        await this.$store.dispatch('setUsersHotel');     
-        await this.$store.dispatch('setUserRoom');     
+        await this.$store.dispatch('setShowCustomer');
+        await this.$store.dispatch('setCustomerHotel');     
+        await this.$store.dispatch('setCustomerRoom');     
       }        
       else{
         return false;

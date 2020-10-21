@@ -4,7 +4,7 @@
         <v-col cols="12" sm="12" md="12"><Header>ข้อมูลการลงทะเบียน</Header></v-col>
         <v-col cols="3" sm="2" md="2">
           <v-text-field
-            :value="getUserTrack.Prefix"
+            :value="getCustomerTrack.Prefix"
             label="คำนำหน้า"
             readonly
           ></v-text-field>
@@ -12,7 +12,7 @@
 
         <v-col cols="4" sm="3" md="3">
           <v-text-field
-            :value="getUserTrack.F_Name"
+            :value="getCustomerTrack.F_Name"
             label="ชื่อ"
             readonly
           ></v-text-field>
@@ -20,7 +20,7 @@
         
         <v-col cols="5" sm="3" md="3">
           <v-text-field
-            :value="getUserTrack.L_Name"
+            :value="getCustomerTrack.L_Name"
             label="นามสกุล"
             readonly
           ></v-text-field>
@@ -28,7 +28,7 @@
 
         <v-col cols="6" sm="4" md="4">
           <v-text-field
-            :value="getUserTrack.Rank"
+            :value="getCustomerTrack.Rank"
             label="ตำแหน่ง"
             readonly
           ></v-text-field>
@@ -36,7 +36,7 @@
 
         <v-col cols="6" sm="6" md="4">
           <v-text-field
-            :value="getUserTrack.Phone"
+            :value="getCustomerTrack.Phone"
             label="เบอร์โทรศัพท์"
             readonly
           ></v-text-field>
@@ -44,7 +44,7 @@
 
         <v-col cols="6" sm="6" md="4">
           <v-text-field
-            :value="getUserTrack.Email"
+            :value="getCustomerTrack.Email"
             label="อีเมล"
             readonly
           ></v-text-field>
@@ -52,7 +52,7 @@
 
         <v-col cols="6" sm="4" md="4">
           <v-text-field
-            :value="getUserTrack.Province"
+            :value="getCustomerTrack.Province"
             label="จังหวัด"
             readonly
           ></v-text-field>
@@ -60,7 +60,7 @@
 
         <v-col cols="6" sm="4" md="6">
           <v-text-field
-            :value="getUserTrack.Food_Group"
+            :value="getCustomerTrack.Food_Group"
             label="ประเภทอาหาร"
             readonly
           ></v-text-field>
@@ -68,7 +68,7 @@
 
         <v-col cols="6" sm="4" md="6">
           <v-text-field
-            :value="getUserTrack.Food_Allergy"
+            :value="getCustomerTrack.Food_Allergy"
             label="อาหารที่แพ้"
             readonly
           ></v-text-field>
@@ -76,7 +76,7 @@
 
         <v-col cols="12" sm="12" md="12"><Header>คู่พักและห้องพัก</Header></v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="3" sm="2" md="2">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="3" sm="2" md="2">
             <v-text-field
               :value="getPartner.Prefix"
               label="คำนำหน้า"
@@ -84,7 +84,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="5" md="5">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="4" sm="5" md="5">
             <v-text-field
               :value="getPartner.F_Name"
               label="ชื่อ"
@@ -92,7 +92,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="5" sm="5" md="5">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="5" sm="5" md="5">
             <v-text-field
               :value="getPartner.L_Name"
               label="นามสกุล"
@@ -100,7 +100,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="4" md="4">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="4" sm="4" md="4">
             <v-text-field
               :value="getPartner.Phone"
               label="เบอร์โทรศัพท์"
@@ -108,7 +108,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="4" md="4">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="4" sm="4" md="4">
             <v-text-field
               :value="getPartner.Province"
               label="จังหวัด"
@@ -116,17 +116,17 @@
             ></v-text-field>
           </v-col>
 
-          <v-col v-if="getUserTrack.Partner_ID != null" cols="4" sm="4" md="4">
-            <div v-if="getUserTrack.Room_Number == '000'">
+          <v-col v-if="getCustomerTrack.Partner_ID != null" cols="4" sm="4" md="4">
+            <div v-if="getCustomerTrack.Room_Number == '000'">
               <v-text-field
               value="กำลังดำเนินการ"
               label="หมายเลขห้องพัก"
               readonly
             ></v-text-field>
             </div>
-            <div v-if="getUserTrack.Room_Number != '000'">
+            <div v-if="getCustomerTrack.Room_Number != '000'">
               <v-text-field
-              :value="getUserTrack.Room_Number"
+              :value="getCustomerTrack.Room_Number"
               label="หมายเลขห้องพัก"
               readonly
             ></v-text-field>
@@ -134,7 +134,7 @@
           </v-col>
       </v-row>
 
-      <div v-if="getUserTrack.Partner_ID == null" class="mt-5 mb-5" >
+      <div v-if="getCustomerTrack.Partner_ID == null" class="mt-5 mb-5" >
         <v-progress-circular
           :size="50"
           :width="5"
@@ -161,8 +161,8 @@ export default {
     Wrapper,
   },
   computed:{
-    getUserTrack(){
-      return this.$store.getters.getUserTrack
+    getCustomerTrack(){
+      return this.$store.getters.getCustomerTrack
     },
     getPartner(){
       return this.$store.getters.getPartner

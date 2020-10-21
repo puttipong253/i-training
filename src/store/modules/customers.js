@@ -1,9 +1,9 @@
 import { API } from "../../API";
 
-const users = {
+const customer = {
     state: {
-        users: {
-          User_ID: "",
+      customer: {
+          Customer_ID: "",
           Prefix: "",
           F_Name: "",
           L_Name: "",
@@ -16,27 +16,27 @@ const users = {
           Food_Allergy: "",
           Status: true,
         },
-        userID: "",
-        userById: [],
-        showUsers: [],
+        customerID: "",
+        customerById: [],
+        showCustomer: [],
         snackbar: false,
         alertColor: "",
         alertText: "",
         matching: [],
         check: [],
-        countAllUser: "",
-        countUserMatch: "",
-        countUserNotMatch: "",
+        countAllCustomer: "",
+        countCustomerMatch: "",
+        countCustomerNotMatch: "",
     },
     getters: {
-      getUsers(state){
-        return state.users 
+      getCustomer(state){
+        return state.customer 
       },
-      getUserID(state){
-        return state.userID
+      getCustomerID(state){
+        return state.customerID
       },
-      getUsersStatus(state){
-        return state.users.Status
+      getCustomerStatus(state){
+        return state.customer.Status
       },
       getAlert(state){
         return state.snackbar
@@ -47,8 +47,8 @@ const users = {
       getAlertText(state){
         return state.alertText
       },
-      getShowUsers(state){
-        return state.showUsers 
+      getShowCustomer(state){
+        return state.showCustomer 
       },
       getMatching(state){
         return state.matching 
@@ -56,25 +56,25 @@ const users = {
       getCheckPhone(state){
         return state.check 
       },
-      getUserById(state){
-        return state.userById
+      getCustomerById(state){
+        return state.customerById
       },
-      getCountAllUser(state){
-        return state.countAllUser
+      getCountAllCustomer(state){
+        return state.countAllCustomer
       },
-      getCountUserMatch(state){
-        return state.countUserMatch
+      getCountCustomerMatch(state){
+        return state.countCustomerMatch
       },
-      getCountUserNotMatch(state){
-        return state.countUserNotMatch
+      getCountCustomerNotMatch(state){
+        return state.countCustomerNotMatch
       }
     },
     mutations: {
-      SET_USERS(state, data){
-        state.users = data
+      SET_CUSTOMER(state, data){
+        state.customer = data
       },
-      SET_SHOWUSERS(state, data){
-        state.showUsers = data
+      SET_SHOWCUSTOMER(state, data){
+        state.showCustomer = data
       },
       SET_ALERT(state, data){
         state.snackbar = data
@@ -85,8 +85,8 @@ const users = {
       SET_ALERT_TEXT(state, data){
         state.alertText = data
       },
-      SET_USER_ID(state, data){
-        state.userID = data
+      SET_CUSTOMER_ID(state, data){
+        state.customerID = data
       },
       SET_MATCHING(state, data){
         state.matching = data
@@ -94,37 +94,37 @@ const users = {
       SET_CHECK_PHONE(state, data){
         state.check = data
       },
-      SET_COUNT_ALLUSER(state, data){
-        state.countAllUser = data
+      SET_COUNT_ALLCUSTOMER(state, data){
+        state.countAllCustomer = data
       },
-      SET_COUNT_USERMATCH(state, data){
-        state.countUserMatch = data
+      SET_COUNT_CUSTOMERMATCH(state, data){
+        state.countCustomerMatch = data
       },
-      SET_COUNT_USERNOTMATCH(state, data){
-        state.countUserNotMatch = data
+      SET_COUNT_CUSTOMERNOTMATCH(state, data){
+        state.countCustomerNotMatch = data
       },
     },
     actions: {
-        async setUsers({ commit }){
+        async setCustomer({ commit }){
           try {
-            let r = await API.post(`/users`, this.getters.getUsers) //ส่งค่าใน state users ทั้งหมดไปให้ backend
-            commit('SET_USER_ID', r.data.User_ID)
-            console.log('user', r.data)
+            let r = await API.post(`/customers`, this.getters.getCustomer) //ส่งค่าใน state users ทั้งหมดไปให้ backend
+            commit('SET_CUSTOMER_ID', r.data.Customer_ID)
+            console.log('customer', r.data)
           } catch (error) {
             console.log(error)
           }
         },
-        async setShowUsers({ commit }){
+        async setShowCustomer({ commit }){
           try {
-            let r = await API.get(`/users`)
-            commit('SET_SHOWUSERS', r.data)
+            let r = await API.get(`/customers`)
+            commit('SET_SHOWCUSTOMER', r.data)
           } catch (error) {
             console.log(error)
           }
         },
-        async setUserStatus(){
-          if (this.getters.getUser2ID != '' && this.getters.getUser2ID != undefined) {
-              let data = await API.put(`/users/`+this.getters.getUser2ID,{Status:this.getters.getUsersStatus})  //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
+        async setCustomerStatus(){
+          if (this.getters.getCustomer2ID != '' && this.getters.getCustomer2ID != undefined) {
+              let data = await API.put(`/customers/`+this.getters.getCustomer2ID,{Status:this.getters.getCustomerStatus})  //ดึง Partner_ID ที่ได้จาก input form มาทำการ update status ของ user
               return data                                                                                       
             }       
         },
@@ -139,23 +139,23 @@ const users = {
         },
         async checkPhone({ commit }){
           try {
-            let r = await API.post(`/check-phone`, {Phone:this.getters.getUsers.Phone})
+            let r = await API.post(`/check-phone`, {Phone:this.getters.getCustomer.Phone})
             commit('SET_CHECK_PHONE', r.data)
           } catch (error) {
             console.log(error)
           }
         },
-        async editUser(){
+        async editCustomer(){
           try {
-            let r = await API.put(`/users/`+this.state.userById, this.getters.getUsers)
+            let r = await API.put(`/customers/`+this.state.customerById, this.getters.getCustomer)
             return r.data
           } catch (error) {
             console.log(error)
           }
         },
-        async deleteUser(){
+        async deleteCustomer(){
           try {
-            let r = await API.delete(`/users/`+this.state.userById)
+            let r = await API.delete(`/customers/`+this.state.customerById)
             return r.data
           } catch (error) {
             console.log(error)
@@ -170,26 +170,26 @@ const users = {
               console.log(error)
           }
         },
-        async countAllUser({ commit }){
+        async countAllCustomer({ commit }){
           try {
-              let r = await API.get(`/countAllUser`)
-              commit('SET_COUNT_ALLUSER', r.data)
+              let r = await API.get(`/countAllCustomer`)
+              commit('SET_COUNT_ALLCUSTOMER', r.data)
           } catch (error) {
               console.log(error)
           }
         },
-        async countUserMatch({ commit }){
+        async countCustomerMatch({ commit }){
           try {
-              let r = await API.get(`/countUserMatch`)
-              commit('SET_COUNT_USERMATCH', r.data)
+              let r = await API.get(`/countCustomerMatch`)
+              commit('SET_COUNT_CUSTOMERMATCH', r.data)
           } catch (error) {
               console.log(error)
           }
         },
-        async countUserNotMatch({ commit }){
+        async countCustomerNotMatch({ commit }){
           try {
-              let r = await API.get(`/countUserNotMatch`)
-              commit('SET_COUNT_USERNOTMATCH', r.data)
+              let r = await API.get(`/countCustomerNotMatch`)
+              commit('SET_COUNT_CUSTOMERNOTMATCH', r.data)
           } catch (error) {
               console.log(error)
           }
@@ -209,4 +209,4 @@ const users = {
         },
     }
 }
-export default users;
+export default customer;

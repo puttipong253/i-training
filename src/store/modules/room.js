@@ -4,23 +4,23 @@ const rooms = {
     state: {
         room:{
             Room_ID: '',
-            User_1_ID: '',
-            User_2_ID: '',
+            Customer_1_ID: '',
+            Customer_2_ID: '',
             Room_Number: '',
             Province_1: '',
             Province_2: ''
         },
         tmp:{
-            User_1_ID: '',
-            User_2_ID: '',
+            Customer_1_ID: '',
+            Customer_2_ID: '',
         },
-        userRoom: [],
+        customerRoom: [],
         roomItems: [],
         roomID:0 ,
         roomData: [],
-        updateUserRoom1: [],
-        updateUserRoom2: [],
-        countUserRoom: ""
+        updateCustomerRoom1: [],
+        updateCustomerRoom2: [],
+        countCustomerRoom: ""
     },
     getters: {
         getRoom(state){
@@ -35,31 +35,31 @@ const rooms = {
         getRoomData(state){
             return state.roomData
         },
-        getUser2ID(state){
-            return state.room.User_2_ID
+        getCustomer2ID(state){
+            return state.room.Customer_2_ID
         },
-        getUserRoom(state){
-            return state.userRoom
+        getCustomerRoom(state){
+            return state.customerRoom
         },
         getRoomItems(state){
             return state.roomItems
         },
-        getUpdateUserRoom1(state){
-            return state.updateUserRoom1
+        getUpdateCustomerRoom1(state){
+            return state.updateCustomerRoom1
         },
-        getUpdateUserRoom2(state){
-            return state.updateUserRoom2
+        getUpdateCustomerRoom2(state){
+            return state.updateCustomerRoom2
         },
-        getCountUserRoom(state){
-            return state.countUserRoom
+        getCountCustomerRoom(state){
+            return state.countCustomerRoom
         }
     },
     mutations: {
-        SET_USER_ROOM(state, data){
-            state.userRoom = data
+        SET_CUSTOMER_ROOM(state, data){
+            state.customerRoom = data
         },
-        SET_USER2_ID(state, data){
-            state.UserID2 = data
+        SET_CUSTOMER2_ID(state, data){
+            state.CustomerID2 = data
         },
         SET_ROOM_ID(state, data){
             state.roomID = data
@@ -67,21 +67,21 @@ const rooms = {
         SET_ROOM_DATA(state, data){
             state.roomData = data
         },
-        SET_UPDATE_USER_ROOM1(state, data){
-            state.updateUserRoom1 = data
+        SET_UPDATE_CUSTOMER_ROOM1(state, data){
+            state.updateCustomerRoom1 = data
         },
-        SET_UPDATE_USER_ROOM2(state, data){
-            state.updateUserRoom2 = data
+        SET_UPDATE_CUSTOMER_ROOM2(state, data){
+            state.updateCustomerRoom2 = data
         },
-        SET_COUNT_USERROOM(state, data){
-            state.countUserRoom = data
+        SET_COUNT_CUSTOMERROOM(state, data){
+            state.countCustomerRoom = data
         }
     },
     actions: {
         async setRoom({ commit }){
-            if (this.getters.getUsersStatus == 0) {
+            if (this.getters.getCustomerStatus == 0) {
                 try {
-                    let r = await API.post(`/room`,{User_1_ID:this.getters.getUserID,User_2_ID:this.getters.getRoom.User_2_ID})
+                    let r = await API.post(`/room`,{Customer_1_ID:this.getters.getCustomerID,Customer_2_ID:this.getters.getRoom.Customer_2_ID})
                     commit('SET_ROOM_ID', r.data.Room_ID)
                 } catch (error) {
                     console.log(error)
@@ -89,19 +89,19 @@ const rooms = {
             }
         },
         async setRoomMatch({ commit }){
-            if (this.getters.getRoom.User_1_ID != '' && this.getters.getRoom.User_2_ID != ''){
+            if (this.getters.getRoom.Customer_1_ID != '' && this.getters.getRoom.Customer_2_ID != ''){
                 try {
-                    let r = await API.post(`/room`,{User_1_ID:this.getters.getRoom.User_1_ID, User_2_ID:this.getters.getRoom.User_2_ID})
+                    let r = await API.post(`/room`,{Customer_1_ID:this.getters.getRoom.Customer_1_ID, Customer_2_ID:this.getters.getRoom.Customer_2_ID})
                     .then(res => (
                         commit('SET_ROOM_DATA', res.data),
                         console.log('roomMatch',res.data),
-                        API.put(`/users/`+this.getters.getRoom.User_1_ID,{Status:false}).then(res => (
-                            console.log('User_1_ID',res.data),
-                            this.getters.getRoom.User_1_ID = ''
+                        API.put(`/customers/`+this.getters.getRoom.Customer_1_ID,{Status:false}).then(res => (
+                            console.log('Customer_1_ID',res.data),
+                            this.getters.getRoom.Customer_1_ID = ''
                         )),
-                        API.put(`/users/`+this.getters.getRoom.User_2_ID,{Status:false}).then(res => (
-                            console.log('User_2_ID',res.data),
-                            this.getters.getRoom.User_2_ID = ''
+                        API.put(`/customers/`+this.getters.getRoom.Customer_2_ID,{Status:false}).then(res => (
+                            console.log('Customer_2_ID',res.data),
+                            this.getters.getRoom.Customer_2_ID = ''
                         ))
                     ))
                     return r
@@ -110,24 +110,24 @@ const rooms = {
                 }
             }
         },
-        async setUserRoom({ commit }){
+        async setCustomerRoom({ commit }){
             try { 
-                let r = await API.get(`/users-room`) // data table room
-                commit('SET_USER_ROOM', r.data)
-                console.log('SET_USER_ROOM', r.data)
+                let r = await API.get(`/customers-room`) // data table room
+                commit('SET_CUSTOMER_ROOM', r.data)
+                console.log('SET_CUSTOMER_ROOM', r.data)
             } catch (error) {
                 console.log(error)
             }
         },
         async updateRoom(){
             try {
-                let r = await API.put(`/room/`+this.getters.getRoom.Room_ID,{User_1_ID:this.getters.getRoom.User_1_ID,User_2_ID:this.getters.getRoom.User_2_ID,Room_Number:this.getters.getRoom.Room_Number})
+                let r = await API.put(`/room/`+this.getters.getRoom.Room_ID,{Customer_1_ID:this.getters.getRoom.Customer_1_ID,Customer_2_ID:this.getters.getRoom.Customer_2_ID,Room_Number:this.getters.getRoom.Room_Number})
                 console.log('update',r.data)
-                API.put(`/users/`+this.getters.getRoom.User_1_ID,{Status:false})
-                API.put(`/users/`+this.getters.getRoom.User_2_ID,{Status:false}).then(() => (
+                API.put(`/customers/`+this.getters.getRoom.Customer_1_ID,{Status:false})
+                API.put(`/customers/`+this.getters.getRoom.Customer_2_ID,{Status:false}).then(() => (
                     this.getters.getRoom.Room_ID = '',
-                    this.getters.getRoom.User_1_ID = '',
-                    this.getters.getRoom.User_2_ID = '',
+                    this.getters.getRoom.Customer_1_ID = '',
+                    this.getters.getRoom.Customer_2_ID = '',
                     this.getters.getRoom.Room_Number = '',
                     this.getters.getRoom.Province_1 = '',
                     this.getters.getRoom.Province_2 = ''
@@ -136,36 +136,36 @@ const rooms = {
                 console.log(error)
             }
         },
-        async updateUserRoom1({ commit }){
+        async updateCustomerRoom1({ commit }){
             try {
-                let r = await API.post(`/provinceUserRoom1`,this.getters.getRoom)                
-                commit('SET_UPDATE_USER_ROOM1', r.data)
+                let r = await API.post(`/provinceCustomerRoom1`,this.getters.getRoom)                
+                commit('SET_UPDATE_CUSTOMER_ROOM1', r.data)
             } catch (error) {
                 console.log(error)
             }
         },
-        async updateUserRoom2({ commit }){
+        async updateCustomerRoom2({ commit }){
             try {
-                let r = await API.post(`/provinceUserRoom2`,this.getters.getRoom)                
-                commit('SET_UPDATE_USER_ROOM2' ,r.data)
+                let r = await API.post(`/provinceCustomerRoom2`,this.getters.getRoom)                
+                commit('SET_UPDATE_CUSTOMER_ROOM2' ,r.data)
             } catch (error) {
                 console.log(error)
             }
         },
         resetData(){
-            if (this.getters.getTmp.User_1_ID != null) {
-                API.put(`/hotel/`+this.getters.getTmp.User_1_ID,{Room_ID:0,Partner_ID:''})
-                API.put(`/users/`+this.getters.getTmp.User_1_ID,{Status:true})
+            if (this.getters.getTmp.Customer_1_ID != null) {
+                API.put(`/hotel/`+this.getters.getTmp.Customer_1_ID,{Room_ID:0,Partner_ID:''})
+                API.put(`/customers/`+this.getters.getTmp.Customer_1_ID,{Status:true})
             }
-            if (this.getters.getTmp.User_2_ID != null) {
-                API.put(`/hotel/`+this.getters.getTmp.User_2_ID,{Room_ID:0,Partner_ID:''})            
-                API.put(`/users/`+this.getters.getTmp.User_2_ID,{Status:true})
+            if (this.getters.getTmp.Customer_2_ID != null) {
+                API.put(`/hotel/`+this.getters.getTmp.Customer_2_ID,{Room_ID:0,Partner_ID:''})            
+                API.put(`/customers/`+this.getters.getTmp.Customer_2_ID,{Status:true})
             }
         },
-        async countUserRoom({ commit }){
+        async countCustomerRoom({ commit }){
             try {
-                let r = await API.get(`/countUserRoom`)
-                commit('SET_COUNT_USERROOM', r.data)
+                let r = await API.get(`/countCustomerRoom`)
+                commit('SET_COUNT_CUSTOMERROOM', r.data)
             } catch (error) {
                 console.log(error)
             }
