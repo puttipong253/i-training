@@ -42,15 +42,24 @@
               <v-container>
                 <v-row>
                   <v-col cols="6" sm="6" md="6">
-                    
+                    <v-text-field
+                      v-model="check.Check_In_2"
+                      label="วันที่เช็คอิน"              
+                    ></v-text-field>
                   </v-col>
 
                   <v-col cols="6" sm="6" md="6">
-
+                    <v-text-field
+                      v-model="check.Check_Out_2"
+                      label="วันที่เช็คเอาท์"              
+                    ></v-text-field>
                   </v-col>
-
-                  <v-col cols="6" sm="6" md="6">
-
+   
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field
+                      v-model="getHotel.Note"
+                      label="หมายเหตุ"              
+                    ></v-text-field>
                   </v-col>              
                 </v-row>
               </v-container>
@@ -108,18 +117,34 @@ export default {
     customerHotel() {
       return this.$store.getters.getCustomerHotel;
     },
+    getHotel(){
+      return this.$store.getters.getHotel;
+    },
+    check(){
+      return this.$store.getters.getCheck
+    }
   },
   mounted() {
     this.$store.dispatch('setCustomerHotel');
   },
   methods:{
-    editItem() {    
-      this.dialog = true        
+    editItem(item) {   
+      this.dialog = true   
+      this.check.Check_In_2 = item.Check_In
+      this.check.Check_Out_2 = item.Check_Out
+      this.getHotel.Note = item.Note
+      this.$store.state.hotelByID = item.Hotel_ID
     },
     close() {
+      this.check.Check_In_2 = ''
+      this.check.Check_Out_2 = ''
+      this.getHotel.Note = ''
+      this.$store.state.hotelByID = ''
       this.dialog = false 
     },
-    save() {
+    async save() {
+      await this.$store.dispatch('updateHotel')
+      await this.$store.dispatch('setCustomerHotel');
       this.dialog = false 
     }
   }

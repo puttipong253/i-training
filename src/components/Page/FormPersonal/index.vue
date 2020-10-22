@@ -58,7 +58,7 @@
               :counter="10"
               maxlength="10"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              label="เบอร์โทรศัพท์"
+              label="เบอร์โทรศัพท์มือถือ"
               type="number"              
             ><v-icon slot="prepend" color="red">mdi-asterisk</v-icon></v-text-field>
           </v-col>
@@ -97,7 +97,8 @@
             <v-text-field
               class="text-custom"
               v-model="getCustomer.Food_Allergy"
-              label="อาหารที่แพ้"              
+              label="อาหารที่แพ้"    
+              placeholder="เช่น ถั่ว,กุ้ง"          
             ><v-icon slot="prepend" color="red"></v-icon></v-text-field>
           </v-col>
         </v-row>

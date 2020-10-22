@@ -12,12 +12,20 @@ const hotel = {
             Partner_ID: "",
             Partner_Phone: ""
         },
+        check:{
+            Check_In_2: "",
+            Check_Out_2: "",
+        },
+        hotelByID: [],
         partner: [],
         customerHotel: [],
         partnerNameItems: [],
         partnerID: []
     },
     getters: {
+        getCheck(state){
+            return state.check
+        },
         getHotel(state){
             return state.hotels
         },
@@ -151,7 +159,16 @@ const hotel = {
             } catch (error) {
                 console.log(error)
             }
-        }
+        },
+        async updateHotel(){
+            try {
+                let r = await API.put(`/hotel/`+this.state.hotelByID,{Check_In:this.getters.getCheck.Check_In_2, Check_Out:this.getters.getCheck.Check_Out_2, Note:this.getters.getHotel.Note})
+                console.log(r.data)
+                return r.data
+            } catch (error) {
+                console.log(error)
+            }
+        },
     }
 }
 export default hotel;

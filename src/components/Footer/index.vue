@@ -6,7 +6,7 @@
       height="40"
     >
       <TextFooter>
-        <strong>โรงแรม: 02-579-0010, ผู้ประสานงาน: 08-4550-4818</strong>
+        <strong>โรงแรม: 02-579-0010, ผู้ประสานงาน: 09-2252-2538</strong>
       </TextFooter>
     </v-footer>
 </template>
