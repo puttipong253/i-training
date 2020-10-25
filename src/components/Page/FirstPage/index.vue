@@ -76,6 +76,12 @@ export default {
       return this.$store.getters.getPhone
     },
   },
+  mounted(){
+      this.$store.dispatch('countAllCustomer')
+      this.$store.dispatch('countCustomerMatch')
+      this.$store.dispatch('countCustomerNotMatch')
+      this.$store.dispatch('countCustomerRoom')
+  },
   methods:{
     tracking(){      
       this.dialog = true      
