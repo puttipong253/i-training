@@ -3,7 +3,7 @@
     <v-img :src="require('@/assets/logo_moi480.png')" class="my-3" contain height="160" />
     <WrapperText>
       <Title>การจัดอบรมสัมมนาเชิงปฏิบัติการ</Title>
-      <SubTitle>เรื่อง การบริหารจัดการเว็บไซต์ให้กับบุคลากรที่เกี่ยวข้อง ทั้งส่วนกลางและส่วนภูมิภาค</SubTitle>
+      <SubTitle>เรื่อง การบริหารจัดการและการใช้งานเว็บไซต์</SubTitle>
       <Content>ระหว่างวันที่ ๑๐ - ๑๒ พฤศจิกายน ๒๕๖๓</Content>
       <SubContent>ณ ห้องปฏิบัติการคอมพิวเตอร์ ชั้น ๕ สำนักบริการคอมพิวเตอร์</SubContent>
       <SubContent>มหาวิทยาลัยเกษตรศาสตร์ (บางเขน)</SubContent>

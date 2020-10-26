@@ -30,7 +30,7 @@
         :search="search"
       >
       <template #[`item.Room`]="{ item }">{{item.Room_ID == 0 ? 'ไม่มี' : item.Room_ID}}</template>
-
+      <template #[`item.Partner`]="{ item }">{{item.Partner_ID == null ? 'ไม่มี' : item.Partner_ID}}</template>
       <template v-slot:top>
         <v-dialog v-model="dialog" persistent max-width="500px">
           <v-card>
@@ -105,6 +105,7 @@ export default {
         { text: "วันที่เช็คอิน", value: "Check_In" },
         { text: "วันที่เช็คเอาท์", value: "Check_Out" },
         { text: "รหัสห้องพัก", value: "Room" },
+        { text: "รหัสคู่พัก", value: "Partner" },
         { text: "หมายเหตุ", value: "Note" },
         { text: "actions", value: "actions" },
       ],

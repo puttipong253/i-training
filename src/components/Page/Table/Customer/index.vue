@@ -31,6 +31,7 @@
         :items="customer"
         :search="search"
       >
+      <template #[`item.StatusCode`]="{ item }">{{item.Status == 0 ? 'จับคู่แล้ว' : 'ยังไม่จับคู่'}}</template>
       <template v-slot:top>
         <v-dialog v-model="dialog" persistent max-width="500px">
           <v-card>
@@ -131,7 +132,7 @@
                     ></v-select>
                   </v-col>
 
-                  <v-col cols="5" sm="5" md="5">
+                  <v-col cols="4" sm="4" md="4">
                     <v-text-field
                       class="text-custom"
                       v-model="getCustomer.Food_Allergy"
@@ -139,12 +140,15 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col cols="3" sm="3" md="3">
-                    <v-text-field
+                  <v-col cols="4" sm="4" md="4">
+                    <v-select
                       class="text-custom"
                       v-model="getCustomer.Status"
-                      label="สถานะ"          
-                    ></v-text-field>
+                      :items="status"
+                      item-text="text"
+                      item-value="Status"
+                      label="สถานะ"    
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -200,8 +204,10 @@ export default {
         { text: "จังหวัด", value: "Province" },
         { text: "ประเภทอาหาร", value: "Food_Group" },
         { text: "อาหารที่แพ้", value: "Food_Allergy" },
-        { text: 'actions', value: 'actions', sortable: false }
+        { text: "สถานะ", value: "StatusCode" },
+        { text: "actions", value: "actions", sortable: false }
       ],
+      status:[{text:'จับคู่แล้ว',Status:0},{text:'ยังไม่จับคู่',Status:1}],
       prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
       fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
       lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
@@ -283,6 +289,13 @@ export default {
       this.disabled = true  
       await this.$store.dispatch('editCustomer')
       await this.$store.dispatch('setShowCustomer');
+      await this.$store.dispatch('setCustomerHotel');     
+      await this.$store.dispatch('setCustomerRoom');   
+      await this.$store.dispatch('matching')
+      await this.$store.dispatch('countAllCustomer')
+      await this.$store.dispatch('countCustomerMatch')
+      await this.$store.dispatch('countCustomerNotMatch')
+      await this.$store.dispatch('countCustomerRoom')
       await this.close()
     },
     async deleteCustomer(item){
@@ -290,12 +303,16 @@ export default {
       this.$store.dispatch('getpartnerID')
       var con = confirm("ต้องการลบคุณ"+" "+item.F_Name+" "+"ใช่หรือไม่ ?");      
       if (con) {
-        await this.$store.dispatch('deleteCustomer')
-        await this.$store.dispatch('deleteHotel')
+        await this.$store.dispatch('deleteCustomer');
+        await this.$store.dispatch('deleteHotel');
         await this.$store.dispatch('resetPartnerID');
         await this.$store.dispatch('setShowCustomer');
         await this.$store.dispatch('setCustomerHotel');     
-        await this.$store.dispatch('setCustomerRoom');     
+        await this.$store.dispatch('setCustomerRoom');   
+        await this.$store.dispatch('countAllCustomer');
+        await this.$store.dispatch('countCustomerMatch');
+        await this.$store.dispatch('countCustomerNotMatch');
+        await this.$store.dispatch('countCustomerRoom');
       }        
       else{
         return false;
@@ -309,7 +326,8 @@ export default {
         }else{
                 return 0;
         }
-    }
+    },
+    text: item => item.F_Name + ' ' +  item.L_Name
   }
 };
 </script>

@@ -213,9 +213,14 @@ export default {
             await this.$store.dispatch('setRoomMatch')
             await this.$store.dispatch('partnerHotel') 
             await this.$store.dispatch('alertSuccess')
+            await this.$store.dispatch('setShowCustomer');
             await this.$store.dispatch('matching')
             await this.$store.dispatch('setCustomerRoom')     
             await this.$store.dispatch('setCustomerHotel')     
+            await this.$store.dispatch('countAllCustomer')
+            await this.$store.dispatch('countCustomerMatch')
+            await this.$store.dispatch('countCustomerNotMatch')
+            await this.$store.dispatch('countCustomerRoom')
           } 
         }
       },

@@ -169,7 +169,19 @@ const rooms = {
             } catch (error) {
                 console.log(error)
             }
-          },
+        },
+        async deleteRoom(){
+            API.delete(`/room/`+this.state.roomItems.Room_ID)
+                .then(() => (
+                    API.put(`/customers/`+this.getters.getTmp.Customer_1_ID,{Status:true}),
+                    API.put(`/customers/`+this.getters.getTmp.Customer_2_ID,{Status:true}),
+                    API.put(`/hotel/`+this.getters.getTmp.Customer_1_ID,{Room_ID:0,Partner_ID: ''}),
+                    API.put(`/hotel/`+this.getters.getTmp.Customer_2_ID,{Room_ID:0,Partner_ID: ''})
+                ))
+                .catch(error => (
+                    console.log(error)
+                ))
+        }
     }
 }
 export default rooms;

@@ -106,9 +106,16 @@
         <v-icon
           small
           class="mr-2"
-          @click="editItem(item)"
+          @click="editRoom(item)"
         >
           mdi-pencil
+        </v-icon>
+        <v-icon
+          small
+          color="red"
+          @click="deleteRoom(item)"
+        >
+          mdi-delete
         </v-icon>
       </template>
       </v-data-table>
@@ -174,7 +181,7 @@ import { Wrapper } from './index.style'
       }
     },
     methods: {
-      editItem (item) {    
+      editRoom (item) {    
         this.disabled = false,          
         this.$store.dispatch('updateCustomerRoom1')
         this.$store.dispatch('updateCustomerRoom2')
@@ -228,6 +235,29 @@ import { Wrapper } from './index.style'
       },
       downloadRoom(){
         this.$store.dispatch('downloadRoom')
+      },
+      async deleteRoom(item){
+          this.$store.state.roomItems = item
+          this.getTmp.Customer_1_ID = item.UID1
+          this.getTmp.Customer_2_ID = item.UID2
+          var con = confirm("ต้องการลบห้องพักนี้ใช่หรือไม่ ?");      
+          if (con) {
+            await this.$store.dispatch('deleteRoom');
+            setTimeout(() => {
+                this.$store.dispatch('setCustomerRoom');   
+                this.$store.dispatch('setShowCustomer');
+                this.$store.dispatch('setCustomerHotel');
+                this.$store.dispatch('matching')
+                this.$store.dispatch('countAllCustomer')
+                this.$store.dispatch('countCustomerMatch')
+                this.$store.dispatch('countCustomerNotMatch')
+                this.$store.dispatch('countCustomerRoom')
+            }, 1500);
+            
+          }        
+          else{
+            return false;
+          }   
       },
       text: item => item.F_Name + ' ' +  item.L_Name
     },
