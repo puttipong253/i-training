@@ -121,7 +121,7 @@
                     ></v-select>     
                   </v-col>
 
-                  <v-col cols="5" sm="5" md="5">
+                  <v-col cols="4" sm="4" md="4">
                     <v-select
                       class="text-custom"
                       v-model="getCustomer.Food_Group"
@@ -131,12 +131,20 @@
                     ></v-select>
                   </v-col>
 
-                  <v-col cols="7" sm="7" md="7">
+                  <v-col cols="5" sm="5" md="5">
                     <v-text-field
                       class="text-custom"
                       v-model="getCustomer.Food_Allergy"
                       label="อาหารที่แพ้"              
-                    ><v-icon slot="prepend" color="red"></v-icon></v-text-field>
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="3" sm="3" md="3">
+                    <v-text-field
+                      class="text-custom"
+                      v-model="getCustomer.Status"
+                      label="สถานะ"          
+                    ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
