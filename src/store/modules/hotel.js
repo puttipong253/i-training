@@ -5,7 +5,7 @@ const hotel = {
         hotels:{
             Customer_ID: "",
             Check_In: "10 พฤศจิกายน 2563",
-            Check_Out: "11 พฤศจิกายน 2563",
+            Check_Out: "12 พฤศจิกายน 2563",
             Partner_Province: "",
             Room_ID: 0,
             Note: "",

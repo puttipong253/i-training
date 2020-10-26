@@ -5,25 +5,22 @@
       <v-col cols="12" sm="12" md="12"><Header>การเข้าพักโรงแรม</Header></v-col>
 
       <v-col cols="6" sm="6" md="6">
-        <v-select
+        <v-text-field
           class="text-custom"
           v-model="getHotel.Check_In"
           :rules="checkInRules"
-          :items="checkInItems"
           label="วันที่เช็คอิน"
-          disabled
-        ></v-select>
+          readonly
+        ></v-text-field>
       </v-col>
 
       <v-col cols="6" sm="6" md="6">
-        <v-select
+        <v-text-field
           class="text-custom"
           v-model="getHotel.Check_Out"
-          :rules="checkOutRules"
-          :items="checkOutItems"
           label="วันที่เช็คเอาท์"
-          disabled
-        ></v-select>
+          readonly
+        ></v-text-field>
       </v-col>
 
       <v-col cols="12" sm="12" md="12"><Header>คู่พัก</Header></v-col>
@@ -125,8 +122,6 @@ export default {
     show2: false,
     checkInRules: [(v) => !!v || "กรุณาเลือกวันที่เช็คอิน"],
     checkOutRules: [(v) => !!v || "กรุณาเลือกวันที่เช็คเอาท์"],
-    checkInItems: ["19 ตุลาคม 2563", "20 ตุลาคม 2563"],
-    checkOutItems: ["20 ตุลาคม 2563", "21 ตุลาคม 2563"],  
     partnerRules: [(v) => !!v || "กรุณาเลือกคู่พัก"],
   }),
   components: {
