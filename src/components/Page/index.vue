@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     async submit() {
-      if (this.$store.getters.getRoom.Customer_2_ID == '') {
+      if (this.$store.getters.getRoom.Customer_2_ID == '' && this.$store.getters.getCustomer.Status == false) {
           this.$store.getters.getCustomer.Status = true
       }      
       if (this.$refs.form2.validate() == true) { //ทำการเช็ค validate

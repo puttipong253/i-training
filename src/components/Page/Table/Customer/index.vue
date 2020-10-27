@@ -31,7 +31,7 @@
         :items="customer"
         :search="search"
       >
-      <template #[`item.StatusCode`]="{ item }">{{item.Status == 0 ? 'จับคู่แล้ว' : 'ยังไม่จับคู่'}}</template>
+      <template #[`item.StatusCode`]="{ item }">{{item.Status == 0 ? 'จับคู่แล้ว' : item.Status == 1 ? 'ยังไม่จับคู่' : 'ไม่พัก'}}</template>
       <template v-slot:top>
         <v-dialog v-model="dialog" persistent max-width="500px">
           <v-card>
