@@ -207,7 +207,11 @@ export default {
         { text: "สถานะ", value: "StatusCode" },
         { text: "actions", value: "actions", sortable: false }
       ],
-      status:[{text:'จับคู่แล้ว',Status:0},{text:'ยังไม่จับคู่',Status:1}],
+      status:[
+            {text:'จับคู่แล้ว',Status:0},
+            {text:'ยังไม่จับคู่',Status:1},
+            {text:'ไม่พัก',Status:2}
+      ],
       prefixRules: [(v) => !!v || "กรุณาเลือกคำนำหน้า"],
       fnameRules: [(v) => !!v || "กรุณากรอกชื่อจริง"],
       lnameRules: [(v) => !!v || "กรุณากรอกนามสกุล"],
