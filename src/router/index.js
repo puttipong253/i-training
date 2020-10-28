@@ -5,6 +5,7 @@ import Home from '../views/Home'
 import Admin from '../views/Admin'
 import Page from '../views/FormInput'
 import Track from '../views/FormTrack'
+import Login from '../views/Login'
 Vue.use(VueRouter)
 
   const routes = [
@@ -28,6 +29,11 @@ Vue.use(VueRouter)
     name: 'Track',
     component: Track
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  }
 ]
 
 const router = new VueRouter({

@@ -27,6 +27,7 @@ const customer = {
         countAllCustomer: "",
         countCustomerMatch: "",
         countCustomerNotMatch: "",
+        countCustomerNoHotel: "",
     },
     getters: {
       getCustomer(state){
@@ -67,7 +68,10 @@ const customer = {
       },
       getCountCustomerNotMatch(state){
         return state.countCustomerNotMatch
-      }
+      },
+      getCountCustomerNoHotel(state){
+        return state.countCustomerNoHotel
+      },
     },
     mutations: {
       SET_CUSTOMER(state, data){
@@ -102,6 +106,9 @@ const customer = {
       },
       SET_COUNT_CUSTOMERNOTMATCH(state, data){
         state.countCustomerNotMatch = data
+      },
+      SET_COUNT_CUSTOMERNOHOTEL(state, data){
+        state.countCustomerNoHotel = data
       },
     },
     actions: {
@@ -190,6 +197,14 @@ const customer = {
           try {
               let r = await API.get(`/countCustomerNotMatch`)
               commit('SET_COUNT_CUSTOMERNOTMATCH', r.data)
+          } catch (error) {
+              console.log(error)
+          }
+        },
+        async countCustomerNoHotel({ commit }){
+          try {
+              let r = await API.get(`/countCustomerNoHotel`)
+              commit('SET_COUNT_CUSTOMERNOHOTEL', r.data)
           } catch (error) {
               console.log(error)
           }
