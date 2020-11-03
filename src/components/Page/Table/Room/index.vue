@@ -30,8 +30,8 @@
         :items="customerRoom"
         :search="search"        
       >
-      <template #[`item.full_name1`]="{ item }">{{ item.PF_1 }} {{ item.F_1 }} {{ item.L_1 }}</template>
-      <template #[`item.full_name2`]="{ item }">{{ item.PF_2 }} {{ item.F_2 }} {{ item.L_2 }}</template>
+      <template #[`item.full_name1`]="{ item }">{{ item.UID1 }} {{ item.PF_1 }} {{ item.F_1 }} {{ item.L_1 }}</template>
+      <template #[`item.full_name2`]="{ item }">{{ item.UID2 }} {{ item.PF_2 }} {{ item.F_2 }} {{ item.L_2 }}</template>
 
       <template v-slot:top>
         <v-dialog v-model="dialog" persistent max-width="500px">
