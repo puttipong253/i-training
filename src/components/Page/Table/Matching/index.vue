@@ -206,7 +206,7 @@ export default {
       },
       async saveMatch(){
         this.overlay = true
-        if (this.customerMatch.Customer_1_ID !='' && this.customerMatch.Customer_2_ID !='') {
+        if (this.customerMatch.Customer_1_ID !='') {
           if (confirm(this.name1 +' และ '+ this.name2)) {
             this.name1 = ''
             this.name2 = ''

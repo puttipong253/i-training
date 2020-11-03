@@ -89,7 +89,7 @@ const rooms = {
             }
         },
         async setRoomMatch({ commit }){
-            if (this.getters.getRoom.Customer_1_ID != '' && this.getters.getRoom.Customer_2_ID != ''){
+            if (this.getters.getRoom.Customer_1_ID != ''){
                 try {
                     let r = await API.post(`/room`,{Customer_1_ID:this.getters.getRoom.Customer_1_ID, Customer_2_ID:this.getters.getRoom.Customer_2_ID})
                     .then(res => (
