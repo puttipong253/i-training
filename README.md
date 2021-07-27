@@ -8,6 +8,8 @@
     
 <i>การลงทะเบียน</i> <br>
 https://online-registration-frontend.vercel.app/
+<i>การจัดการ</i> <br>
+https://online-registration-frontend.vercel.app/admin-industry 
 
 ![image](https://user-images.githubusercontent.com/31680381/93706985-6eec6700-fb55-11ea-8e97-d067daa0b7ff.png)
  
